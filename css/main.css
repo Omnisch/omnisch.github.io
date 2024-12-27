@@ -1,3 +1,6 @@
+@import url("https://fonts.font.im/css2?family=Noto+Serif:wght@300");
+@import url("https://fonts.font.im/css2?family=Noto+Serif+SC:wght@700");
+@import url("https://fonts.font.im/css2?family=Charis+SIL");
 @font-face {
   font-family: LXGW;
   src: url("/fonts/LXGWWenKai-Regular.ttf");
@@ -211,7 +214,7 @@ body {
   background: var(--body-bg-color);
   box-sizing: border-box;
   color: var(--text-color);
-  font-family: Iroha Kana, Noto Serif, Charis SIL Local, LXGW, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: Iroha Kana, Noto Serif, Charis SIL, LXGW, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-size: 1em;
   line-height: 2;
   min-height: 100%;
@@ -224,7 +227,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Noto Serif SC, Iroha Kana, Noto Serif, Charis SIL Local, LXGW, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: Noto Serif SC, Iroha Kana, Noto Serif, Charis SIL, LXGW, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-weight: bold;
   line-height: 1.5;
   margin: 30px 0 15px;
@@ -1169,7 +1172,7 @@ pre code {
   color: var(--brand-hover-color);
 }
 .site-title {
-  font-family: KhangXi, Iroha Kana, Noto Serif, Charis SIL Local, LXGW, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: KhangXi, Iroha Kana, Noto Serif, Charis SIL, LXGW, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-size: 3em;
   font-weight: normal;
   line-height: 1.5;
@@ -1311,7 +1314,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #9dd982;
+    background: #ff29ff;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -1919,7 +1922,7 @@ pre code {
   width: 4px;
 }
 .post-body {
-  font-family: Iroha Kana, Noto Serif, Charis SIL Local, LXGW, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: Iroha Kana, Noto Serif, Charis SIL, LXGW, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   overflow-wrap: break-word;
 }
 @media (min-width: 1200px) {
@@ -2105,7 +2108,7 @@ pre code {
 }
 .posts-expand .post-meta-container {
   color: #999;
-  font-family: Iroha Kana, Noto Serif, Charis SIL Local, LXGW, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: Iroha Kana, Noto Serif, Charis SIL, LXGW, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-size: 0.75em;
   margin-top: 3px;
 }
