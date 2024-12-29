@@ -1,4 +1,5 @@
 @import url("https://fonts.font.im/css2?family=Noto+Serif:wght@300");
+@import url("https://fonts.font.im/css2?family=Playfair+Display:wght@700");
 @import url("https://fonts.font.im/css2?family=Noto+Serif+SC:wght@700");
 @import url("https://cdn.jsdelivr.net/npm/@callmebill/lxgw-wenkai-web@latest/lxgwwenkai-regular/result.css");
 @font-face {
@@ -218,7 +219,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Noto Serif SC, Iroha Kana, Noto Serif, Charis SIL Local, LXGW WenKai, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: Playfair Display, Noto Serif SC, Iroha Kana, Noto Serif, Charis SIL Local, LXGW WenKai, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-weight: bold;
   line-height: 1.5;
   margin: 30px 0 15px;
@@ -1305,7 +1306,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #a1b8df;
+    background: #cda16b;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2793,3 +2794,36 @@ header.header {
 .menu-item a {
   font-size: 1em;
 }
+/* Auto Scaling Input Field */
+/* Container style to center or align the field */
+.input-container {
+  width: 100%;
+  max-width: 600px; /* Maximum width to prevent stretching too far */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 10px;
+  box-sizing: border-box;
+}
+/* Scalable input field */
+.scalable-input {
+  font-family: flakil;
+  width: 100%; /* Take the full width of the container */
+  padding: 10px; /* Add padding for better usability */
+  font-size: 2rem; /* Ensure text size is scalable */
+  border: 1px solid #ccc; /* Light border for better visibility */
+  border-radius: 4px; /* Rounded corners for better aesthetics */
+  box-sizing: border-box; /* Ensure padding does not affect the width */
+  transition: all 0.3s ease; /* Smooth transitions on focus */
+}
+@media (max-width: 768px) {
+  .scalable-input {
+    font-size: 0.9rem; /* Slightly smaller text on smaller screens */
+    padding: 8px; /* Adjust padding */
+  }
+}
+@media (max-width: 480px) {
+  .scalable-input {
+    font-size: 0.8rem; /* Smaller text for very small screens */
+    padding: 6px; /* Adjust padding further */
+  }
+}
+/* !Auto Scaling Input Field */
