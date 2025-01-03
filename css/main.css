@@ -16,7 +16,7 @@
 }
 @font-face {
   font-family: flakil;
-  src: url("/fonts/flakil-Regular.otf");
+  src: url("/cak/flakil/orthography/flakil-Regular.otf");
 }
 :root {
   --body-bg-color: #eee;
@@ -1306,7 +1306,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #53ffff;
+    background: #a4ff75;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
