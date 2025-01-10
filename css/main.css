@@ -1,22 +1,25 @@
 @import url("https://fonts.font.im/css2?family=Noto+Serif:wght@300");
-@import url("https://fonts.font.im/css2?family=Playfair+Display:wght@700");
 @import url("https://fonts.font.im/css2?family=Noto+Serif+SC:wght@700");
 @import url("https://cdn.jsdelivr.net/npm/@callmebill/lxgw-wenkai-web@latest/lxgwwenkai-regular/result.css");
 @font-face {
-  font-family: KhangXi;
-  src: url("/fonts/subset-TpldKhangXiDictTrial.woff2");
+  font-family: Charis SIL Local;
+  src: url("/fonts/CharisSIL-Regular.woff2");
+}
+@font-face {
+  font-family: flimiix;
+  src: url("/cak/flakil/orthography/flimiix-Regular.otf");
 }
 @font-face {
   font-family: Iroha Kana;
   src: url("/fonts/subset-irohamaru-Light.woff2");
 }
 @font-face {
-  font-family: Charis SIL Local;
-  src: url("/fonts/CharisSIL-Regular.woff2");
+  font-family: KhangXi;
+  src: url("/fonts/subset-TpldKhangXiDictTrial.woff2");
 }
 @font-face {
-  font-family: flakil;
-  src: url("/cak/flakil/orthography/flakil-Regular.otf");
+  font-family: Noto Serif Apostrophe;
+  src: url("/fonts/subset-Noto-Serif-Bold.woff2");
 }
 :root {
   --body-bg-color: #eee;
@@ -219,7 +222,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Playfair Display, Noto Serif SC, Iroha Kana, Noto Serif, Charis SIL Local, LXGW WenKai, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: Noto Serif Apostrophe, Noto Serif SC, Iroha Kana, Noto Serif, Charis SIL Local, LXGW WenKai, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-weight: bold;
   line-height: 1.5;
   margin: 30px 0 15px;
@@ -1306,7 +1309,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #4eb8f2;
+    background: #3d7fff;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
