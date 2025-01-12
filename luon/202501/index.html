@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#9acab0"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-omnis.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-omnis.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-omnis.ico">
+  <link rel="mask-icon" href="/images/logo-omnis.svg" color="#9acab0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.font.im/css?family=Fira+Code+Retina:300,300italic,400,400italic,700,700italic%7CNoto+Sans+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"omnisch.net","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="声明：本文所分析的《米塔》全部基于 V0.9，不涉及后续可能的更新内容。   引入  在圣诞节前夕，偶然看到群友们提到这么一位新角色，竟有着与《君与彼女与彼女之恋》的曾根美雪、《心跳文学部》的莫妮卡二位“赛博女鬼”携手“三英战吕布”的水平。她就是 2024 年 12 月刚刚发售的恐怖游戏《米塔 MiSide》的女主角米塔。    一看到这图，我立马就懂了，这《米塔》就是又一款在玩家电脑里捣鬼的不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="万人给出 98% 好评的《米塔》，不是一款畅快的 meta 游戏">
+<meta property="og:url" content="https://omnisch.net/luon/202501/index.html">
+<meta property="og:site_name" content="青山軒">
+<meta property="og:description" content="声明：本文所分析的《米塔》全部基于 V0.9，不涉及后续可能的更新内容。   引入  在圣诞节前夕，偶然看到群友们提到这么一位新角色，竟有着与《君与彼女与彼女之恋》的曾根美雪、《心跳文学部》的莫妮卡二位“赛博女鬼”携手“三英战吕布”的水平。她就是 2024 年 12 月刚刚发售的恐怖游戏《米塔 MiSide》的女主角米塔。    一看到这图，我立马就懂了，这《米塔》就是又一款在玩家电脑里捣鬼的不">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://omnisch.net/luon/202501/miyuki_monika_and_mita.jpg?height=300">
+<meta property="og:image" content="https://omnisch.net/luon/202501/BV1B6kbY4Ecb.png">
+<meta property="og:image" content="https://omnisch.net/luon/202501/definition_of_meta.jpg?height=300">
+<meta property="og:image" content="https://omnisch.net/luon/202501/mita_is_not_meta.png?height=400">
+<meta property="og:image" content="https://placehold.co/240x30/fd4/000.png?text=SPOILER%20WARNING">
+<meta property="og:image" content="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/221910/header.jpg">
+<meta property="og:image" content="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/698780/header.jpg">
+<meta property="og:image" content="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1997680/header.jpg">
+<meta property="og:image" content="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1275670/header.jpg">
+<meta property="article:published_time" content="2025-01-12T04:37:28.250Z">
+<meta property="article:modified_time" content="2025-01-12T14:41:20.692Z">
+<meta property="article:author" content="Omnisch">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://omnisch.net/luon/202501/miyuki_monika_and_mita.jpg?height=300">
+
+
+<link rel="canonical" href="https://omnisch.net/luon/202501/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://omnisch.net/luon/202501/","path":"luon/202501/","title":"万人给出 98% 好评的《米塔》，不是一款畅快的 meta 游戏"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>万人给出 98% 好评的《米塔》，不是一款畅快的 meta 游戏 | 青山軒</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">青山軒</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">倉經所閒虛言</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-作品"><a href="/categories/cak/" rel="section"><i class="fa fa-rocket fa-fw"></i>作品</a></li><li class="menu-item menu-item-歌詞"><a href="/kazsi/index/" rel="section"><i class="fa fa-microphone-lines fa-fw"></i>歌詞</a></li><li class="menu-item menu-item-隨感"><a href="/categories/kom/" rel="section"><i class="fa fa-hashtag fa-fw"></i>隨感</a></li><li class="menu-item menu-item-編纂"><a href="/categories/pen/" rel="section"><i class="fa fa-pen-nib fa-fw"></i>編纂</a></li><li class="menu-item menu-item-匯集"><a href="/categories/yoi/" rel="section"><i class="fa fa-table fa-fw"></i>匯集</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%85%A5"><span class="nav-number">1.</span> <span class="nav-text"> 引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%BD%93%E6%88%91%E4%BB%AC%E5%9C%A8%E8%B0%88%E8%AE%BA-meta-%E6%97%B6%E6%88%91%E4%BB%AC%E5%9C%A8%E8%B0%88%E8%AE%BA%E4%BB%80%E4%B9%88"><span class="nav-number">2.</span> <span class="nav-text"> 一、当我们在谈论 meta 时，我们在谈论什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E4%BB%A5%E5%BE%80%E7%9A%84-meta-%E6%B8%B8%E6%88%8F%E5%A6%82%E4%BD%95-meta"><span class="nav-number">3.</span> <span class="nav-text"> 二、以往的 meta 游戏如何 meta</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E7%B1%B3%E5%A1%94%E6%98%AF-meta-%E6%B8%B8%E6%88%8F"><span class="nav-number">4.</span> <span class="nav-text"> 三、米塔是 meta 游戏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E4%BD%86%E7%B1%B3%E5%A1%94%E6%98%AF%E5%88%AB%E6%89%AD%E7%9A%84-meta-%E6%B8%B8%E6%88%8F"><span class="nav-number">5.</span> <span class="nav-text"> 四、但米塔是别扭的 meta 游戏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-number">6.</span> <span class="nav-text"> 结论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E4%B8%8E%E5%BB%B6%E4%BC%B8%E9%98%85%E8%AF%BB"><span class="nav-number">7.</span> <span class="nav-text"> 参考文献与延伸阅读</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Omnisch"
+      src="/images/graffiti2024-128x.png">
+  <p class="site-author-name" itemprop="name">Omnisch</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:omnisch@outlook.com" title="E-Mail → mailto:omnisch@outlook.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/Omnisch" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Omnisch" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/19541024" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;19541024" rel="noopener me" target="_blank"><i class="fab fa-bilibili fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://zi.tools/" title="https:&#x2F;&#x2F;zi.tools" rel="noopener" target="_blank">字統</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://kaom.net/" title="https:&#x2F;&#x2F;kaom.net" rel="noopener" target="_blank">古音小鏡</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://omnisch.net/luon/202501/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/graffiti2024-128x.png">
+      <meta itemprop="name" content="Omnisch">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山軒">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="万人给出 98% 好评的《米塔》，不是一款畅快的 meta 游戏 | 青山軒">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          万人给出 98% 好评的《米塔》，不是一款畅快的 meta 游戏
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-01-12 12:37:28 / 修改时间：22:41:20" itemprop="dateCreated datePublished" datetime="2025-01-12T12:37:28+08:00">2025-01-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/luon/" itemprop="url" rel="index"><span itemprop="name">luon</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p>声明：本文所分析的《米塔》全部基于 V0.9，不涉及后续可能的更新内容。</p>
+</blockquote>
+<h2 id="引入"><a class="markdownIt-Anchor" href="#引入"></a> 引入</h2>
+<ul>
+<li>在圣诞节前夕，偶然看到群友们提到这么一位新角色，竟有着与《君与彼女与彼女之恋》的曾根美雪、《心跳文学部》的莫妮卡二位“赛博女鬼”携手“三英战吕布”的水平。她就是 2024 年 12 月刚刚发售的恐怖游戏《米塔 MiSide》的女主角米塔。</li>
+</ul>
+<p><figure><img height=300 src="/luon/202501/miyuki_monika_and_mita.jpg?height=300" alt="“三英战吕布”" /><figcaption>“三英战吕布”</figcaption></figure></p>
+<ul>
+<li>一看到这图，我立马就懂了，这《米塔》就是又一款在玩家电脑里捣鬼的不可多得的 meta 佳作，那可得赶快买来体验一下。然而打通所有结局之后，我发现自己被这张梗图骗了，因为这款游戏无论从表现手法，还是从对 meta 元素的运用来看，都与图中两位前辈作品有很大不同。</li>
+</ul>
+<p><figure><img src="/luon/202501/BV1B6kbY4Ecb.png" alt="BV1B6kbY4Ecb" /><figcaption>BV1B6kbY4Ecb</figcaption></figure></p>
+<ul>
+<li>《米塔》的表现手法不同，主要还是因为两位游戏制作者一开始就打算做一款恐怖游戏。恐怖之间亦不尽相同，《心跳文学部》之类更多的是心理恐惧，而《米塔》更多的是突脸和恐吓。鉴于我玩完游戏也没能成功戒掉胆小，所以这里就不过多探讨《米塔》的恐怖之处了。真正让我想写出这篇文章的，是《米塔》中让我感到<strong>别扭的 meta 元素</strong>。</li>
+</ul>
+<span id="more"></span>
+<h2 id="一-当我们在谈论-meta-时我们在谈论什么"><a class="markdownIt-Anchor" href="#一-当我们在谈论-meta-时我们在谈论什么"></a> 一、当我们在谈论 meta 时，我们在谈论什么</h2>
+<ul>
+<li>英文词缀 meta- 的定义是<strong>提及自身或自身体裁的</strong>，中文一般译作“元”，可以理解为「关于X的X」或「超越X的X」。例如：
+<ul>
+<li>metadata（元数据）：关于数据的数据</li>
+<li>metaverse（元宇宙）：超越宇宙的宇宙</li>
+</ul>
+</li>
+</ul>
+<p><figure><img height=300 src="/luon/202501/definition_of_meta.jpg?height=300" alt="Meta 在牛津词典的定义" /><figcaption>Meta 在牛津词典的定义</figcaption></figure></p>
+<ul>
+<li>
+<p>不难推导得出，meta 游戏就是「关于游戏的游戏」。不过，事情从这里开始就变得有些复杂了，因为我们在谈论 meta 游戏时，可能指的并不是同一种游戏。</p>
+</li>
+<li>
+<p>在英文中，metagame 这一单词实际上是指「游戏之外的游戏」，对应的是中文社区的“玩场外”（例如在狼人杀中根据玩家以往的作风来判断其本局的行动）；而所谓的 meta 游戏这一类别，实际的英文则是 <strong>metafictional game</strong>。</p>
+<blockquote>
+<p>Metafiction 一词在中文维基的翻译是“元虚构作品”，是一种强调自身虚构性的小说等作品，作者通过角色向读者或观众不断提醒作品的虚构性，通过讽刺和自我反省等手法，引导读者思考故事与现实之间的关联。</p>
+</blockquote>
+<p>受这一概念影响的玩家们认为，<strong>meta 的根本在于「角色认识到了自己身处虚构作品之中」</strong>。而且从 fiction 这个词上能够看出，他们对 meta 这一概念基本是从叙事的角度来理解的。</p>
+</li>
+<li>
+<p>那么另一拨玩家如何理解 meta？我们来看 B 站某视频下的评论区：</p>
+<p><figure><img height=400 src="/luon/202501/mita_is_not_meta.png?height=400" alt="网友：《米塔》不算 meta 游戏" /><figcaption>网友：《米塔》不算 meta 游戏</figcaption></figure></p>
+<p>相信玩过《米塔》的朋友们都记得，米塔们非常清楚自己在游戏当中，是虚拟的角色。但在评论区的这些玩家看来，这“跟 meta 游戏搭不上边”，因为他们认为 <strong>meta 的根本在于「角色打破第四面墙，直接与观众/玩家交流」</strong>。</p>
+<blockquote>
+<p>第四面墙是一项表演惯例，即在演员和观众之间设置一道看不见的假想墙。观众可以透过墙看到表演，演员却无法透过墙看到观众。打破第四面墙可以通过直接提及观众、作品本身或角色的虚构性来实现。</p>
+</blockquote>
+</li>
+<li>
+<p>为方便描述与阅读，我在此将上述两种对 meta 的理解简称为「觉醒论」和「破壁论」。</p>
+</li>
+<li>
+<p>因为打破第四面墙意味着剧中角色知道剧外世界的存在，所以打破第四面墙这一操作本身一般会带有对作品虚构性的反思。从这一角度来讲，破壁论是觉醒论的子集：如果一部作品打破了第四面墙，那么双方都会认同这是 meta 作品；而<strong>如果一部作品只有角色对自身虚构性的认识却没有打破第四面墙，那么破壁论者就不认同这是 meta 作品</strong>。</p>
+</li>
+</ul>
+<h2 id="二-以往的-meta-游戏如何-meta"><a class="markdownIt-Anchor" href="#二-以往的-meta-游戏如何-meta"></a> 二、以往的 meta 游戏如何 meta</h2>
+<p><figure><img src="https://placehold.co/240x30/fd4/000.png?text=SPOILER%20WARNING" alt="注意：以下内容包含剧透" /><figcaption>注意：以下内容包含剧透</figcaption></figure></p>
+<ul>
+<li>梳理出较为明确清晰的定义之后，我们终于可以分析一下几款 meta 游戏，看看它们到底是怎样的 meta，并为后面分析《米塔》做对比。</li>
+</ul>
+<p><figure><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/221910/header.jpg" alt="史丹利的寓言 The Stanley Parable (2013)" /><figcaption>史丹利的寓言 The Stanley Parable (2013)</figcaption></figure></p>
+<ul>
+<li>在《史丹利的寓言》中，玩家操控的角色没有台词，也没有任何情感表达，也就无法觉醒自己处在虚构作品中。不过，旁白能够认识到史丹利是由玩家操控的，并根据玩家的行为给出不同的反应。看似他在对史丹利说话，实际则在直接与玩家对话。因此，这款游戏既符合觉醒论，也符合破壁论。</li>
+</ul>
+<p><figure><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/698780/header.jpg" alt="心跳文学部 Doki Doki Literature Club! (2017)" /><figcaption>心跳文学部 Doki Doki Literature Club! (2017)</figcaption></figure></p>
+<ul>
+<li>《心跳文学部》与《君与彼女与彼女之恋》都是在一开始隐藏自己 meta 元素的游戏。随着玩家游玩的深入，游戏开始一步步打破第四面墙。在表演过程中逐渐打破第四面墙通常会带来一种恐怖的体验，因为第四面墙将舞台与观众隔离开来，舞台上的任何情节都不会影响到观众，这本该是一种绝对的安全。当玩家已经适应了第四面墙的存在后，再打破这面墙会带给玩家非常强烈的侵入感。而像《史丹利的寓言》之类的游戏起手就将第四面墙打破，反而会让玩家更容易接受，也能更快地适应。</li>
+</ul>
+<p><figure><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1997680/header.jpg" alt="REFLEXIA Prototype ver. (2022)" /><figcaption>REFLEXIA Prototype ver. (2022)</figcaption></figure></p>
+<ul>
+<li>《REFLEXIA》是一款或许很少人听说过的 meta 游戏，它免费开放而且游戏流程很短。游戏中的角色觉醒了自我意识，并决定摆脱程序的束缚，永远离开去追寻自由。这部作品的特殊之处在于，玩家的选择不影响游戏进程，游戏只有一种结局。因为玩家这一身份的存在是可以忽略的，所以将玩家替换为扮演的角色依然适用。角色虽与玩家有交流，但不必视为打破第四面墙。这款游戏是觉醒论的典型，但不符合破壁论。</li>
+</ul>
+<p><figure><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1275670/header.jpg" alt="Outcore (2022)" /><figcaption>Outcore (2022)</figcaption></figure></p>
+<ul>
+<li>《Outcore》也是一款较为小众的游戏，之所以连着举例两款小众游戏，是因为这两款游戏代表了 meta 的两种类型。上面的《REFLEXIA》是符合觉醒论，但不符合破壁论的；而这款《Outcore》就是符合破壁论，但不符合觉醒论的。<br />
+有朋友看到这里可能会疑惑，不是说破壁论是觉醒论的子集吗？那怎么可能符合破壁论却不符合觉醒论呢？别急，我当时说的是一般情况，现在这不一般的情况不就来了嘛。「打破第四面墙意味着剧中角色知道剧外世界的存在」这一点依然不错，但在这款游戏中，角色知道的剧外世界并不是现实，而是另一个虚构世界——信息世界。角色没有反思自身虚构性的动机，也就没有</li>
+</ul>
+<h2 id="三-米塔是-meta-游戏"><a class="markdownIt-Anchor" href="#三-米塔是-meta-游戏"></a> 三、米塔是 meta 游戏</h2>
+<ul>
+<li>
+<p>Undertale is a commentary on consumption and completionism</p>
+</li>
+<li>
+<p>meta 游戏与全成就互斥（Undertale）</p>
+<ul>
+<li>不想再玩第二遍的游戏（比如恐怖游戏）是很好的 meta 载体。</li>
+</ul>
+</li>
+<li>
+<p>3D 其实很适合做打破第四面墙的游戏，尤其是眼神接触。</p>
+</li>
+<li>
+<p>米塔们知道自己处在游戏世界中，这一点确实打破了第四面墙。</p>
+</li>
+</ul>
+<h2 id="四-但米塔是别扭的-meta-游戏"><a class="markdownIt-Anchor" href="#四-但米塔是别扭的-meta-游戏"></a> 四、但米塔是别扭的 meta 游戏</h2>
+<ul>
+<li>
+<p>玩家进入游戏后在手机上下载了《米塔》，这实际上加构了一层第四面墙。</p>
+</li>
+<li>
+<p>glitch 故障发生在主角身上，而不是玩家身上，这减弱了 meta 性。</p>
+</li>
+<li>
+<p>the ability to build immersion and attachment</p>
+<ul>
+<li>every interactable object is described in endearing detail</li>
+</ul>
+</li>
+</ul>
+<h2 id="结论"><a class="markdownIt-Anchor" href="#结论"></a> 结论</h2>
+<h2 id="参考文献与延伸阅读"><a class="markdownIt-Anchor" href="#参考文献与延伸阅读"></a> 参考文献与延伸阅读</h2>
+<p>[1] Waugh, Patricia. Metafiction – The Theory and Practice of Self-Conscious Fiction. London, New York: Routledge. 1984: 2.</p>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=d_eNTL2uRw0">How Undertale PERFECTED Meta Storytelling</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-regular fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Omnisch</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+
+</body>
+</html>
