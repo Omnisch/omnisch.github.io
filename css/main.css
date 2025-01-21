@@ -7,7 +7,7 @@
 }
 @font-face {
   font-family: flimiix;
-  src: url("/cak/flakil/orthography/flimiix-Regular.otf");
+  src: url("/cak/flaku/orthography/flimiix-Regular.otf");
 }
 @font-face {
   font-family: Iroha Kana;
@@ -1313,7 +1313,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #ffd02d;
+    background: #0aa142;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
