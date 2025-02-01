@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#9acab0"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-omnis.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-omnis.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-omnis.ico">
+  <link rel="mask-icon" href="/images/logo-omnis.svg" color="#9acab0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.font.im/css?family=Fira+Code+Retina:300,300italic,400,400italic,700,700italic%7CNoto+Sans+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"omnisch.net","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="一、设计目标   将有形用户界面（TUI）与虚幻引擎 5（UE5）结合，设计开发一个框架，将常用操作封装并与有形令牌的行为相关联，最终能够不通过任何代码、蓝图或编辑器内的操作，实现高自由度的三维场景动态搭建与实时漫游。可用于沙盒或预演等情境。   程序分为两个进程，主进程在支持有形交互的触摸屏上运行，承担主要的输入任务；副进程在第二屏幕上运行，承担主要的输出任务。用户可以在两进程中分别导入图片和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UE5 下的 TUIO 简单框架">
+<meta property="og:url" content="https://omnisch.net/cak/unreal/tuio_frame/index.html">
+<meta property="og:site_name" content="青山軒">
+<meta property="og:description" content="一、设计目标   将有形用户界面（TUI）与虚幻引擎 5（UE5）结合，设计开发一个框架，将常用操作封装并与有形令牌的行为相关联，最终能够不通过任何代码、蓝图或编辑器内的操作，实现高自由度的三维场景动态搭建与实时漫游。可用于沙盒或预演等情境。   程序分为两个进程，主进程在支持有形交互的触摸屏上运行，承担主要的输入任务；副进程在第二屏幕上运行，承担主要的输出任务。用户可以在两进程中分别导入图片和">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://omnisch.net/cak/unreal/tuio_frame/scene.jpg">
+<meta property="og:image" content="https://omnisch.net/cak/unreal/tuio_frame/ui.jpg">
+<meta property="article:published_time" content="2025-02-01T15:48:48.194Z">
+<meta property="article:modified_time" content="2025-02-01T21:01:27.088Z">
+<meta property="article:author" content="Omnisch">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://omnisch.net/cak/unreal/tuio_frame/scene.jpg">
+
+
+<link rel="canonical" href="https://omnisch.net/cak/unreal/tuio_frame/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://omnisch.net/cak/unreal/tuio_frame/","path":"cak/unreal/tuio_frame/","title":"UE5 下的 TUIO 简单框架"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>UE5 下的 TUIO 简单框架 | 青山軒</title><meta name="robots" content="noindex">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">青山軒</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">倉經所閒虛言</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-作品"><a href="/categories/cak/" rel="section"><i class="fa fa-rocket fa-fw"></i>作品</a></li><li class="menu-item menu-item-歌詞"><a href="/kazsi/index/" rel="section"><i class="fa fa-microphone-lines fa-fw"></i>歌詞</a></li><li class="menu-item menu-item-隨感"><a href="/categories/kom/" rel="section"><i class="fa fa-hashtag fa-fw"></i>隨感</a></li><li class="menu-item menu-item-編纂"><a href="/categories/pen/" rel="section"><i class="fa fa-pen-nib fa-fw"></i>編纂</a></li><li class="menu-item menu-item-匯集"><a href="/categories/yoi/" rel="section"><i class="fa fa-table fa-fw"></i>匯集</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E8%AE%BE%E8%AE%A1%E7%9B%AE%E6%A0%87"><span class="nav-number">1.</span> <span class="nav-text"> 一、设计目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text"> 二、实现方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-ue5-%E5%AF%B9-tuio-%E7%9A%84%E6%94%AF%E6%8C%81"><span class="nav-number">2.1.</span> <span class="nav-text"> 1. UE5 对 TUIO 的支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%9C%AC%E5%9C%B0%E8%B5%84%E4%BA%A7%E7%9A%84%E5%AF%BC%E5%85%A5"><span class="nav-number">2.2.</span> <span class="nav-text"> 2. 本地资产的导入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%A4%9A%E4%B8%AA%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%90%8C%E6%AD%A5"><span class="nav-number">2.3.</span> <span class="nav-text"> 3. 多个进程的同步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E4%BB%A4%E7%89%8C%E8%A1%8C%E4%B8%BA%E8%AE%BE%E8%AE%A1"><span class="nav-number">2.4.</span> <span class="nav-text"> 4. 令牌行为设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E7%94%A8%E6%88%B7%E5%8F%8D%E9%A6%88"><span class="nav-number">3.</span> <span class="nav-text"> 三、用户反馈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E6%94%B9%E8%BF%9B%E6%96%B9%E5%90%91"><span class="nav-number">4.</span> <span class="nav-text"> 四、改进方向</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Omnisch"
+      src="/images/graffiti2502-128x.png">
+  <p class="site-author-name" itemprop="name">Omnisch</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:omnisch@outlook.com" title="E-Mail → mailto:omnisch@outlook.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/Omnisch" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Omnisch" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/19541024" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;19541024" rel="noopener me" target="_blank"><i class="fab fa-bilibili fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://zi.tools/" title="https:&#x2F;&#x2F;zi.tools" rel="noopener" target="_blank">字統</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://kaom.net/" title="https:&#x2F;&#x2F;kaom.net" rel="noopener" target="_blank">古音小鏡</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://zhs.glyphwiki.org/wiki/" title="https:&#x2F;&#x2F;zhs.glyphwiki.org&#x2F;wiki&#x2F;" rel="noopener" target="_blank">字形维基</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://omnisch.net/cak/unreal/tuio_frame/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/graffiti2502-128x.png">
+      <meta itemprop="name" content="Omnisch">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山軒">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="UE5 下的 TUIO 简单框架 | 青山軒">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          UE5 下的 TUIO 简单框架
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-02-01 23:48:48" itemprop="dateCreated datePublished" datetime="2025-02-01T23:48:48+08:00">2025-02-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/cak/" itemprop="url" rel="index"><span itemprop="name">cak</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="一-设计目标"><a class="markdownIt-Anchor" href="#一-设计目标"></a> 一、设计目标</h2>
+<ul>
+<li>
+<p>将有形用户界面（TUI）与虚幻引擎 5（UE5）结合，设计开发一个框架，将常用操作封装并与有形令牌的行为相关联，最终能够不通过任何代码、蓝图或编辑器内的操作，实现高自由度的三维场景动态搭建与实时漫游。可用于沙盒或预演等情境。</p>
+</li>
+<li>
+<p>程序分为两个进程，主进程在支持有形交互的触摸屏上运行，承担主要的输入任务；副进程在第二屏幕上运行，承担主要的输出任务。用户可以在两进程中分别导入图片和模型，以更直观地将 GUI 界面与三维场景联系起来。用户不仅可以调整模型的位置、朝向、尺寸，还可以进行调整光线角度、切换日夜环境、调度摄像机等操作。</p>
+</li>
+</ul>
+<p><figure><img src="/cak/unreal/tuio_frame/scene.jpg" alt="场景" /><figcaption>场景</figcaption></figure></p>
+<p><figure><img src="/cak/unreal/tuio_frame/ui.jpg" alt="UI" /><figcaption>UI</figcaption></figure></p>
+<h2 id="二-实现方法"><a class="markdownIt-Anchor" href="#二-实现方法"></a> 二、实现方法</h2>
+<ul>
+<li>该 UE5 程序的开发主要有以下几个重点。</li>
+</ul>
+<h3 id="1-ue5-对-tuio-的支持"><a class="markdownIt-Anchor" href="#1-ue5-对-tuio-的支持"></a> 1. UE5 对 TUIO 的支持</h3>
+<ul>
+<li>在 UE4 的 TUIO 插件的基础上，调整 C++ 代码以适配 UE5 项目。在编写 C++ 插件时需要注意的是，宏定义 <code>WIN32</code> 在一些环境下代表 Windows 32 位操作系统，而在另一些环境下则笼统地代表 Windows 操作系统。这种不一致性导致 UE4 的插件迁移到只支持 64 位的 UE5 时可能发生意料之外的编译错误，应当用代表 Windows 64 位系统的宏定义 <code>_WIN64</code> 来代替。</li>
+</ul>
+<h3 id="2-本地资产的导入"><a class="markdownIt-Anchor" href="#2-本地资产的导入"></a> 2. 本地资产的导入</h3>
+<ul>
+<li>
+<p>Runtime Mesh Loader 插件仅支持“模型+纹理”的导入方式，这使得其实际导入模型一般需要至少两个资产，且无法包含材质、灯光、动画等模型参数，同时也限制了允许导入的资产类型。glTF Runtime 插件仅支持导入 .gltf 和 .glb 格式的模型，这些格式能够同时记录材质、动画等信息，而且主流建模软件如 Blender、3D MAX 等均支持 .gltf 格式的导出，因此该插件能使模型在 UE5 中展现出的视觉效果在更大程度上还原建模软件中设计时的效果。综合考虑，程序使用 glTF Runtime 插件以实现本地资产的即时导入。</p>
+</li>
+<li>
+<p>上述插件均通过传入文件路径字符串以加载资产。为函数提供文件路径的方式有多种，既可以①将需要加载的资产放入约定的文件夹中，也可以②在程序的配置文件中写好文件路径，还可以③直接将文件路径复制到输入栏中。然而方法①需要移动文件位置，方法②③又太不直观，这些都不方便即时编辑，因此本程序采用 Easy File Dialog 插件，能够呼出资源管理器直接浏览资产的位置，简便直观易于操作，适合即时编辑或修改。</p>
+</li>
+</ul>
+<h3 id="3-多个进程的同步"><a class="markdownIt-Anchor" href="#3-多个进程的同步"></a> 3. 多个进程的同步</h3>
+<ul>
+<li>程序需要至少两个窗口，即至少两个进程，其中涉及到局域网的联网同步。处理输入的进程需要频繁传递消息给处理输出的进程，而反过来传递消息的需求就小得多。因此将主要处理输入的UI界面定为主进程，在网络中担任服务端；将主要处理输出的场景界面定为副进程，在网络中担任客户端。需要设计哪些信息需要同步，哪些不需要同步，比如在UI界面实例化组件的操作、在场景中导入模型等操作就不需要同步，令牌控制其绑定的模型的位置、对摄像机进行调度等操作就需要同步。</li>
+</ul>
+<h3 id="4-令牌行为设计"><a class="markdownIt-Anchor" href="#4-令牌行为设计"></a> 4. 令牌行为设计</h3>
+<ul>
+<li>
+<p>在设计开发时，将用户的交互行为拆分成操作层和逻辑层两层，其中操作层仅限于主进程，逻辑层负责沟通主副进程。用户通过对 GUI 的操作，触发各个令牌的逻辑，令牌的作用可能不同，但它们的 GUI 可能相同。因此出于可扩展性和复用性的考虑，GUI 不设计任何逻辑，只处理操作 GUI 的事件，并将操作的结果向上传递至逻辑层，由逻辑层实现不同令牌的功能。例如，设计缩放模型的功能，操作层仅负责将滑动条的数值传递至逻辑层，逻辑层在副进程中将数值的变化转换为模型尺寸的变化。</p>
+</li>
+<li>
+<p>在既有的 TUIO 预演程序中，“转动令牌以选择”这一操作的实现方法不仅难以复用，而且缺乏灵活性，选项不能动态增减。本程序中，将这一操作同样拆分到两层中，操作层仅负责动态增减选项 GUI，以及将选择结果传递至逻辑层，而选择选项所产生的效果由逻辑层负责实现。将这一操作赋予其他令牌时，不需要更改 GUI，只需重写逻辑即可。</p>
+</li>
+</ul>
+<h2 id="三-用户反馈"><a class="markdownIt-Anchor" href="#三-用户反馈"></a> 三、用户反馈</h2>
+<ul>
+<li>
+<p>在程序开发过程中，采用“设计开发→用户测试→反馈改进”的迭代开发模型。模型强调在开发初期先完成基本功能的设计与实现，然后交由用户进行测试，以获取真实的使用反馈。这种开发方式能够缩短开发周期，同时增强用户体验，使程序在不断完善的过程中更快、更精准地实现目标功能。当前许多功能或特性均于用户反馈后修改得到。</p>
+</li>
+<li>
+<p>早期版本中，导入场地模型的操作独立于令牌而存在，只能导入一个场地模型，场地只能缩放，无法移动或旋转。用户测试后反馈，场地与器材同样是模型，应给场地模型添加与器材模型同样的令牌控制。改进后不仅复用性更强，还可以进行不同场地间的混合搭建，适用于建筑、舞台等设计中。</p>
+</li>
+<li>
+<p>设计控制光照的令牌之初，光线角度由 GUI 控制。用户反馈该令牌的位置信息尚未使用，后续便令光线角度由令牌与屏幕中央的连线方向决定。将光源位置与令牌位置对应，符合直觉，而且交互参与感强，比调节 GUI 更加生动。</p>
+</li>
+</ul>
+<h2 id="四-改进方向"><a class="markdownIt-Anchor" href="#四-改进方向"></a> 四、改进方向</h2>
+<ul>
+<li>
+<p>使该框架适配 AR 环境是一大改进方向。在 AR 环境中，输出可以不再局限于副进程中，而是与实体交互桌相融合，达到更加符合直觉的效果，实现“所见即所得”。再赋以手势识别、动作捕捉等交互技术后，能够将输入的维度也扩展，激发出更多可能性。</p>
+</li>
+<li>
+<p>在令牌个数限制下，设计尽可能全面而直观的交互也是改进的重要方向。对于需要复盘的预演等活动来说，录制、导出等功能是必不可少的。令牌间互动的行为设计也有待开发。多个令牌靠近、远离的行为可以赋予符合用户直觉的含义，进一步扩展编辑的自由度。</p>
+</li>
+</ul>
+<hr />
+<p>附：<a href="./tuio_frame/Content.zip">源代码及素材文件</a></p>
+<!-- flag of hidden posts -->
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-regular fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Omnisch</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+
+</body>
+</html>
