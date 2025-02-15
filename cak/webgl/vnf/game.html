@@ -7,7 +7,7 @@
   </head>
   <body style="text-align: center; padding: 0; border: 0; margin: 0;">
     <canvas id="unity-canvas" width=720 height=600 tabindex="-1" style="width: 720px; height: 600px; background: #231F20"></canvas>
-    <script src="Build/Visual Novel Flowchart WebGL.loader.js"></script>
+    <script src="Build/Visual Novel Flowchart.loader.js"></script>
     <script>
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         // Mobile device style: fill the whole browser client area with the game canvas:
@@ -25,9 +25,9 @@
       }
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/Visual Novel Flowchart WebGL.data",
-        frameworkUrl: "Build/Visual Novel Flowchart WebGL.framework.js",
-        codeUrl: "Build/Visual Novel Flowchart WebGL.wasm",
+        dataUrl: "Build/Visual Novel Flowchart.data",
+        frameworkUrl: "Build/Visual Novel Flowchart.framework.js",
+        codeUrl: "Build/Visual Novel Flowchart.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Omnistudio",
         productName: "Visual Novel Flowchart",
