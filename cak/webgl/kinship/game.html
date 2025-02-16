@@ -39,6 +39,20 @@
     </script>
     <input type="file" id="hiddenFileInput" accept=".json, .vnf" style="display: none;" />
     <script>
+      relationship.setMode('northern', {
+        'm,m':['姥姥'],
+        'm,m,xs':['姨姥姥'],
+        'm,m,xs,h':['姨姥爷'],
+        'm,m,xb':['舅姥爷'],
+        'm,m,xb,w':['舅姥姥'],
+        'm,f':['姥爷'],
+        'm,f,xs':['姑姥姥'],
+        'm,f,xs,h':['姑姥爷'],
+        'm,f,ob':['大姥爷'],
+        'm,f,ob,w':['大姥姥'],
+        'm,f,lb':['小姥爷'],
+        'm,f,lb,w':['小姥姥'],
+      });
       document.getElementById('hiddenFileInput').addEventListener('change', function(event) {
         const file = event.target.files[0];
         if (file) {
