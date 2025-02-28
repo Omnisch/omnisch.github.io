@@ -10,6 +10,10 @@
   src: url("/cak/flaku/orthography/flimiix-Regular.otf");
 }
 @font-face {
+  font-family: flimiix-Sans;
+  src: url("/cak/flaku/orthography/flimiix-Sans-Regular.otf");
+}
+@font-face {
   font-family: Iroha Kana;
   src: url("/fonts/subset-irohamaru-Light.woff2");
 }
@@ -1313,7 +1317,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #db6bff;
+    background: #f2d6ad;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
