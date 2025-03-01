@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"omnisch.net","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="td {         font-family: flimiix;         font-size: 2rem;         line-height: 150%;     }     .sans {         font-family: flimiix-Sans;     }     .floating-box {         position: fixed;">
+    <meta name="description" content=".sample-text {         font-family: flimiixSans-VF;         font-size: 2rem;         line-height: 150%;     }     .serif {         font-family: flimiix;     }     .plain {         font-family: &quot;C">
 <meta property="og:type" content="article">
 <meta property="og:title" content="flaku 文字">
 <meta property="og:url" content="https://omnisch.net/cak/flaku/orthography/index.html">
 <meta property="og:site_name" content="青山軒">
-<meta property="og:description" content="td {         font-family: flimiix;         font-size: 2rem;         line-height: 150%;     }     .sans {         font-family: flimiix-Sans;     }     .floating-box {         position: fixed;">
+<meta property="og:description" content=".sample-text {         font-family: flimiixSans-VF;         font-size: 2rem;         line-height: 150%;     }     .serif {         font-family: flimiix;     }     .plain {         font-family: &quot;C">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-07T15:07:37.952Z">
-<meta property="article:modified_time" content="2025-02-28T02:09:00.434Z">
+<meta property="article:modified_time" content="2025-03-01T14:26:46.581Z">
 <meta property="article:author" content="Omnisch">
 <meta name="twitter:card" content="summary">
 
@@ -241,30 +241,50 @@
     
     
     <div class="post-body" itemprop="articleBody"><style>
-    td {
-        font-family: flimiix;
+    .sample-text {
+        font-family: flimiixSans-VF;
         font-size: 2rem;
         line-height: 150%;
     }
-    .sans {
-        font-family: flimiix-Sans;
+    .serif {
+        font-family: flimiix;
     }
-    .floating-box {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
+    .plain {
+        font-family: "Charis SIL Local";
     }
 </style>
-<p><button class="floating-box" onclick="toggleFont()">切换衬线字体</button></p>
+<div style="position: fixed; bottom:20px; right:20px; width:120px;">
+    <div id="switch-serif-div">
+        <input type="range" id="font-weight-slider" min=100 max=900 value=400 style="width:120px;"/>
+        <input type="checkbox" onclick="toggleSerif()">衬线</input>
+    </div>
+    <input type="checkbox" checked onclick="enableFont()">使用字体</input>
+</div>
 <script>
-    function toggleFont() {
-        let tags = document.getElementsByTagName("td");
-        for (let tag of tags) {
-            tag.classList.toggle("sans");
+    const samples = document.getElementsByClassName("sample-text");
+    const fontWeightSlider = document.getElementById("font-weight-slider");
+    const switchSerifDiv = document.getElementById("switch-serif-div");
+    function enableFont() {
+        switchSerifDiv.style.display = switchSerifDiv.style.display === "none" ? "block" : "none";
+        for (let sample of samples) {
+            sample.classList.toggle("plain");
         }
     }
+    function toggleSerif() {
+        for (let sample of samples) {
+            if (!sample.classList.contains("plain")) {
+                sample.classList.toggle("serif");
+            }
+        }
+    }
+    fontWeightSlider.addEventListener("input", function() {
+        for (let sample of samples) {
+            sample.style.fontWeight = fontWeightSlider.value;
+        }
+    });
 </script>
 <h2 id="声表"><a class="markdownIt-Anchor" href="#声表"></a> 声表</h2>
+<div class="sample-text">
 <table>
 <thead>
 <tr>
@@ -414,8 +434,10 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h2 id="韵表"><a class="markdownIt-Anchor" href="#韵表"></a> 韵表</h2>
 <h3 id="音节核"><a class="markdownIt-Anchor" href="#音节核"></a> 音节核</h3>
+<div class="sample-text">
 <table>
 <thead>
 <tr>
@@ -464,53 +486,25 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h3 id="音节尾"><a class="markdownIt-Anchor" href="#音节尾"></a> 音节尾</h3>
-<table>
-<thead>
-<tr>
-<th>-k</th>
-<th>-m</th>
-<th>-x</th>
-<th>-l</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-k</td>
-<td>-m</td>
-<td>-x</td>
-<td>-l</td>
-</tr>
-</tbody>
-</table>
+<div class="sample-text">
+<p>-∅  -k  -p  -x  -l</p>
+</div>
 <h2 id="测试文本"><a class="markdownIt-Anchor" href="#测试文本"></a> 测试文本</h2>
-<table>
-    <tbody>
-        <tr>
-            <td>'lin klai 2 munk xtau pliix uan, gu lia hain flix piul kpan lii kgau iik? ppu knun lunl xpak mnia kkinx 384 klai nuan… gik hlau uk kmai ul “'lai kfiin” tta huin. pmii niik! 96 tiin tiau huin -- klai auk li kfan uinl mak. mun tau huam kliu tink: lau lau na ktinx gai.</td>
-        </tr>
-        <tr>
-            <td>
-            0 1 2 3 4 5 6 7 8 9 10<br>
-            ` ~ ! @ # $ % ^ & * ( ) - _ = +<br>
-            , . < > / ? ; : ' " [ ] { } \ | … -- ---<br>
-            ḣ h̀ ḩ h̶ h̸
-            </td>
-        </tr>
-        <tr>
-            <td>di dm qm qi ~~ q~i dii dni</td>
-        </tr>
-        <tr>
-            <td class="input-container">
-                <input type="text" class="scalable-input" style="font-family: flimiix, LXGW Wenkai" placeholder="在此输入以测试">
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="sample-text">
+<p>'lin klai 2 munk xtau pliix uan, gu lia hain flip piul kpan lii kgau iik? ppu knun lunl xpak mnia kkinx 384 klai nuan… gik hlau uk kmai up “'lai kfiin” tta huinp. pmii niik! 96 tiin tiau huin – klai auk li kfan uinl mak. mun tau huam kliu tink: lau lau na ktinx gai.</p>
+<p>0 1 2 3 4 5 6 7 8 9 10<br />
+` ~ ! @ # $ % ^ &amp; * ( ) - _ = +<br />
+, . &lt; &gt; / ? ; : ’ &quot; [ ] { } \ | … – —<br />
+ḣ h̀ ḩ h̶ h̸<br />
+di dm qm qi ~~ q~i dii dni</p>
+</div>
+<input type="text" class="scalable-input sample-text" placeholder="在此输入以测试">
 <h2 id="字体"><a class="markdownIt-Anchor" href="#字体"></a> 字体</h2>
 <p>字体家族名称 flimiix /ˈflɜ-miəɬ/，意为「心理；自我」。</p>
-<p><a href="/cak/flaku/orthography/flimiix-Regular.otf">衬线字体下载</a><br />
-<a href="/cak/flaku/orthography/flimiix-Sans-Regular.otf">无衬线字体下载</a></p>
+<p><a href="/cak/flaku/orthography/flimiixSans-VF.ttf">无衬线字体下载</a><br />
+<a href="/cak/flaku/orthography/flimiix-Regular.otf">衬线字体下载</a></p>
 <p>该字体含有大量 OpenType 特性，在字体测试时请启用标准连字或全部连字，并取消文本两端对齐，以获得预期效果。</p>
 <!-- flag of hidden posts -->
     </div>
