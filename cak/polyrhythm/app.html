@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Polyrhythm</title>
+    <script type="module" crossorigin src="./assets/index-CWNYBO_r.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-C_zp9T8k.css">
+  </head>
+  <body>
+    <audio id="main-note" hidden>
+      <source src="./assets/880Hz_sine-CIiPCCal.wav" type="audio/wav">
+    </audio>
+    <audio id="sub-note" hidden>
+      <source src="./assets/440Hz_sine-BLyubfSG.wav" type="audio/wav">
+    </audio>
+    <div id="app">
+      <div class="flex-container" id="main-container"></div>
+      <div class="flex-container" id="sub-container"></div>
+    </div>
+    <div id="sidebar">
+      <div class="flex-sidebar">
+        <label for="bpm">BPM</label>
+        <input type="number" id="bpm" value="120" min="1" max="400">
+      </div>
+      <div class="flex-sidebar">
+        <label for="main-beat">Main</label>
+        <input type="number" id="main-beat" value="4" min="1" max="30">
+      </div>
+      <div class="flex-sidebar">
+        <label for="sub-beat">Sub</label>
+        <input type="number" id="sub-beat" value="3" min="1" max="30">
+      </div>
+    </div>
+  </body>
+</html>

@@ -22,23 +22,23 @@
     <meta name="description" content="一、设计目标   将有形用户界面（TUI）与虚幻引擎 5（UE5）结合，设计开发一个框架，将常用操作封装并与有形令牌的行为相关联，最终能够不通过任何代码、蓝图或编辑器内的操作，实现高自由度的三维场景动态搭建与实时漫游。可用于沙盒或预演等情境。   程序分为两个进程，主进程在支持有形交互的触摸屏上运行，承担主要的输入任务；副进程在第二屏幕上运行，承担主要的输出任务。用户可以在两进程中分别导入图片和">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UE5 下的 TUIO 简单框架">
-<meta property="og:url" content="https://omnisch.net/cak/unreal/tuio_frame/index.html">
+<meta property="og:url" content="https://omnisch.net/cak/tuio_frame/index.html">
 <meta property="og:site_name" content="青山軒">
 <meta property="og:description" content="一、设计目标   将有形用户界面（TUI）与虚幻引擎 5（UE5）结合，设计开发一个框架，将常用操作封装并与有形令牌的行为相关联，最终能够不通过任何代码、蓝图或编辑器内的操作，实现高自由度的三维场景动态搭建与实时漫游。可用于沙盒或预演等情境。   程序分为两个进程，主进程在支持有形交互的触摸屏上运行，承担主要的输入任务；副进程在第二屏幕上运行，承担主要的输出任务。用户可以在两进程中分别导入图片和">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://omnisch.net/cak/unreal/tuio_frame/scene.jpg">
-<meta property="og:image" content="https://omnisch.net/cak/unreal/tuio_frame/ui.jpg">
+<meta property="og:image" content="https://omnisch.net/cak/tuio_frame/scene.jpg">
+<meta property="og:image" content="https://omnisch.net/cak/tuio_frame/ui.jpg">
 <meta property="article:published_time" content="2025-02-01T15:48:48.194Z">
 <meta property="article:modified_time" content="2025-02-01T21:01:27.088Z">
 <meta property="article:author" content="Omnisch">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://omnisch.net/cak/unreal/tuio_frame/scene.jpg">
+<meta name="twitter:image" content="https://omnisch.net/cak/tuio_frame/scene.jpg">
 
 
-<link rel="canonical" href="https://omnisch.net/cak/unreal/tuio_frame/">
+<link rel="canonical" href="https://omnisch.net/cak/tuio_frame/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://omnisch.net/cak/unreal/tuio_frame/","path":"cak/unreal/tuio_frame/","title":"UE5 下的 TUIO 简单框架"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://omnisch.net/cak/tuio_frame/","path":"cak/tuio_frame/","title":"UE5 下的 TUIO 简单框架"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>UE5 下的 TUIO 简单框架 | 青山軒</title><meta name="robots" content="noindex">
@@ -129,7 +129,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-count">42</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -193,7 +193,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://omnisch.net/cak/unreal/tuio_frame/">
+    <link itemprop="mainEntityOfPage" href="https://omnisch.net/cak/tuio_frame/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/graffiti2502-128x.png">
@@ -252,8 +252,8 @@
 <p>程序分为两个进程，主进程在支持有形交互的触摸屏上运行，承担主要的输入任务；副进程在第二屏幕上运行，承担主要的输出任务。用户可以在两进程中分别导入图片和模型，以更直观地将 GUI 界面与三维场景联系起来。用户不仅可以调整模型的位置、朝向、尺寸，还可以进行调整光线角度、切换日夜环境、调度摄像机等操作。</p>
 </li>
 </ul>
-<p><figure><img src="/cak/unreal/tuio_frame/scene.jpg" alt="场景" /><figcaption>场景</figcaption></figure></p>
-<p><figure><img src="/cak/unreal/tuio_frame/ui.jpg" alt="UI" /><figcaption>UI</figcaption></figure></p>
+<p><figure><img src="/cak/tuio_frame/scene.jpg" alt="场景" /><figcaption>场景</figcaption></figure></p>
+<p><figure><img src="/cak/tuio_frame/ui.jpg" alt="UI" /><figcaption>UI</figcaption></figure></p>
 <h2 id="二-实现方法"><a class="markdownIt-Anchor" href="#二-实现方法"></a> 二、实现方法</h2>
 <ul>
 <li>该 UE5 程序的开发主要有以下几个重点。</li>
@@ -306,7 +306,7 @@
 </li>
 </ul>
 <hr />
-<p>附：<a href="/cak/unreal/tuio_frame/Content.zip">源代码及素材文件</a></p>
+<p>附：<a href="/cak/tuio_frame/Content.zip">源代码及素材文件</a></p>
 <!-- flag of hidden posts -->
     </div>
 
