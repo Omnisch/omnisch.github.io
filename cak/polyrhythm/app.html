@@ -3,33 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/8d9dc16edd.js" crossorigin="anonymous"></script>
     <title>Polyrhythm</title>
-    <script type="module" crossorigin src="./assets/index-CWNYBO_r.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-C_zp9T8k.css">
+    <script type="module" crossorigin src="./assets/index-Djvh9c9-.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-MhSyv30C.css">
   </head>
   <body>
-    <audio id="main-note" hidden>
-      <source src="./assets/880Hz_sine-CIiPCCal.wav" type="audio/wav">
-    </audio>
-    <audio id="sub-note" hidden>
-      <source src="./assets/440Hz_sine-BLyubfSG.wav" type="audio/wav">
-    </audio>
     <div id="app">
-      <div class="flex-container" id="main-container"></div>
-      <div class="flex-container" id="sub-container"></div>
+      <div class="flex-track">
+        <button class="volume" id="main-volume">
+          <i class="fa-solid fa-volume-off"></i>
+        </button>
+        <div class="flex-app" id="main-container"></div>
+      </div>
+      <div class="flex-track">
+        <button class="volume" id="sub-volume">
+          <i class="fa-solid fa-volume-off"></i>
+        </button>
+        <div class="flex-app" id="sub-container"></div>
+      </div>
     </div>
     <div id="sidebar">
       <div class="flex-sidebar">
         <label for="bpm">BPM</label>
-        <input type="number" id="bpm" value="120" min="1" max="400">
+        <input type="number" id="bpm" value="120" min="1" max="240">
       </div>
       <div class="flex-sidebar">
         <label for="main-beat">Main</label>
-        <input type="number" id="main-beat" value="4" min="1" max="30">
+        <input type="number" id="main-beat" value="4" min="1" max="24">
       </div>
       <div class="flex-sidebar">
         <label for="sub-beat">Sub</label>
-        <input type="number" id="sub-beat" value="3" min="1" max="30">
+        <input type="number" id="sub-beat" value="3" min="1" max="24">
       </div>
     </div>
   </body>
