@@ -1317,7 +1317,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #bdbe03;
+    background: #dfd6f5;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2826,6 +2826,13 @@ ul {
   border-radius: 4px; /* Rounded corners for better aesthetics */
   box-sizing: border-box; /* Ensure padding does not affect the width */
   transition: all 0.3s ease; /* Smooth transitions on focus */
+}
+/* Markdown task list */
+li.task-list-item {
+  list-style-type: none;
+}
+li.task-list-item .task-list-item-checkbox {
+  margin: 0 0.2em 0.25em -1.6em;
 }
 @media (max-width: 768px) {
   .scalable-input {
