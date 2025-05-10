@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"omnisch.net","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="该插件继承自 UE4_TUIO_2101143，在升级至 UE5 的基础上大幅修改了接口并添加了新功能。 原插件注意事项： 12341. 案例场景 map 文件位于插件文件夹中。2. 导出之前首先在项目设置中设定启动场景为案例场景。3. 将项目切换成 C++ 项目后在 source 文件夹中的 build.cs 文件中添加 [PLUGIN_TUIO_UE4] 插件名称到模块中。4. 路径名称必须为">
+    <meta name="description" content="RayionTuioUe5 插件改自 UE4_TUIO_2101143，在升级至 UE5 的基础上大幅修改了接口并添加了新功能。 原插件注意事项如下： 12341. 案例场景 map 文件位于插件文件夹中。2. 导出之前首先在项目设置中设定启动场景为案例场景。3. 将项目切换成 C++ 项目后在 source 文件夹中的 build.cs 文件中添加 [PLUGIN_TUIO_UE4] 插件名称到">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UE5 TUIO 插件简明文档">
 <meta property="og:url" content="https://omnisch.net/pen/ue5_tuio_plugin_doc/index.html">
 <meta property="og:site_name" content="青山軒">
-<meta property="og:description" content="该插件继承自 UE4_TUIO_2101143，在升级至 UE5 的基础上大幅修改了接口并添加了新功能。 原插件注意事项： 12341. 案例场景 map 文件位于插件文件夹中。2. 导出之前首先在项目设置中设定启动场景为案例场景。3. 将项目切换成 C++ 项目后在 source 文件夹中的 build.cs 文件中添加 [PLUGIN_TUIO_UE4] 插件名称到模块中。4. 路径名称必须为">
+<meta property="og:description" content="RayionTuioUe5 插件改自 UE4_TUIO_2101143，在升级至 UE5 的基础上大幅修改了接口并添加了新功能。 原插件注意事项如下： 12341. 案例场景 map 文件位于插件文件夹中。2. 导出之前首先在项目设置中设定启动场景为案例场景。3. 将项目切换成 C++ 项目后在 source 文件夹中的 build.cs 文件中添加 [PLUGIN_TUIO_UE4] 插件名称到">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-03-18T03:36:37.325Z">
-<meta property="article:modified_time" content="2025-03-18T03:58:45.179Z">
+<meta property="article:modified_time" content="2025-05-03T15:53:57.683Z">
 <meta property="article:author" content="Omnisch">
 <meta name="twitter:card" content="summary">
 
@@ -111,7 +111,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TuioListener"><span class="nav-number">1.</span> <span class="nav-text">TuioListener</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Marker"><span class="nav-number">2.</span> <span class="nav-text">Marker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BPI-TuioListenerDispatcher"><span class="nav-number">2.1.</span> <span class="nav-text">BPI_TuioListenerDispatcher</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MarkerObject-base"><span class="nav-number">2.2.</span> <span class="nav-text">MarkerObject_base</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MUCR-My-UI-Cursor"><span class="nav-number">3.</span> <span class="nav-text">MUCR (My UI Cursor)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MyUiCursor"><span class="nav-number">3.1.</span> <span class="nav-text">MyUiCursor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BPI-MyUiCursorReceiver"><span class="nav-number">3.2.</span> <span class="nav-text">BPI_MyUiCursorReceiver</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#C-%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">C++ 类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AMyTuioActor"><span class="nav-number">1.1.</span> <span class="nav-text">AMyTuioActor</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%93%9D%E5%9B%BE-Actor-%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">蓝图 Actor 类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TuioListener"><span class="nav-number">2.1.</span> <span class="nav-text">TuioListener</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MarkerObject-base"><span class="nav-number">2.2.</span> <span class="nav-text">MarkerObject_base</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MyUiCursor"><span class="nav-number">2.3.</span> <span class="nav-text">MyUiCursor</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%93%9D%E5%9B%BE%E6%8E%A5%E5%8F%A3%E7%B1%BB"><span class="nav-number">3.</span> <span class="nav-text">蓝图接口类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BPI-TuioListenerDispatcher"><span class="nav-number">3.1.</span> <span class="nav-text">BPI_TuioListenerDispatcher</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BPI-MyUiCursorReceiver"><span class="nav-number">3.2.</span> <span class="nav-text">BPI_MyUiCursorReceiver</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -126,7 +126,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -240,17 +240,32 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>该插件继承自 UE4_TUIO_2101143，在升级至 UE5 的基础上大幅修改了接口并添加了新功能。</p>
-<p>原插件注意事项：</p>
-<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 案例场景 map 文件位于插件文件夹中。</span><br><span class="line">2. 导出之前首先在项目设置中设定启动场景为案例场景。</span><br><span class="line">3. 将项目切换成 C++ 项目后在 source 文件夹中的 build.cs 文件中添加 [PLUGIN_TUIO_UE4] 插件名称到模块中。</span><br><span class="line">4. 路径名称必须为全英文。</span><br></pre></td></tr></table></figure>
-<h2 id="TuioListener">TuioListener</h2>
-<p>名为 TuioListener 的 Actor 位于 /Plugins/RayionUe5Tuio Content/，继承自</p>
-<h2 id="Marker">Marker</h2>
-<h3 id="BPI-TuioListenerDispatcher">BPI_TuioListenerDispatcher</h3>
+    <div class="post-body" itemprop="articleBody"><p>RayionTuioUe5 插件改自 UE4_TUIO_2101143，在升级至 UE5 的基础上大幅修改了接口并添加了新功能。</p>
+<p>原插件注意事项如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 案例场景 map 文件位于插件文件夹中。</span><br><span class="line">2. 导出之前首先在项目设置中设定启动场景为案例场景。</span><br><span class="line">3. 将项目切换成 C++ 项目后在 source 文件夹中的 build.cs 文件中添加 [PLUGIN_TUIO_UE4] 插件名称到模块中。</span><br><span class="line">4. 路径名称必须为全英文。</span><br></pre></td></tr></table></figure>
+<h2 id="C-类">C++ 类</h2>
+<h3 id="AMyTuioActor">AMyTuioActor</h3>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">AActor</span><br><span class="line">└─AMyTuioActor</span><br><span class="line">  ├─TuioInit()                （蓝图可调用）</span><br><span class="line">  ├─TuioBreakSocket()         （蓝图可调用）</span><br><span class="line">  ├─AddMarker(FMarkerInfo)    （蓝图可实现）</span><br><span class="line">  ├─UpdateMarker(FMarkerInfo) （蓝图可实现）</span><br><span class="line">  ├─RemoveMarker(int32)       （蓝图可实现）</span><br><span class="line">  ├─AddCursor(FMarkerInfo)    （蓝图可实现）</span><br><span class="line">  ├─UpdateCursor(FMarkerInfo) （蓝图可实现）</span><br><span class="line">  └─RemoveCursor(int32)       （蓝图可实现）</span><br></pre></td></tr></table></figure>
+<p><code>AMyTuioActor</code> 监听到添加令牌的消息时，会调用 <code>AddMarker(FMarkerInfo)</code>，参数包含了被添加的令牌的信息，其他同理。</p>
+<h2 id="蓝图-Actor-类">蓝图 Actor 类</h2>
+<h3 id="TuioListener">TuioListener</h3>
+<blockquote>
+<p>由于工程历史原因，此 TuioListener 与 TUIO 源代码中的 TuioListener.h 没有关系。</p>
+</blockquote>
+<p><code>TuioListener</code> 位于 <code>/Plugins/RayionTuioUe5 Content/Blueprints/</code>，继承自 <code>AMyTuioActor</code>，实现了 <code>AMyTuioActor</code> 关于令牌与触点的方法。对于令牌，<code>TuioListener</code> 会向对应 <code>Marker</code> 的 <code>BPI_TuioListenerDispatcher</code> 接口发送消息；对于触点，<code>TuioListener</code> 会维护 <code>MyUiCursor</code> 列表，监听触点消息创建、更新、销毁 <code>MyUiCursor</code>。</p>
 <h3 id="MarkerObject-base">MarkerObject_base</h3>
-<h2 id="MUCR-My-UI-Cursor">MUCR (My UI Cursor)</h2>
+<p><code>MarkerObject_base</code> 位于 <code>/Plugins/RayionTuioUe5 Content/Markers/</code>，是所有 Marker 的基类，继承并实现接口 <code>BPI_TuioListenerDispatcher</code>。</p>
+<p>基本功能为在世界空间中随 TUIO 令牌消息而改变 Transform，位置的 (0,0) 和 (1,1) 两点由 <code>TuioListener</code> 开放在 Details 面板的 <code>PosMin</code> 和 <code>PosMax</code> 两物体决定。</p>
 <h3 id="MyUiCursor">MyUiCursor</h3>
+<blockquote>
+<p>UE5 引擎原生只支持最多 10 个触点，显然无法满足 TUIO 使用，所以需要通过 TUIO 传递触点并在引擎中解析、模仿光标的操作。然而若自行编译引擎调高触点上限，就不再需要 <code>MUCR</code> 了。</p>
+</blockquote>
+<p><code>MyUiCursor</code> 简称 <code>MUCR</code>，位于 <code>/Plugins/RayionTuioUe5 Content/Markers/</code>。每帧查找场景中所有的 <code>BPI_MyUiCursorReceiver</code> 并发送 <code>OnTouchMove()</code> 等消息。只存在于一次触点会话中，触点抬起即销毁。</p>
+<h2 id="蓝图接口类">蓝图接口类</h2>
+<h3 id="BPI-TuioListenerDispatcher">BPI_TuioListenerDispatcher</h3>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">BPI_TuioListenerDispatcher</span><br><span class="line">├─OnAddMarker(Transform)</span><br><span class="line">├─OnUpdateMarker(Transform)</span><br><span class="line">└─OnRemoveMarker()</span><br></pre></td></tr></table></figure>
 <h3 id="BPI-MyUiCursorReceiver">BPI_MyUiCursorReceiver</h3>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">BPI_MyUiCursorReceiver</span><br><span class="line">├─OnTouchBegin(Vector2D)</span><br><span class="line">├─OnUpdateMarker(Vector2D)</span><br><span class="line">└─OnRemoveMarker()</span><br></pre></td></tr></table></figure>
 <!-- flag of hidden posts -->
     </div>
 
