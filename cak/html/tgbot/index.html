@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Telegram Web App Hello World</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 2em; }
+    button { font-size: 1.2em; padding: 0.5em 2em; margin-top: 2em; }
+  </style>
+</head>
+<body>
+  <h1>Hello, Telegram Web App!</h1>
+  <p id="greet"></p>
+  <button onclick="sendData()">Send Hello to Telegram</button>
+  <script>
+    // 初始化 Telegram Web App
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+
+    // 展示用户名
+    if (tg.initDataUnsafe.user) {
+      document.getElementById('greet').textContent =
+        'Hi, ' + tg.initDataUnsafe.user.first_name + '!';
+    }
+
+    // 可与 Telegram 交互
+    function sendData() {
+      tg.sendData("Hello from Web App!");
+      tg.close(); // 可选，关闭 WebApp 窗口
+    }
+  </script>
+</body>
+</html>
