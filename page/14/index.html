@@ -245,8 +245,8 @@
 <h2 id="为什么非得换图标不可">为什么非得换图标不可</h2>
 <p>Windows 10 默认的浏览器是 Microsoft Edge，但我常用的浏览器是 Google Chrome。平常打开网页啥的都是用 Chrome，可到了打开 pdf 的时候，Edge 却突然冒了出来，没有作为一个标签页出现在我已经打开的 Chrome 里，而是开了另一个进程。我总觉得这样是在浪费我电脑的资源，所以决定把 pdf 文件的默认打开方式从 Edge 改为 Chrome。</p>
 <p>不改不要紧，一改发现所有 pdf 文件的图标也跟着变了。</p>
-<p><figure><img src="https://img-blog.csdnimg.cn/direct/18c8bbf3a6094b30bcddbc26267967a3.png#pic_center" alt="改之前 (用 Edge 打开的默认图标)"><figcaption>改之前 (用 Edge 打开的默认图标)</figcaption></figure></p>
-<p><figure><img src="https://img-blog.csdnimg.cn/direct/7f44cdb040fb48ee85896fcbc0658b32.png#pic_center" alt="改之后 (用 Chrome 打开的默认图标)"><figcaption>改之后 (用 Chrome 打开的默认图标)</figcaption></figure></p>
+<p><figure><img src="/pen/windows_edit_pdf_icon/pdf_icon.png" alt="改之前 (用 Edge 打开的默认图标)"><figcaption>改之前 (用 Edge 打开的默认图标)</figcaption></figure></p>
+<p><figure><img src="/pen/windows_edit_pdf_icon/chrome.png" alt="改之后 (用 Chrome 打开的默认图标)"><figcaption>改之后 (用 Chrome 打开的默认图标)</figcaption></figure></p>
 <p>这未免太奇怪了吧！从图标上完全看不出是 pdf 不说，这跟 html 文件完全一样，如何区分？我会下意识以为这是个网站咧！所以我的需求就出现了：<strong>默认用 Chrome 浏览器打开 PDF 文件，但保留用 Edge 打开时的图标</strong>。</p>
 <hr>
 <h2 id="网上是怎么说的">网上是怎么说的</h2>
@@ -261,17 +261,17 @@
 <p>既然 Edge 有 pdf 和 html 的分化，那么咱也手动给 Chrome 添加一下好了。在注册表编辑器中，通过“按项 <code>ChromeHTML</code> 查找”发现，这套打开方式的注册表位于：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_LOCAL_MACHINE\SOFTWARE\Classes\ChromeHTML</span><br></pre></td></tr></table></figure>
 <p>在 <code>Classes</code> 这个父项下，新建一个项与 <code>ChromeHTML</code> 并列，命名为 <code>ChromePDF</code>，然后将 <code>ChromeHTML</code> 里所有项、值和数据全都拷贝到 <code>ChromePDF</code> 里。</p>
-<p><figure><img src="https://img-blog.csdnimg.cn/direct/76b26f09c228445b97ee10ef8d2ac18f.png#pic_center" alt="ChromePDF"><figcaption>ChromePDF</figcaption></figure></p>
+<p><figure><img src="/pen/windows_edit_pdf_icon/ChromePDF.png" alt="ChromePDF"><figcaption>ChromePDF</figcaption></figure></p>
 <h3 id="更改-DefaultIcon">更改 DefaultIcon</h3>
 <p>接下来就是关键一步：改图标。可以看到 <code>ChromeHTML</code> 里有一个项叫做 <code>DefaultIcon</code>，它的值是（前提是你 Chrome 的安装路径跟我一样）：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Google\Chrome\Application\chrome.exe,0</span><br></pre></td></tr></table></figure>
 <p>上面这一行代表，默认图标用的是 <code>chrome.exe</code> 的第 0 个图标。那么 <code>chrome.exe</code> 包含的图标都有什么呢？通过「为文件夹更改图标」我们可以访问到这些图标，可以看出，Chrome 是真的没有 pdf 专精的图标：</p>
-<p><figure><img src="https://img-blog.csdnimg.cn/direct/f486dc039b614032a4a0458a7619013e.png#pic_center" alt="chrome.exe"><figcaption>chrome.exe</figcaption></figure></p>
+<p><figure><img src="/pen/windows_edit_pdf_icon/chrome_exe.png" alt="chrome.exe"><figcaption>chrome.exe</figcaption></figure></p>
 <p>那么就干脆还是用 Edge 带的 pdf 图标吧！从 Edge 的默认安装路径找到 <code>msedge.exe</code>，复制它的路径，以同样的办法找到其中包含的 pdf 的图标。根据下图可以数出，我想要的 pdf 图标在第 13 个（当然还是从 0 开始数）：</p>
-<p><figure><img src="https://img-blog.csdnimg.cn/direct/dfd790108d18493d98ebf0af04286bfa.png#pic_center" alt="msedge.exe"><figcaption>msedge.exe</figcaption></figure></p>
+<p><figure><img src="/pen/windows_edit_pdf_icon/msedge_exe.png" alt="msedge.exe"><figcaption>msedge.exe</figcaption></figure></p>
 <p><strong>所以我们要把 <code>ChromePDF</code> 之中 <code>DefaultIcon</code> 的数据改成如下这样</strong>（前提是你 Edge 的安装路径跟我一样）：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe,13</span><br></pre></td></tr></table></figure>
-<p><figure><img src="https://img-blog.csdnimg.cn/direct/256b18d811b84304a155fc7cf79f6964.png#pic_center" alt="DefaultIcon"><figcaption>DefaultIcon</figcaption></figure></p>
+<p><figure><img src="/pen/windows_edit_pdf_icon/DefaultIcon.png" alt="DefaultIcon"><figcaption>DefaultIcon</figcaption></figure></p>
 <h3 id="更改-FileAssociations">更改 FileAssociations</h3>
 <ul>
 <li>
@@ -285,7 +285,7 @@
 <p>点击这个项会发现，里面的数据清一色都是 <code>ChromeHTML</code>，无论格式是 pdf、html、webp 还是 svg，都用的是这一套。在这里我只把 <code>.pdf</code> 这一条改为了 <code>ChromePDF</code>，其他的我暂时不需要改，不过要改的话也同理。</p>
 </li>
 </ul>
-<p><figure><img src="https://img-blog.csdnimg.cn/direct/63b22eba654c4061b5319fc055ac7037.png#pic_center" alt="FileAssociations"><figcaption>FileAssociations</figcaption></figure></p>
+<p><figure><img src="/pen/windows_edit_pdf_icon/FileAssociations.png" alt="FileAssociations"><figcaption>FileAssociations</figcaption></figure></p>
 <hr>
 <h3 id="完成">完成</h3>
 <ul>
