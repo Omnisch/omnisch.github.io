@@ -19,22 +19,26 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"omnisch.net","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="青山軒">
-<meta property="og:url" content="https://omnisch.net/archives/page/2/index.html">
+    <meta name="description" content="Mac 方法 Mac 有三条路可以走：  Mac Virtual Display 串流； 使用 Play to Device 在编辑器中串流测试； 通过 XCode 打包到眼镜上运行。  SteamVR 很早就放弃支持 Mac 了，所以很可惜这条路不通。下面逐一分析这三条路。  Mac Virtual Display 只能在眼镜中以共享空间（Shared Space，而非沉浸式 Fully Imm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何在 Apple Vision Pro 上体验 Unity 项目">
+<meta property="og:url" content="https://omnisch.net/pen/unity_gaming_in_apple_vision_pro/index.html">
 <meta property="og:site_name" content="青山軒">
+<meta property="og:description" content="Mac 方法 Mac 有三条路可以走：  Mac Virtual Display 串流； 使用 Play to Device 在编辑器中串流测试； 通过 XCode 打包到眼镜上运行。  SteamVR 很早就放弃支持 Mac 了，所以很可惜这条路不通。下面逐一分析这三条路。  Mac Virtual Display 只能在眼镜中以共享空间（Shared Space，而非沉浸式 Fully Imm">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-11-20T10:42:47.552Z">
+<meta property="article:modified_time" content="2025-11-20T10:44:19.512Z">
 <meta property="article:author" content="Omnisch">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://omnisch.net/archives/page/2/">
+<link rel="canonical" href="https://omnisch.net/pen/unity_gaming_in_apple_vision_pro/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"archives/page/2/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://omnisch.net/pen/unity_gaming_in_apple_vision_pro/","path":"pen/unity_gaming_in_apple_vision_pro/","title":"如何在 Apple Vision Pro 上体验 Unity 项目"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>归档 | 青山軒</title>
+<title>如何在 Apple Vision Pro 上体验 Unity 项目 | 青山軒</title>
   
 
 
@@ -67,7 +71,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">青山軒</h1>
+      <p class="site-title">青山軒</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">倉經所閒虛言</p>
@@ -94,7 +98,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -107,6 +111,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mac-%E6%96%B9%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">Mac 方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows-%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">Windows 方法</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -174,233 +179,103 @@
 
     </div>
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://omnisch.net/pen/unity_gaming_in_apple_vision_pro/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/graffiti2502-128x.png">
+      <meta itemprop="name" content="Omnisch">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山軒">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="如何在 Apple Vision Pro 上体验 Unity 项目 | 青山軒">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何在 Apple Vision Pro 上体验 Unity 项目
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-11-20 18:42:47" itemprop="dateCreated datePublished" datetime="2025-11-20T18:42:47+08:00">2025-11-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/pen/" itemprop="url" rel="index"><span itemprop="name">pen</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="Mac-方法">Mac 方法</h2>
+<p>Mac 有三条路可以走：</p>
+<ol>
+<li><em>Mac Virtual Display</em> 串流；</li>
+<li>使用 <em>Play to Device</em> 在编辑器中串流测试；</li>
+<li>通过 XCode 打包到眼镜上运行。</li>
+</ol>
+<p>SteamVR 很早就放弃支持 Mac 了，所以很可惜这条路不通。下面逐一分析这三条路。</p>
+<ol>
+<li><em>Mac Virtual Display</em> 只能在眼镜中以共享空间（<em>Shared Space</em>，而非沉浸式 <em>Fully Immersive</em>）运行，这就完全无法获得 Unity VR 项目应有的体验。</li>
+<li><em>Play to Device</em> 是 Unity 扩展包 <em>PolySpatial visionOS</em> 的一项功能，支持在编辑器中串流测试。需要在眼镜上安装 <em>TestFlight</em> 并访问邀请链接，详细文档见<a href="/pen/https://docs.unity3d.com/Packages/com.unity.polyspatial.visionos%401.1/manual/PlayToDevice.html">此处</a>。在这条路线中，自定义材质不支持手写 Shader，只能使用 <em>Shader Graph</em>；此外，测试时天空盒（也就是无穷远处）会被替换为现实场景透视，这是由这条路线本身的技术特性决定的，无法更改。</li>
+<li>通过 XCode 打包到眼镜上运行是最“官方”最可靠的技术路线。以 <em>Fully Immersive</em> 模式打包，实机效果将与编辑器中以及其他 VR 中效果基本一致，支持手写 Shader，天空盒可切换。</li>
+</ol>
+<p>然而，上面哪条路都不适合 HDRP 的项目，<a target="_blank" rel="noopener" href="https://learn.unity.com/tutorial/developing-for-vision-os-with-unity">官方文档</a>明确提到「The High Definition Rendering Pipeline (HDRP) is not supported on Apple Vision Pro at this stage.」至少目前 Apple Vision Pro 是不支持 HDRP 项目的。</p>
+<h2 id="Windows-方法">Windows 方法</h2>
+<p>因此，如果一定要将 HDRP 项目放上 Mac 的话，只能用 Windows 串流了。好在 Windows 是有串流 Mac 的工具 <a target="_blank" rel="noopener" href="https://github.com/alvr-org/ALVR">ALVR</a> 的。ALVR 基于 SteamVR 沟通 Windows 和 Vision Pro，需要 Windows 和 Vision Pro 分别安装相同版本的 ALVR，二者处于同一局域网中且可发现对方。成功配对后，即可串流 SteamVR 游戏。</p>
+<p>ALVR 自带对 Vision Pro 手势的映射，比如「捏合食指和拇指 = 扳机键」「握住中指、无名指和小指 = 抓握键」等，可在 Windows 的 ALVR 应用设置中调整。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
         
-        <span class="collection-header">不错! 目前共计 70 篇日志。 继续努力。</span>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2025<span class="collection-year-count">32</span></span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-06-06T00:36:48+08:00"
-              content="2025-06-06">
-          06-06
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/yoi/websites_of_han/" itemprop="url">
-            <span itemprop="name">汉语言网站汇总</span>
-          </a>
-      </div>
-
-      
-    </header>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-05-13T18:22:17+08:00"
-              content="2025-05-13">
-          05-13
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/luon/202502/" itemprop="url">
-            <span itemprop="name">北朝魏碑书法史</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-05-10T20:43:56+08:00"
-              content="2025-05-10">
-          05-10
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/kom/2025051001/" itemprop="url">
-            <span itemprop="name">五一读书周读后观后感</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-05-09T20:51:53+08:00"
-              content="2025-05-09">
-          05-09
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/kazsi/yue/jatsaangsooi/" itemprop="url">
-            <span itemprop="name">盧冠廷 - 一生所愛</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-04-20T12:06:51+08:00"
-              content="2025-04-20">
-          04-20
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/kazsi/yue/cammaksigam/" itemprop="url">
-            <span itemprop="name">許冠傑/張國榮 - 沉默是金</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-04-20T11:53:22+08:00"
-              content="2025-04-20">
-          04-20
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/kazsi/yue/batlongmaanzeoiming/" itemprop="url">
-            <span itemprop="name">王傑 - 不浪漫罪名</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-04-20T10:50:47+08:00"
-              content="2025-04-20">
-          04-20
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/kazsi/ja/labusutoorii/" itemprop="url">
-            <span itemprop="name">小田和正 - ラブ・ストーリーは突然に</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-04-07T14:54:02+08:00"
-              content="2025-04-07">
-          04-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/kazsi/yue/ngobatsiwaijan/" itemprop="url">
-            <span itemprop="name">陳小春 - 我不是偉人</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-04-07T14:32:27+08:00"
-              content="2025-04-07">
-          04-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/kazsi/yue/colyun/" itemprop="url">
-            <span itemprop="name">林志美 - 初戀</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-04-07T14:13:34+08:00"
-              content="2025-04-07">
-          04-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/kazsi/ja/hatsukoi/" itemprop="url">
-            <span itemprop="name">村下孝蔵 - 初恋</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/archives/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/7/">7</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/archives/page/3/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+
+
+
 
 </div>
   </main>
