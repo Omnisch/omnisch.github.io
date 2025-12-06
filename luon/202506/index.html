@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#9acab0"><meta name="generator" content="Hexo 8.1.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-omnis.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-omnis.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-omnis.ico">
+  <link rel="mask-icon" href="/images/logo-omnis.svg" color="#9acab0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.font.im/css?family=Fira+Code+Retina:300,300italic,400,400italic,700,700italic%7CNoto+Sans+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"omnisch.net","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="20251205 论文写作工作坊课后作业  按照课上所学，请你在第一章作业当中，找至少 5 篇自己论文进行精读，然后进行标题和摘要分析，要写清楚。  文章标题用了哪种命名方式？和其他标题的区别和联系。 文章的摘要包含了哪些内容？和常规的摘要区别在哪。  Inter-Slice Context Residual Learning for 3D Medical Image Segmentation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文标题和摘要分析">
+<meta property="og:url" content="https://omnisch.net/luon/202506/index.html">
+<meta property="og:site_name" content="青山軒">
+<meta property="og:description" content="20251205 论文写作工作坊课后作业  按照课上所学，请你在第一章作业当中，找至少 5 篇自己论文进行精读，然后进行标题和摘要分析，要写清楚。  文章标题用了哪种命名方式？和其他标题的区别和联系。 文章的摘要包含了哪些内容？和常规的摘要区别在哪。  Inter-Slice Context Residual Learning for 3D Medical Image Segmentation">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-12-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-12-06T02:26:47.862Z">
+<meta property="article:author" content="Omnisch">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://omnisch.net/luon/202506/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://omnisch.net/luon/202506/","path":"luon/202506/","title":"论文标题和摘要分析"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>论文标题和摘要分析 | 青山軒</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">青山軒</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">倉經所閒虛言</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-作品"><a href="/categories/cak/" rel="section"><i class="fa fa-rocket fa-fw"></i>作品</a></li><li class="menu-item menu-item-歌詞"><a href="/kazsi/index/" rel="section"><i class="fa fa-microphone-lines fa-fw"></i>歌詞</a></li><li class="menu-item menu-item-隨感"><a href="/categories/kom/" rel="section"><i class="fa fa-hashtag fa-fw"></i>隨感</a></li><li class="menu-item menu-item-編纂"><a href="/categories/pen/" rel="section"><i class="fa fa-pen-nib fa-fw"></i>編纂</a></li><li class="menu-item menu-item-匯集"><a href="/categories/yoi/" rel="section"><i class="fa fa-table fa-fw"></i>匯集</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Inter-Slice-Context-Residual-Learning-for-3D-Medical-Image-Segmentation-1"><span class="nav-number">1.</span> <span class="nav-text">Inter-Slice Context Residual Learning for 3D Medical Image Segmentation (1)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OReX-Object-Reconstruction-From-Planar-Cross-Sections-Using-Neural-Fields-2"><span class="nav-number">2.</span> <span class="nav-text">OReX: Object Reconstruction From Planar Cross-Sections Using Neural Fields (2)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SAM-Med3D-Towards-General-purpose-Segmentation-Models-for-Volumetric-Medical-Images-3"><span class="nav-number">3.</span> <span class="nav-text">SAM-Med3D: Towards General-purpose Segmentation Models for Volumetric Medical Images (3)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CrossSDF-3D-Reconstruction-of-Thin-Structures-From-Cross-Sections-4"><span class="nav-number">4.</span> <span class="nav-text">CrossSDF: 3D Reconstruction of Thin Structures From Cross-Sections (4)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-novel-image-augmentation-based-on-statistical-shape-and-intensity-models-application-to-the-segmentation-of-hip-bones-from-CT-images-5"><span class="nav-number">5.</span> <span class="nav-text">A novel image augmentation based on statistical shape and intensity models: application to the segmentation of hip bones from CT images (5)</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Omnisch"
+      src="/images/graffiti2502-128x.png">
+  <p class="site-author-name" itemprop="name">Omnisch</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">74</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:omnisch@outlook.com" title="E-Mail → mailto:omnisch@outlook.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/Omnisch" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Omnisch" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/19541024" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;19541024" rel="noopener me" target="_blank"><i class="fab fa-bilibili fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://zi.tools/" title="https:&#x2F;&#x2F;zi.tools" rel="noopener" target="_blank">字統</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://kaom.net/" title="https:&#x2F;&#x2F;kaom.net" rel="noopener" target="_blank">古音小鏡</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://zhs.glyphwiki.org/wiki/" title="https:&#x2F;&#x2F;zhs.glyphwiki.org&#x2F;wiki&#x2F;" rel="noopener" target="_blank">字形维基</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://omnisch.net/luon/202506/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/graffiti2502-128x.png">
+      <meta itemprop="name" content="Omnisch">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山軒">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="论文标题和摘要分析 | 青山軒">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          论文标题和摘要分析
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-12-05 00:00:00" itemprop="dateCreated datePublished" datetime="2025-12-05T00:00:00+08:00">2025-12-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/luon/" itemprop="url" rel="index"><span itemprop="name">luon</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p>20251205 论文写作工作坊课后作业</p>
+</blockquote>
+<p>按照课上所学，请你在第一章作业当中，找至少 5 篇自己论文进行精读，然后进行标题和摘要分析，要写清楚。</p>
+<ol>
+<li>文章标题用了哪种命名方式？和其他标题的区别和联系。</li>
+<li>文章的摘要包含了哪些内容？和常规的摘要区别在哪。</li>
+</ol>
+<h2 id="Inter-Slice-Context-Residual-Learning-for-3D-Medical-Image-Segmentation-1">Inter-Slice Context Residual Learning for 3D Medical Image Segmentation (1)</h2>
+<ol>
+<li>
+<p><strong>类型</strong>：Learning 机器学习<br>
+<strong>亮点</strong>：Inter-Slice Context Residual 切片间的上下文残差网络<br>
+<strong>场景</strong>：3D Medical Image Segmentation 三维医学图像分割<br>
+由三部分拼接起来的中规中矩的标题。</p>
+</li>
+<li>
+<p>摘要包含了研究背景「三维医学图像分割的重要性」、之前方法的不足「DCNNs 精确度不够高」、提出自己的方法「精确分割的 ConResNet」、<strong>ConResNet 的结构</strong>、实验结果与对比「在脑瘤分割方面比六种顶尖方法更准确」。<br>
+这篇文章主要的创新在于 ConResNet 这一网络，因此在摘要中花大篇幅介绍了网络结构设计。</p>
+</li>
+</ol>
+<span id="more"></span>
+<h2 id="OReX-Object-Reconstruction-From-Planar-Cross-Sections-Using-Neural-Fields-2">OReX: Object Reconstruction From Planar Cross-Sections Using Neural Fields (2)</h2>
+<ol>
+<li>
+<p><strong>帽子</strong>：OReX 选取标题中的部分字母，其中 Cross 简化为 X。帽子没有实义，为了突出 Cross 截面而选取了 X。<br>
+<strong>功能</strong>：Object Reconstruction 物体重建<br>
+<strong>亮点</strong>：From Planar Cross-Sections 从多个平截面<br>
+<strong>手段</strong>：Neural Fields 神经场<br>
+「利用神经场，从多个平截面，做物体重建」，这是个非常直观易懂的标题，与 (1) 类似，三部分分别说明了「是什么」「好在哪儿」和「怎么做的」。</p>
+</li>
+<li>
+<p>摘要包含了研究背景「从平截面重建三维物体是个挑战」、<strong>输入输出的格式</strong>、之前方法的不足「质量低或者需要依赖其他信息」、提出自己的方法「只依赖平截面的重建」、主要的挑战与解决方法、实验结果与对比。<br>
+摘要强调了重建物体时输入输出的数学格式，可能为了表示其方法的应用范围或局限性。摘要还列出了两三条关键的挑战与解决方法。</p>
+</li>
+</ol>
+<h2 id="SAM-Med3D-Towards-General-purpose-Segmentation-Models-for-Volumetric-Medical-Images-3">SAM-Med3D: Towards General-purpose Segmentation Models for Volumetric Medical Images (3)</h2>
+<ol>
+<li>
+<p><strong>帽子</strong>：SAM-Med3D 似乎是多种命名方式混杂，其中 SAM 选取了标题中的部分字母，Med3D 则指示了算法的应用场景。不是一个特别成功的帽子。<br>
+<strong>类型</strong>：Models 可以省略<br>
+<strong>功能</strong> / 亮点：General-purpose 通用的<br>
+<strong>场景</strong>：Volumetric Medical Images 体素医学图像<br>
+这个标题写清了「是什么」「好在哪儿」，没有体现「怎么做的」。此外我认为标题可以改写为 <em>A General-purpose Segmentation for Volumetric Medical Images</em>。</p>
+</li>
+<li>
+<p>摘要包含了之前方法的不足「现有分割模型难以泛化」、提出自己的方法「通用的分割模型」、方法的优点、<strong>训练数据集</strong>、实验结果与评估。<br>
+这篇文章主要提出了一个自己构建的数据集与在此基础上的训练，所以摘要着重写了这一部分。同时，摘要削减了研究背景，直接提到之前方法的不足，这符合书中所说“首先确定你的比较对象，然后直接切入比较对象所在的那一层”。</p>
+</li>
+</ol>
+<h2 id="CrossSDF-3D-Reconstruction-of-Thin-Structures-From-Cross-Sections-4">CrossSDF: 3D Reconstruction of Thin Structures From Cross-Sections (4)</h2>
+<ol>
+<li>
+<p><strong>帽子</strong>：CrossSDF 既直接展示了算法的核心信息 SDF，又表明了应用场景（截面）。这个帽子容易记忆，效果比较好。<br>
+<strong>功能</strong>：3D Reconstruction 三维重建<br>
+<strong>亮点</strong>：Thin Structure 细微结构<br>
+<strong>手段</strong>：From Cross-Sections 通过截面<br>
+这个标题在这 5 篇当中是最短的，但却是最直观易懂的。短但信息量丰富，同时说明了「是什么」「好在哪儿」和「怎么做的」。</p>
+</li>
+<li>
+<p>摘要包含了研究背景「从截面重建复杂结构有广泛应用且有挑战」、之前方法的不足「重建细微几何存在困难」、<strong>研究的重要性</strong>「医学应用需要重建细微结构」、提出自己的方法、实验结果与对比。<br>
+这个摘要赏心悦目，直接切入问题、没有全面介绍系统，同时避免使用过多专业词汇。在摘要中间，作者提到了研究的重要性，这表明了自己工作的必要性，是很讨巧的技巧。</p>
+</li>
+</ol>
+<h2 id="A-novel-image-augmentation-based-on-statistical-shape-and-intensity-models-application-to-the-segmentation-of-hip-bones-from-CT-images-5">A novel image augmentation based on statistical shape and intensity models: application to the segmentation of hip bones from CT images (5)</h2>
+<ol>
+<li>
+<p><strong>功能</strong>：image augmentation 图像增强<br>
+<strong>手段 / 亮点</strong>：statistical shape and intensity models 统计形状和强度模型<br>
+<strong>场景</strong>：application to the segmentation of hip bones from CT images 用于医学分割<br>
+与上面 4 篇相比，这篇文章的标题有点太长了，而且冒号分割前后长度也相当，容易让读者抓不到重点。</p>
+</li>
+<li>
+<p>摘要包含了研究背景、提出自己的方法「SSIM 模型」、实验结果与对比、结论和相关性声明。<br>
+可能是期刊的格式要求，摘要有分段和小标题。摘要整体很长，每一部分都太注重细节，却又少了相关工作等板块。论文全文没有引言，所以摘要在此同时担任了引言的作用。</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-regular fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Omnisch</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+
+</body>
+</html>
