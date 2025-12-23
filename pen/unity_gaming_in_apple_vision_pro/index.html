@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"omnisch.net","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Mac 方法 Mac 有三条路可以走：  Mac Virtual Display 串流； 使用 Play to Device 在编辑器中串流测试； 通过 XCode 打包到眼镜上运行。  SteamVR 很早就放弃支持 Mac 了，所以很可惜这条路不通。下面逐一分析这三条路。">
+    <meta name="description" content="Mac 方法 Mac 有三条路可以走：  Mac Virtual Display 串流； 使用 Play to Device 在编辑器中串流测试； 通过 XCode 打包到眼镜上运行。  SteamVR 很早就放弃支持 Mac 了，所以很可惜 SteamVR 这条路不通。下面逐一分析上述三条路。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何在 Apple Vision Pro 上体验 Unity 项目">
 <meta property="og:url" content="https://omnisch.net/pen/unity_gaming_in_apple_vision_pro/index.html">
 <meta property="og:site_name" content="青山軒">
-<meta property="og:description" content="Mac 方法 Mac 有三条路可以走：  Mac Virtual Display 串流； 使用 Play to Device 在编辑器中串流测试； 通过 XCode 打包到眼镜上运行。  SteamVR 很早就放弃支持 Mac 了，所以很可惜这条路不通。下面逐一分析这三条路。">
+<meta property="og:description" content="Mac 方法 Mac 有三条路可以走：  Mac Virtual Display 串流； 使用 Play to Device 在编辑器中串流测试； 通过 XCode 打包到眼镜上运行。  SteamVR 很早就放弃支持 Mac 了，所以很可惜 SteamVR 这条路不通。下面逐一分析上述三条路。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-11-20T10:42:47.552Z">
-<meta property="article:modified_time" content="2025-11-21T02:01:57.778Z">
+<meta property="article:modified_time" content="2025-12-12T06:20:02.777Z">
 <meta property="article:author" content="Omnisch">
 <meta name="twitter:card" content="summary">
 
@@ -247,10 +247,10 @@
 <li>使用 <em>Play to Device</em> 在编辑器中串流测试；</li>
 <li>通过 XCode 打包到眼镜上运行。</li>
 </ol>
-<p>SteamVR 很早就放弃支持 Mac 了，所以很可惜这条路不通。下面逐一分析这三条路。</p>
+<p>SteamVR 很早就放弃支持 Mac 了，所以很可惜 SteamVR 这条路不通。下面逐一分析上述三条路。</p>
 <span id="more"></span>
 <ol>
-<li><em>Mac Virtual Display</em> 只能在眼镜中以共享空间（<em>Shared Space</em>，而非沉浸式 <em>Fully Immersive</em>）运行，这就完全无法获得 Unity VR 项目应有的体验。</li>
+<li><em>Mac Virtual Display</em> 只能在眼镜中以共享空间（<em>Shared Space</em>，而非沉浸式 <em>Fully Immersive</em>）运行，一般用于体验 AR 作品，但相对地就无法获得 Unity VR 项目应有的体验。</li>
 <li><em>Play to Device</em> 是 Unity 扩展包 <em>PolySpatial visionOS</em> 的一项功能，支持在编辑器中串流测试。需要在眼镜上安装 <em>TestFlight</em> 并访问邀请链接，详细文档见<a href="/pen/https://docs.unity3d.com/Packages/com.unity.polyspatial.visionos%401.1/manual/PlayToDevice.html">此处</a>。在这条路线中，自定义材质不支持手写 Shader，只能使用 <em>Shader Graph</em>；此外，测试时天空盒（也就是无穷远处）会被替换为现实场景透视，这是由这条路线本身的技术特性决定的，无法更改。</li>
 <li>通过 XCode 打包到眼镜上运行是最“官方”最可靠的技术路线。以 <em>Fully Immersive</em> 模式打包，实机效果将与编辑器中以及其他 VR 中效果基本一致，支持手写 Shader，天空盒可切换。</li>
 </ol>
