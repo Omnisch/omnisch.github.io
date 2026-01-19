@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#9acab0"><meta name="generator" content="Hexo 8.1.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-omnis.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-omnis.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-omnis.ico">
+  <link rel="mask-icon" href="/images/logo-omnis.svg" color="#9acab0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.font.im/css?family=Fira+Code+Retina:300,300italic,400,400italic,700,700italic%7CNoto+Sans+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"omnisch.net","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="引言 赫伊津哈指出，“游戏是自主的”而且“所有的游戏都有其规则”。[1]这表明玩家在玩游戏之前或游玩过程中必须经过自愿学习游戏规则的阶段。在电子游戏时代，玩家有更多的游戏可以选择，因此如果一部电子游戏的规则过于复杂而没有引导玩家一步步学习的机制，那么玩家很快就会放弃这款游戏。因此从游戏设计的角度看，越是复杂的商业游戏就越需要设计出合适高效的引导机制来让玩家快速学习规则并适应在规则中游玩，直至让玩家">
+<meta property="og:type" content="article">
+<meta property="og:title" content="电子游戏中的引导机制探析 —— 以《传送门 2》为例">
+<meta property="og:url" content="https://omnisch.net/luon/202201/index.html">
+<meta property="og:site_name" content="青山軒">
+<meta property="og:description" content="引言 赫伊津哈指出，“游戏是自主的”而且“所有的游戏都有其规则”。[1]这表明玩家在玩游戏之前或游玩过程中必须经过自愿学习游戏规则的阶段。在电子游戏时代，玩家有更多的游戏可以选择，因此如果一部电子游戏的规则过于复杂而没有引导玩家一步步学习的机制，那么玩家很快就会放弃这款游戏。因此从游戏设计的角度看，越是复杂的商业游戏就越需要设计出合适高效的引导机制来让玩家快速学习规则并适应在规则中游玩，直至让玩家">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-12-25T17:42:16.051Z">
+<meta property="article:author" content="Omnisch">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://omnisch.net/luon/202201/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://omnisch.net/luon/202201/","path":"luon/202201/","title":"电子游戏中的引导机制探析 —— 以《传送门 2》为例"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>电子游戏中的引导机制探析 —— 以《传送门 2》为例 | 青山軒</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">青山軒</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">倉經所閒虛言</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-作品"><a href="/categories/cak/" rel="section"><i class="fa fa-rocket fa-fw"></i>作品</a></li><li class="menu-item menu-item-歌詞"><a href="/kazsi/index/" rel="section"><i class="fa fa-microphone-lines fa-fw"></i>歌詞</a></li><li class="menu-item menu-item-隨感"><a href="/categories/kom/" rel="section"><i class="fa fa-hashtag fa-fw"></i>隨感</a></li><li class="menu-item menu-item-編纂"><a href="/categories/pen/" rel="section"><i class="fa fa-pen-nib fa-fw"></i>編纂</a></li><li class="menu-item menu-item-匯集"><a href="/categories/yoi/" rel="section"><i class="fa fa-table fa-fw"></i>匯集</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%B8%B8%E6%88%8F%E6%A6%82%E8%BF%B0"><span class="nav-number">2.</span> <span class="nav-text">1. 游戏概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%93%8D%E4%BD%9C%E5%BC%95%E5%AF%BC"><span class="nav-number">3.</span> <span class="nav-text">2. 操作引导</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%93%8D%E4%BD%9C%E7%9A%84%E5%AD%A6%E4%B9%A0"><span class="nav-number">3.1.</span> <span class="nav-text">2.1. 操作的学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E6%93%8D%E4%BD%9C%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">3.2.</span> <span class="nav-text">2.2. 操作的应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%BF%83%E7%90%86%E5%BC%95%E5%AF%BC"><span class="nav-number">4.</span> <span class="nav-text">3. 心理引导</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E7%8E%AF%E5%A2%83%E4%B8%8E%E7%8E%A9%E5%AE%B6%E5%BF%83%E7%90%86"><span class="nav-number">4.1.</span> <span class="nav-text">3.1. 环境与玩家心理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E5%AF%B9%E8%B1%A1"><span class="nav-number">4.2.</span> <span class="nav-text">3.2. 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E8%89%B2%E5%BD%A9"><span class="nav-number">4.3.</span> <span class="nav-text">3.3. 色彩</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E7%BB%93%E8%AF%AD"><span class="nav-number">5.</span> <span class="nav-text">4. 结语</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Omnisch"
+      src="/images/graffiti2502-128x.png">
+  <p class="site-author-name" itemprop="name">Omnisch</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:omnisch@outlook.com" title="E-Mail → mailto:omnisch@outlook.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/Omnisch" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Omnisch" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/19541024" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;19541024" rel="noopener me" target="_blank"><i class="fab fa-bilibili fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://zi.tools/" title="https:&#x2F;&#x2F;zi.tools" rel="noopener" target="_blank">字統</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://kaom.net/" title="https:&#x2F;&#x2F;kaom.net" rel="noopener" target="_blank">古音小鏡</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://zhs.glyphwiki.org/wiki/" title="https:&#x2F;&#x2F;zhs.glyphwiki.org&#x2F;wiki&#x2F;" rel="noopener" target="_blank">字形维基</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://omnisch.net/luon/202201/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/graffiti2502-128x.png">
+      <meta itemprop="name" content="Omnisch">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山軒">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="电子游戏中的引导机制探析 —— 以《传送门 2》为例 | 青山軒">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          电子游戏中的引导机制探析 —— 以《传送门 2》为例
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-02-04 00:00:00" itemprop="dateCreated datePublished" datetime="2022-02-04T00:00:00+08:00">2022-02-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/cak/" itemprop="url" rel="index"><span itemprop="name">cak</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="引言">引言</h2>
+<p>赫伊津哈指出，“游戏是自主的”而且“所有的游戏都有其规则”。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>这表明玩家在玩游戏之前或游玩过程中必须经过自愿学习游戏规则的阶段。在电子游戏时代，玩家有更多的游戏可以选择，因此如果一部电子游戏的规则过于复杂而没有引导玩家一步步学习的机制，那么玩家很快就会放弃这款游戏。因此从游戏设计的角度看，越是复杂的商业游戏就越需要设计出合适高效的引导机制来让玩家快速学习规则并适应在规则中游玩，直至让玩家想要主动前进，如此才能保证大部分玩家用户不会因缺乏引导或引导不当而流失。下面以引导设计方面的成功作品《传送门 2》为例，分析游戏引导机制的作用，以及设计引导机制需要注意的方面。</p>
+<h2 id="1-游戏概述">1. 游戏概述</h2>
+<p>《传送门 2》是一部由 Valve 公司制作，于 2011 年发售的电子游戏，是《传送门》系列的第二部作品。该作品一经发售就斩获了现象级的好评与讨论度，长期位居各大游戏销售平台前列。《传送门 2》在沿袭第一部传送门设定的基础上，又加入了多种解谜和叙事元素。其优秀的引导机制大大降低了游戏的游玩门槛，使玩家能够快速适应视角的改变，掌握解谜道具的使用方法，跟随引导在思考中解开谜题。</p>
+<p>《传送门 2》的引导机制最大的特点在于其贯穿了整个游戏流程，但不脱离游戏内容。玩家在游玩过程中自然地、甚至不自知地被其引导，从而达到游戏开发者希望玩家感受到的效果，留住玩家继续游玩。</p>
+<h2 id="2-操作引导">2. 操作引导</h2>
+<p>玩家想要进行游戏，首先需要掌握游戏的操作。操作的引导通常被称为教程。该游戏的第一人称视角使玩家学习操作的难度大大增加，但这一点并没有阻止它被玩家喜爱。究其原因，该游戏有着优秀的操作引导。</p>
+<h3 id="2-1-操作的学习">2.1. 操作的学习</h3>
+<h4 id="2-1-1-新手教程">2.1.1. 新手教程</h4>
+<p>游戏的开始部分，教程指示玩家做出转动视角、移动位置等基础动作以适应鼠标灵敏度和基本键位。与其他游戏不同的是，该游戏不是让玩家没有理由地左顾右盼、走走跳跳。</p>
+<p>为了完成教程而执行教程动作在别的游戏中很常见，但这样的教程是与游戏内容相割裂的，这将破坏玩家的体验。如果有旁观者观察玩家的行为，他们会疑惑玩家为什么不开始游戏，而是漫无目的地前后移动、左右摇头。《传送门 2》避免了这一点。该游戏的做法首先是将指引作为语音，融入游戏剧情的行进过程。将键位的熟悉操作赋予目的，解释为主人公休眠之后的适应活动，在玩家学习操作的过程中就大致交代了游戏的发生背景。其次是将跳跃动作的学习安排在交互之中。这里开发者反其道而行，提供了错误的教程，玩家在尝试“按空格说话”时发现自己其实在执行跳跃动作。这样的设计将带来两方面的收益。其一，玩家能从中推测主人公的性格。这段演出可以理解为玩家所控制的主人公其实不善于交流或者拒绝交流，故而即使玩家依教程按空格想要说话，主人公也凭其自我意志拒绝反应。这一点被开发者所承认。开发者借游戏的主角之一 GLaDOS 之口，评价玩家是个“危险而沉默的疯子”。<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>其二，这透露了游戏的整体基调。玩家从这个演出中将感受到这个游戏的基调是诙谐、轻松的。这将大大减少玩家游玩时的心理压力，使玩家更容易接受之后的游戏演出，也更乐于探索游戏世界。</p>
+<h4 id="2-1-2-学习的时机">2.1.2. 学习的时机</h4>
+<p>《传送门 2》中操作的教学是长周期的。不同于大部分游戏在短时间内将操作、玩法、目标等尽数告诉玩家，该游戏在教学与正式游玩上没有明确的边界。游戏将可执行的操作拆分，每隔一段时间仅将一部分新的操作或玩法引导给玩家。在这种模式下，即使到了游戏后期玩家依然在学习新的操作。以传送门的放置为例，玩家一开始只有放置一对传送门之一的能力。当玩家适应传送门的运作机制之后，才获得了自由放置两个传送门的道具。</p>
+<p>此种教学方法的优点有三。一是玩家不至于在一开始就接收大量的信息，导致对操作掌握不熟练或觉得操作过于困难而放弃游玩，确保了玩家用户的初始留存率。二是避免了游戏流程时间过长所导致的单调乏味。当玩家已经掌握一项操作后立即引入下一项，使玩家在长时间游玩时也能保持集中注意力，确保了玩家用户的短期留存率。三是使游戏叙事推进得更加平缓自然。操作发生变换的同时场景也作出变换，叙事因操作的绑定而得以更加深刻且有特点。</p>
+<p>同时值得注意的是，这种递进式的教学也存在短板。玩家总是需要经过一段时间的游玩之后才能学习到新的操作，所以如果玩家对前期的操作不满足而没能体验到后期的内容，那么他们对操作设计的理解就是不全面的。在他们看来该游戏的操作将是缺乏新鲜感和创造性的。</p>
+<h4 id="2-1-3-学习的过程">2.1.3 学习的过程</h4>
+<p>与教程部分相同，该游戏中对各个操作的学习也是与游戏内容相融合的。同样重要的一点是，该游戏并非填鸭式的或者手把手式的“无脑”教学，而是真正意义上的引导，引导玩家自主摸索，增强了玩家的沉浸感。</p>
+<p>为了达到更好的效果，开发者做出了一系列相关举措。其一，新操作的引入是为了解决新的谜题。Csikszentmihalyi 认为，使心流发生的活动有清楚的目标。这一举措正是在为新操作的学习设定目标：利用学到的操作解决新出现的问题。其二，引入新操作的关卡不设置危险。心流发生的另一个特征是忧虑感在从事活动时消失。<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup>玩家在不受危险限制的时间和空间内不用担心挫折和失败，可以反复尝试。这两点也刚好符合心流理论，故而学习过程的体验是积极的、愉悦的。</p>
+<h3 id="2-2-操作的应用">2.2. 操作的应用</h3>
+<p>在玩家学过某项操作后，游戏会随之多次引导玩家重复使用此项操作以巩固对其的记忆和理解。而在学习多项操作后，游戏也会间歇地引导玩家使用更早之前学习的操作，进行二次巩固。例如“凝胶”是在第六章中引入的元素，它允许玩家主动放置或清除跳板等道具。而在之后的三个章节中，尽管场景发生了变化、矛盾发生了转移，但凝胶仍然会出现在场景中，作为巩固练习。到最终关卡时，玩家需要在紧张感到达顶峰的环境下限时地完成对凝胶的一系列运用。而此时玩家对凝胶的掌握已经在四个章节的重复练习中锻炼得十分清晰了，所以玩家不会感到为难或者不熟练。</p>
+<p>通过上述分析不难看出，将游戏操作的引导融入游戏内容并贯穿始终是很有必要的。合适的操作引导可以很大程度上帮助玩家更积极地接受游戏信息，从而获得更好的游戏体验。</p>
+<h2 id="3-心理引导">3. 心理引导</h2>
+<p>艺术作品的作者应当允许读者对他们的作品进行不同于本意的适当解读，同样，玩家可以对一款游戏有着与其他玩家或与游戏开发者不同的理解。然而多数情况下，游戏开发者并不会希望自己的创作意图没有成功地传达到玩家那里，因此游戏开发者可以对玩家的心理进行引导，让玩家能更贴切地体验到自己讲述的故事。</p>
+<h3 id="3-1-环境与玩家心理">3.1. 环境与玩家心理</h3>
+<p>如今的时代中，场所不再只是作品存在和展示的空间，而是成为了作品的一部分。 《传送门 2》非常注重将场景视为游戏内容的重要一环。作为一款解谜游戏，其主要内容固然是解谜，然而谜题都设置在特定的环境当中，因此环境虽然不参与谜题主体的构成，但同样包含大量的信息。</p>
+<p>在第一章中，主人公在休眠很久之后醒来，因而整体环境也是破败不堪的，此时画面中多用阴影、尘土、锈迹和杂草荒木来描绘场所的荒废、年久失修之感。这些细节渲染出了末世后的宁静，虽然玩家处在一个并不熟悉的地方，但整体的暖色调和叶绿色的点缀暗示玩家这一部分是安全的，引导玩家放松心态；同时多处利用光影的对比效果，既再次强调了一种宛如午后的静谧，又提示了玩家前进的道路。玩家的必经之路上有大量的障碍，这迫使玩家放慢脚步，多进行探索和熟悉操作。完好的墙壁大都可以放置传送门，因而墙壁之间的色彩对比很弱，这样做减少了杂乱的房间中不必要的元素，同时鼓励玩家尝试放置传送门。</p>
+<p>之后的三个章节中，GLaDOS 复活，因而环境逐渐变得整齐有序。在减少障碍物出现的同时，为了保持画面中的信息量以及加大谜题难度，墙壁的色彩对比开始出现。玩家会发现无法在黑色墙壁上放置传送门，并在解谜的过程中不断加深这种联系。黑色墙壁越来越多，直至第五章场景移至实验房间之外，此时环境以铁网、水泥墙等黑灰色为主，光源也大幅减少，取而代之的是远处深蓝色的迷雾。在打破了安定的环境下，玩家的紧张感被抬高，同时依照之前建立的联系，玩家放置不了传送门，会感到自己处在被动的状态。这一章解谜进入低谷，但叙事迎来高峰。故玩家的心理预期被引导到正合适的地步，因而在这一章同样能获得不错的游戏体验。</p>
+<p>进入第六章之后，玩家坠入深层的废弃实验场地，情绪曲线也随之下降。场景中铜锈、泥浆的占比增大，这也暗示了同为暖色的 GLaDOS 在此刻改变了立场与玩家并肩，让玩家在潜意识中接受伙伴的入列。地图范围扩大，视野中空旷的空间增加，引导玩家进行更多的探索。</p>
+<p>第七章场景回到实验房间，背景重新以黑白色瓷砖作主体，整体风格的切换使玩家不至于审美疲劳。多数场景不设置地面，进一步提高紧张感的同时，也引导玩家集中新一轮注意力以避免坠落虚空。</p>
+<h3 id="3-2-对象">3.2. 对象</h3>
+<h4 id="3-2-1-Wheatley">3.2.1. Wheatley</h4>
+<p>Wheatley 通常译作“惠特利”，是该游戏中第一个与玩家交互的角色。Wheatley 的角色性格导致他的话语几乎没有给玩家真实有用的引导，但他自身从三方面引导了玩家。第一，玩家在游戏初期需要目标。Wheatley 是第一章唯一能够交互的角色，因此玩家需要追随他的行踪来探寻世界的架构。在这个大目标的驱动下，玩家再设置解开谜题的小目标。第二，游戏开场的情绪高峰与 Wheatley 的诙谐耿直共同作用，使得玩家在一开始更倾向于信任他，从而走向开发者计划好的玩家心理路线，继而在第五章体会到强烈的反差，增强叙事的震撼性。第三，Wheatley 的言行举止能更及时地拉缓玩家的情绪曲线，引导玩家在紧张过后恢复放松的心态继续游玩，保证了玩家的心理变化张弛有度。</p>
+<p>在流程后期，Wheatley 夺取了设施的控制权。场景中增添了监视器屏幕，屏幕与场景自然融合，表达出 Wheatley 无处不在、掌握了全局的压迫感，也暗示玩家将要面对困难的挑战。而如果流程前期就在场景中设置监视器屏幕的话，玩家所感受到的压力会高于玩家的能力，造成玩家焦虑。</p>
+<h4 id="3-2-2-GLaDOS">3.2.2. GLaDOS</h4>
+<p>GLaDOS 是沿袭自前作的角色。GLaDOS 虽然在前期扮演反派角色，但第六章她需要取得玩家对她的信任，玩家才甘愿在后期听从她的引导。所以在第六章开发者将 GLaDOS 重塑为弱小无力、不再强硬的角色，藉此完成其形象在玩家心中的转变。<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup></p>
+<h4 id="3-2-3-一般对象的设计">3.2.3. 一般对象的设计</h4>
+<p>机枪塔是玩家需要躲避其视野范围的一种危险。为了让玩家能敢于反复尝试而不畏惧失误死亡，开发者创造性地给机枪塔赋予了温柔的女性配音。此举不仅成功引导玩家在注意躲避机枪射击的同时更乐于靠近它们，更让该游戏的机枪塔获得大量讨论度与模因传播。</p>
+<h3 id="3-3-色彩">3.3. 色彩</h3>
+<p>色彩能产生不同的情绪反应和体验,从而导致不同的心理感受。<sup class="footnote-ref"><a href="#fn5" id="fnref5">[5]</a></sup>色彩还具有各不相同的文化内涵。学者指出形象的视觉符号设计能让玩家对游戏中的虚拟世界架构有生动的把握。<sup class="footnote-ref"><a href="#fn6" id="fnref6">[6]</a></sup>在游戏中为视觉符号选择合适的颜色不仅能展现游戏的美术风格，还能起到引导玩家、暗示主旨等作用。</p>
+<h4 id="3-3-1-主题色的选择">3.3.1. 主题色的选择</h4>
+<p>《传送门》系列的主题色为蓝色和橙色。这是一对互补色，在该游戏中它们常用以描述两种对立或矛盾的事物，最明显的就是一对传送门。常见的互补色有三对，分别是红绿、蓝橙和黄紫。如果只是单纯地想描述对立的关系的话，用哪一对都可以接受，甚至用黑白更好，但开发者最终选择了蓝橙是有理由的，而且事实证明也是成功的。</p>
+<p>不用黑白的原因显而易见：它们要留给背景色。加之黑白是一种古老、简单而又最易描绘的对立，它们多被赋予“正邪”“善恶”等意义。除此之外，黑白所能表达的内涵并不多。另外，黑白大多呈现的是极简风格，其与该游戏的主题不协调。</p>
+<p>而在互补色中，蓝橙的确是最适合该游戏的。客观来看，蓝橙色对的明暗对比居中，是最活跃生动的色彩对比。<sup class="footnote-ref"><a href="#fn7" id="fnref7">[7]</a></sup>蓝橙又具有丰富的内涵。天地、水火、昏晨、冬夏等自然中的朴素对立都可以用蓝橙表示。而当它们被赋予情感的或抽象的内涵时，也能有很好的表现。冷热、静动、虚实、未来与过去……不胜枚举。如此多样的内涵就使得蓝橙不会被刻板的印象所限制。这些都是蓝橙本身所具有的优势。回到游戏中来，首先该游戏所选择的主题色既要避免刻板印象，又要区分足够明显；其次需要一对无论在浅色底还是深色底上都能足够明显，而且能突出游戏中“科学”而又充满谜团的氛围的主题色，来为游戏主旨服务。综合看来，蓝橙最能胜任这些任务。</p>
+<h4 id="3-3-2-主题色的引导作用">3.3.2. 主题色的引导作用</h4>
+<p>蓝色和橙色被广泛运用到了游戏中的元素，如一对传送门的轮廓分别是蓝和橙，两个机器人 Wheatley 和 GLaDOS 的区别颜色是蓝和橙，两种特性的凝胶也是蓝和橙等等。</p>
+<p>将蓝橙应用到传送门上，能够引导玩家敢于尝试。如果把红色或紫色等鲜艳、强烈的颜色作为传送门的主体色，那么玩家可能会对进入传送门产生抵触心理。同时，蓝橙所具有的活跃、生动的特性也缓和了游戏流程中稍显紧张压抑的氛围。</p>
+<p>对于刚接触该游戏的玩家来说，与 GLaDOS 的橙色相比，Wheatley 的蓝色更能给玩家以安全的感觉。这与游戏初始部分的叙事是相统一的，前期 GLaDOS 扮演反派的角色而 Wheatley 总是给予玩家帮助。</p>
+<h2 id="4-结语">4. 结语</h2>
+<p>一款游戏拥有优秀的引导机制并不意味着一定会成为经典；但是能被奉为经典的游戏，其引导机制一定有可圈可点之处。当今游戏质量良莠不齐，那些所谓“圈钱”的粗制游戏大都不具备引导机制，而是填鸭式地告诉玩家什么技能怎样释放、什么窗口从哪呼出，最重要的，充值入口在哪里。相对地，具有引导机制的游戏则更像“游戏”。玩家游玩游戏与否是自由的，因而对信息的接收也是自由的，游戏的本质特征意味着游戏不可能强迫玩家去接受事物，能做到的就只有引导玩家向自己想表达的事物接近。</p>
+<p>由探析可见，不仅是对操作的引导，游戏对于玩家心理的引导也十分重要。如果跳脱游戏内容直接对玩家进行引导，玩家会感受到巨大的割裂感，从而破坏游戏的沉浸式体验。而若要将引导做到自然，就需要对开发的游戏有全局的、深刻的把握，并将引导融入游戏本身。当玩家感受不到引导的存在时，引导机制就成功了。</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>约翰·赫伊津哈. 游戏的人[M]. 杭州:中国美术学院出版社, 1996:9-13. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>Lagg, RJackson, WindPower.GLaDOS voice lines – Portal Wiki[EB-OL]. (2021-09-25) [2021-11-10]. <a target="_blank" rel="noopener" href="https://theportalwiki.com/wiki/GLaDOS_voice_lines">https://theportalwiki.com/wiki/GLaDOS_voice_lines</a>. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p>洪柳, 郭佳逸, 葛仕钧. 心流理论与用户体验设计[J]. 艺术与设计(理论), 2009(03):178-180. <a href="#fnref3" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn4" class="footnote-item"><p>John Walker.Valve on Portal 2: Spoiler Interview Part One[EB/OL]. (2011-04-27) [2021-11-11]. <a target="_blank" rel="noopener" href="https://www.rockpapershotgun.com/valve-on-portal-2-spoiler-interview-part-one">https://www.rockpapershotgun.com/valve-on-portal-2-spoiler-interview-part-one</a>. <a href="#fnref4" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn5" class="footnote-item"><p>吴远钦. 色彩的心理效应和设计中的应用[J]. 福建建筑, 2005(Z1):4-5. <a href="#fnref5" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn6" class="footnote-item"><p>刘研. 电子游戏的情感传播研究[D]. 浙江大学, 2014. <a href="#fnref6" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn7" class="footnote-item"><p>段殳. 色彩心理学与艺术设计[D]. 东南大学, 2006. <a href="#fnref7" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-regular fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Omnisch</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+
+</body>
+</html>
