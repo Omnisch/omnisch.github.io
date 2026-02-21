@@ -1,5 +1,6 @@
 @import url("https://fonts.font.im/css2?family=Noto+Serif:wght@300");
-@import url("https://fonts.font.im/css2?family=Noto+Serif+SC:wght@700");
+@import url("https://cdn.jsdelivr.net/npm/fontsource-noto-serif-sc@4.0.0/chinese-simplified-700.css");
+@import url("https://cdn.jsdelivr.net/npm/fontsource-noto-serif-tc@4.0.0/chinese-traditional-700.css");
 @import url("https://cdn.jsdelivr.net/npm/@callmebill/lxgw-wenkai-web@latest/lxgwwenkai-regular/result.css");
 @font-face {
   font-family: Charis SIL Local;
@@ -226,7 +227,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Noto Serif Apostrophe, Noto Serif SC, Noto Serif, Charis SIL Local, LXGW WenKai, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: Noto Serif Apostrophe, Noto Serif SC, Noto Serif TC, Noto Serif, Charis SIL Local, LXGW WenKai, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-weight: bold;
   line-height: 1.5;
   margin: 30px 0 15px;
@@ -1317,7 +1318,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #552898;
+    background: #24c444;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
