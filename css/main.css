@@ -1,4 +1,5 @@
 @import url("https://fonts.font.im/css2?family=Noto+Serif:wght@300");
+@import url("https://cdn.jsdelivr.net/npm/@fontsource/iosevka@5.2.5/latin-400.css");
 @import url("https://cdn.jsdelivr.net/npm/fontsource-noto-serif-sc@4.0.0/chinese-simplified-700.css");
 @import url("https://cdn.jsdelivr.net/npm/fontsource-noto-serif-tc@4.0.0/chinese-traditional-700.css");
 @import url("https://cdn.jsdelivr.net/npm/@callmebill/lxgw-wenkai-web@latest/lxgwwenkai-regular/result.css");
@@ -598,7 +599,7 @@ pre figcaption a:hover {
 }
 pre,
 code {
-  font-family: Fira Code Retina, Noto Sans SC, consolas, Menlo, monospace, 'PingFang SC', 'Microsoft YaHei';
+  font-family: Iosevka, Noto Sans SC, consolas, Menlo, monospace, 'PingFang SC', 'Microsoft YaHei';
 }
 code {
   border-radius: 3px;
@@ -1318,7 +1319,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #14ff4d;
+    background: #639009;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
