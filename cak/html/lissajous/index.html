@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李萨如图形模拟器</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #111;
+            color: #eee;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        h1 { margin-top: 0; font-size: 24px; color: #0f0; }
+        .container {
+            display: flex;
+            gap: 30px;
+            max-width: 1000px;
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+			align-items: flex-start;
+        }
+        .oscilloscope {
+            background: #000;
+            border: 2px solid #333;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+            position: relative;
+        }
+        canvas { display: block; }
+        .controls {
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            min-width: 350px;
+        }
+        .control-group {
+            margin-top: 20px;
+        }
+        .grid-header, .grid-row {
+            display: grid;
+            grid-template-columns: 2fr 3fr 1fr 1fr;
+            text-align: center;
+            padding: 4px 0;
+            align-items: center;
+        }
+        .grid-header { font-weight: bold; color: #aaa; border-bottom: 1px solid #555; margin-bottom: 5px;}
+        .grid-row:hover { background: #333; }
+        .freq-display { font-family: monospace; font-size: 13px; color: #aaa; }
+        input[type="checkbox"] { transform: scale(1.2); cursor: pointer; }
+        input[type="radio"] { margin-right: 5px; cursor: pointer; }
+        button {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #0a0;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover { background-color: #0c0; }
+    </style>
+</head>
+<body>
+
+    <h1>波形与律制：李萨如图形模拟器</h1>
+    
+    <div class="container">
+		<div>
+			<div class="oscilloscope">
+				<canvas id="screen" width="400" height="400"></canvas>
+			</div>
+
+			<div>
+				<div class="control-group">
+					<button id="play-btn">播放</button>
+					<label><input type="radio" name="tuning" value="just" style="margin-top: 20px;" checked> <b>纯律</b>（严格整数倍频率）</label><br>
+					<label><input type="radio" name="tuning" value="tet" style="margin-top: 10px;"> <b>十二平均律</b>（映射至最近钢琴键位）</label>
+				</div>
+			</div>
+		</div>
+
+		<div class="controls">
+            <div class="matrix">
+                <div class="grid-header">
+                    <span>谐波</span>
+                    <span>实际频率</span>
+                    <span style="color: #0af;">X (左)</span>
+                    <span style="color: #f0a;">Y (右)</span>
+                </div>
+                <div id="rows-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('screen');
+        const ctx = canvas.getContext('2d');
+        const playBtn = document.getElementById('play-btn');
+        const rowsContainer = document.getElementById('rows-container');
+        
+        const BASE_FREQ = 100;
+        let audioCtx = null;
+        let masterGain = null;
+        let merger = null;
+        let isPlaying = false;
+        let oscillators = []; // 存储16个频段的振荡器节点
+
+        // 计算频率
+        function getFreq(n, tuning) {
+            if (tuning === 'just') {
+                return BASE_FREQ * n;
+            } else {
+                // 寻找最接近的十二平均律半音步数
+                let semitones = Math.round(12 * Math.log2(n));
+                return BASE_FREQ * Math.pow(2, semitones / 12);
+            }
+        }
+
+        // 初始化UI表格
+        function initUI() {
+            for (let i = 1; i <= 16; i++) {
+                let row = document.createElement('div');
+                row.className = 'grid-row';
+                row.innerHTML = `
+                    <span>${i}f</span>
+                    <span class="freq-display" id="freq-text-${i}">100.0 Hz</span>
+                    <input type="checkbox" id="x-${i}" ${i===1 ? 'checked' : ''}>
+                    <input type="checkbox" id="y-${i}" ${i===2 ? 'checked' : ''}>
+                `;
+                rowsContainer.appendChild(row);
+
+                document.getElementById(`x-${i}`).addEventListener('change', updateAudio);
+                document.getElementById(`y-${i}`).addEventListener('change', updateAudio);
+            }
+            document.querySelectorAll('input[name="tuning"]').forEach(radio => {
+                radio.addEventListener('change', () => {
+                    updateUIText();
+                    updateAudio();
+                });
+            });
+            updateUIText();
+        }
+
+        // 更新频率文字显示
+        function updateUIText() {
+            let tuning = document.querySelector('input[name="tuning"]:checked').value;
+            for (let i = 1; i <= 16; i++) {
+                let f = getFreq(i, tuning);
+                document.getElementById(`freq-text-${i}`).textContent = f.toFixed(1) + ' Hz';
+            }
+        }
+
+        // 初始化 Web Audio API
+        function initAudio() {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            masterGain = audioCtx.createGain();
+            masterGain.gain.value = 0.8; // 总体音量
+            
+            // 声道合并器：输入0是左声道，输入1是右声道
+            merger = audioCtx.createChannelMerger(2);
+            merger.connect(masterGain);
+            masterGain.connect(audioCtx.destination);
+
+            // 创建16个振荡器
+            for (let i = 1; i <= 16; i++) {
+                let osc = audioCtx.createOscillator();
+                let gainX = audioCtx.createGain(); // 左声道增益
+                let gainY = audioCtx.createGain(); // 右声道增益
+                
+                gainX.gain.value = 0;
+                gainY.gain.value = 0;
+
+                osc.connect(gainX);
+                osc.connect(gainY);
+                gainX.connect(merger, 0, 0); // 连至左
+                gainY.connect(merger, 0, 1); // 连至右
+                
+                osc.start();
+                oscillators.push({ osc, gainX, gainY, n: i });
+            }
+        }
+
+        // 更新音频状态（频率与音量）
+        function updateAudio() {
+            if (!audioCtx || !isPlaying) return;
+            
+            let tuning = document.querySelector('input[name="tuning"]:checked').value;
+            let activeX = 0, activeY = 0;
+
+            // 统计勾选数量以防爆音（动态调整增益）
+            for (let i = 1; i <= 16; i++) {
+                if (document.getElementById(`x-${i}`).checked) activeX++;
+                if (document.getElementById(`y-${i}`).checked) activeY++;
+            }
+
+            let volX = activeX > 0 ? 0.5 / activeX : 0;
+            let volY = activeY > 0 ? 0.5 / activeY : 0;
+            let now = audioCtx.currentTime;
+
+            for (let i = 0; i < 16; i++) {
+                let n = i + 1;
+                let item = oscillators[i];
+                let f = getFreq(n, tuning);
+                let isX = document.getElementById(`x-${n}`).checked;
+                let isY = document.getElementById(`y-${n}`).checked;
+
+                // 平滑过渡频率和音量，防止破音
+                item.osc.frequency.setTargetAtTime(f, now, 0.05);
+                item.gainX.gain.setTargetAtTime(isX ? volX : 0, now, 0.05);
+                item.gainY.gain.setTargetAtTime(isY ? volY : 0, now, 0.05);
+            }
+        }
+
+        // 绘制示波器
+        function draw() {
+            requestAnimationFrame(draw);
+            
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // 绘制网格线
+            ctx.strokeStyle = '#222';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(canvas.width/2, 0); ctx.lineTo(canvas.width/2, canvas.height);
+            ctx.moveTo(0, canvas.height/2); ctx.lineTo(canvas.width, canvas.height/2);
+            ctx.stroke();
+
+            if (!audioCtx || !isPlaying) return;
+
+            let tuning = document.querySelector('input[name="tuning"]:checked').value;
+            let timeNow = audioCtx.currentTime;
+            
+            let activeFreqsX = [];
+            let activeFreqsY = [];
+            for (let i = 1; i <= 16; i++) {
+                if (document.getElementById(`x-${i}`).checked) activeFreqsX.push(getFreq(i, tuning));
+                if (document.getElementById(`y-${i}`).checked) activeFreqsY.push(getFreq(i, tuning));
+            }
+
+            ctx.beginPath();
+            ctx.strokeStyle = '#0f0';
+            ctx.lineWidth = 2;
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = '#0f0';
+
+            // 绘制视窗：0.02秒正好是基频100Hz的两个完整周期
+            // 如果是纯律，因为所有频率都是100的整数倍，图形会完美闭合
+            let drawDuration = 0.02; 
+            let steps = 600;
+
+            for (let i = 0; i <= steps; i++) {
+                let t = timeNow + (i / steps) * drawDuration;
+                let x = 0, y = 0;
+
+                // 叠加所有勾选的频率波形
+                for (let f of activeFreqsX) x += Math.sin(2 * Math.PI * f * t);
+                for (let f of activeFreqsY) y += Math.sin(2 * Math.PI * f * t);
+
+                if (activeFreqsX.length > 0) x /= activeFreqsX.length;
+                if (activeFreqsY.length > 0) y /= activeFreqsY.length;
+
+                let cx = canvas.width/2 + x * (canvas.width/2 - 20);
+                let cy = canvas.height/2 - y * (canvas.height/2 - 20); // Y轴屏幕坐标反转
+
+                if (i === 0) ctx.moveTo(cx, cy);
+                else ctx.lineTo(cx, cy);
+            }
+            ctx.stroke();
+            ctx.shadowBlur = 0; // 重置阴影
+        }
+
+        // 绑定按钮事件
+        playBtn.addEventListener('click', () => {
+            if (!audioCtx) initAudio();
+            
+            if (isPlaying) {
+                audioCtx.suspend();
+                isPlaying = false;
+                playBtn.textContent = '已暂停 - 点击恢复';
+                playBtn.style.backgroundColor = '#555';
+            } else {
+                audioCtx.resume();
+                isPlaying = true;
+                playBtn.textContent = '停止';
+                playBtn.style.backgroundColor = '#a00';
+                updateAudio();
+            }
+        });
+
+        // 启动
+        initUI();
+        draw();
+    </script>
+</body>
+</html>

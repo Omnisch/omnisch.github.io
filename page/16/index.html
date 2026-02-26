@@ -121,7 +121,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">82</span>
+          <span class="site-state-item-count">83</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -175,6 +175,144 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://omnisch.net/pen/windows_edit_pdf_icon/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/graffiti2502-128x.png">
+      <meta itemprop="name" content="Omnisch">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山軒">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 青山軒">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/pen/windows_edit_pdf_icon/" class="post-title-link" itemprop="url">Windows 中修改 PDF 格式默认图标</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-12-08 21:21:50" itemprop="dateCreated datePublished" datetime="2023-12-08T21:21:50+08:00">2023-12-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/pen/" itemprop="url" rel="index"><span itemprop="name">pen</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>前排提示：本文默认您已经掌握</p>
+<ol>
+<li>按文件类型更改默认打开方式；</li>
+<li>操作注册表编辑器 <code>regedit</code>。</li>
+</ol>
+</blockquote>
+<h2 id="为什么非得换图标不可">为什么非得换图标不可</h2>
+<p>Windows 10 默认的浏览器是 Microsoft Edge，但我常用的浏览器是 Google Chrome。平常打开网页啥的都是用 Chrome，可到了打开 pdf 的时候，Edge 却突然冒了出来，没有作为一个标签页出现在我已经打开的 Chrome 里，而是开了另一个进程。我总觉得这样是在浪费我电脑的资源，所以决定把 pdf 文件的默认打开方式从 Edge 改为 Chrome。</p>
+<p>不改不要紧，一改发现所有 pdf 文件的图标也跟着变了。</p>
+<p><figure><img src="/pen/windows_edit_pdf_icon/pdf_icon.png" alt="改之前 (用 Edge 打开的默认图标)"><figcaption>改之前 (用 Edge 打开的默认图标)</figcaption></figure></p>
+<p><figure><img src="/pen/windows_edit_pdf_icon/chrome.png" alt="改之后 (用 Chrome 打开的默认图标)"><figcaption>改之后 (用 Chrome 打开的默认图标)</figcaption></figure></p>
+<p>这未免太奇怪了吧！从图标上完全看不出是 pdf 不说，这跟 html 文件完全一样，如何区分？我会下意识以为这是个网站咧！所以我的需求就出现了：<strong>默认用 Chrome 浏览器打开 PDF 文件，但保留用 Edge 打开时的图标</strong>。</p>
+<hr>
+<h2 id="网上是怎么说的">网上是怎么说的</h2>
+<p>这种事情当然是先百度谷歌。网上首先说，文件夹是可以任意改图标的，这我当然知道。然后网上说，按文件类型改图标可以通过改注册表来实现，又是说 <code>HKEY_CURRENT_USER</code>，又是说 <code>HKEY_CLASSES_ROOT</code> 的，我找了半天也不知是哪里要改是哪里不改。</p>
+<p>最终看到一个稍微靠谱的文章，让我去下面这个路径：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.pdf\UserChoice</span><br></pre></td></tr></table></figure>
+<p>找到字符串 <code>ProgId</code>，它的数据就是默认的打开方式了。默认为 Edge 打开的时候，这里的数据是 <code>MSEdgePDF</code>；而默认为 Chrome 打开的时候，这里的数据是 <code>ChromeHTML</code>。</p>
+<p>这说明微软好心给咱单做了一套 pdf 的打开方式，而 Chrome 就偷了个懒，管它 pdf 还是 html，全都用 html 那套了。</p>
+<hr>
+<h2 id="解决办法">解决办法</h2>
+<h3 id="新建注册表项">新建注册表项</h3>
+<p>既然 Edge 有 pdf 和 html 的分化，那么咱也手动给 Chrome 添加一下好了。在注册表编辑器中，通过“按项 <code>ChromeHTML</code> 查找”发现，这套打开方式的注册表位于：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_LOCAL_MACHINE\SOFTWARE\Classes\ChromeHTML</span><br></pre></td></tr></table></figure>
+<p>在 <code>Classes</code> 这个父项下，新建一个项与 <code>ChromeHTML</code> 并列，命名为 <code>ChromePDF</code>，然后将 <code>ChromeHTML</code> 里所有项、值和数据全都拷贝到 <code>ChromePDF</code> 里。</p>
+<p><figure><img src="/pen/windows_edit_pdf_icon/ChromePDF.png" alt="ChromePDF"><figcaption>ChromePDF</figcaption></figure></p>
+<h3 id="更改-DefaultIcon">更改 DefaultIcon</h3>
+<p>接下来就是关键一步：改图标。可以看到 <code>ChromeHTML</code> 里有一个项叫做 <code>DefaultIcon</code>，它的值是（前提是你 Chrome 的安装路径跟我一样）：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Google\Chrome\Application\chrome.exe,0</span><br></pre></td></tr></table></figure>
+<p>上面这一行代表，默认图标用的是 <code>chrome.exe</code> 的第 0 个图标。那么 <code>chrome.exe</code> 包含的图标都有什么呢？通过「为文件夹更改图标」我们可以访问到这些图标，可以看出，Chrome 是真的没有 pdf 专精的图标：</p>
+<p><figure><img src="/pen/windows_edit_pdf_icon/chrome_exe.png" alt="chrome.exe"><figcaption>chrome.exe</figcaption></figure></p>
+<p>那么就干脆还是用 Edge 带的 pdf 图标吧！从 Edge 的默认安装路径找到 <code>msedge.exe</code>，复制它的路径，以同样的办法找到其中包含的 pdf 的图标。根据下图可以数出，我想要的 pdf 图标在第 13 个（当然还是从 0 开始数）：</p>
+<p><figure><img src="/pen/windows_edit_pdf_icon/msedge_exe.png" alt="msedge.exe"><figcaption>msedge.exe</figcaption></figure></p>
+<p><strong>所以我们要把 <code>ChromePDF</code> 之中 <code>DefaultIcon</code> 的数据改成如下这样</strong>（前提是你 Edge 的安装路径跟我一样）：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe,13</span><br></pre></td></tr></table></figure>
+<p><figure><img src="/pen/windows_edit_pdf_icon/DefaultIcon.png" alt="DefaultIcon"><figcaption>DefaultIcon</figcaption></figure></p>
+<h3 id="更改-FileAssociations">更改 FileAssociations</h3>
+<ul>
+<li>
+<p>刚才做的工作，是新建一种默认图标为 pdf 的打开方式。接下来，我们要把这种打开方式关联到 pdf 文件上。</p>
+</li>
+<li>
+<p>在注册表编辑器中，通过“按数据 <code>ChromeHTML</code> 查找”发现，真正将这个打开方式关联到 pdf 文件的项是这个：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_LOCAL_MACHINE\SOFTWARE\Clients\StartMenuInternet\Google Chrome\Capabilities\FileAssociations</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>点击这个项会发现，里面的数据清一色都是 <code>ChromeHTML</code>，无论格式是 pdf、html、webp 还是 svg，都用的是这一套。在这里我只把 <code>.pdf</code> 这一条改为了 <code>ChromePDF</code>，其他的我暂时不需要改，不过要改的话也同理。</p>
+</li>
+</ul>
+<p><figure><img src="/pen/windows_edit_pdf_icon/FileAssociations.png" alt="FileAssociations"><figcaption>FileAssociations</figcaption></figure></p>
+<hr>
+<h3 id="完成">完成</h3>
+<ul>
+<li>
+<p>改好之后，就只差最后一步了，就是重新设置 pdf 文件的默认打开方式为 Chrome 浏览器，让它获取到最新的注册表。</p>
+</li>
+<li>
+<p>至此终于实现了一开始的需求。我自认为这个解决方案的好处在于，并没有强硬地通过修改 <code>HKEY_CLASSES_ROOT</code> 或者 <code>HKEY_CURRENT_USER</code> 当中 <code>.pdf</code> 这个项来更改图标，而是在这套既有的框架内，在更上游处自定义了一种打开方式，自上而下、顺理成章地修改了 pdf 文件的图标。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -659,111 +797,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/cak/pats_arhya/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://omnisch.net/cak/cuclam_and_cadeon/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/graffiti2502-128x.png">
-      <meta itemprop="name" content="Omnisch">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="青山軒">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 青山軒">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/cak/cuclam_and_cadeon/" class="post-title-link" itemprop="url">光神与暗神的万古仇</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-06-19 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-19T00:00:00+08:00">2021-06-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/cak/" itemprop="url" rel="index"><span itemprop="name">cak</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>故事选自《弗莱尼亚神话》<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
-</blockquote>
-<p>（背景摘要）</p>
-<p>弗卢陀<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>终于对虚无混沌厌倦至极，<br>
-他的肉变为原石，而血化作古泥。<br>
-原石嵌在宇宙中心而又坚硬无比，<br>
-古泥填满混沌虚空不留一丝空隙。</p>
-<p>在此之后的历史也终于有了意义，<br>
-只因虚无不再有，混沌也被代替。<br>
-但世界仍然感受不到时间的轨迹，<br>
-无日夜以计时，唯有黑黯终如一。</p>
-<p>……</p>
-<p>自从原石碎裂而四下迸散到天地，<br>
-世间万物都开始蕴藏了祂的气息。<br>
-弗卢陀不再只藏匿于山石与土泥，<br>
-祂变得无处不在，宇宙尽收眼底。</p>
-<p>现在让我们放下弗卢陀的故事集，<br>
-片刻的宁静让祂得以暂时地安息。<br>
-古老的历史一刻不停地向前迁徙，<br>
-直到那光暗之神的万古仇恨生起。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/cak/cuclam_and_cadeon/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
