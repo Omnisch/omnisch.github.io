@@ -1319,7 +1319,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #c4ff4d;
+    background: #4b5582;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2803,6 +2803,10 @@ header.header {
   .sidebar {
     display: none;
   }
+}
+.giscus {
+  max-width: unset;
+  box-sizing: border-box;
 }
 .menu-item a {
   font-size: 1em;
