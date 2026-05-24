@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>猜汉字</title>
+
+  <!-- cnchar 基础库：用于查询笔画数。也可以改成本地 npm 打包后的版本。 -->
+  <script src="https://fastly.jsdelivr.net/npm/cnchar/cnchar.min.js"></script>
+  <script src="./data/hanzi-levels.js"></script>
+
+  <style>
+    :root {
+      --bg-1: #fafaf9;
+      --bg-2: #e7e5e4;
+      --text: #0a0a0a;
+      --muted: #666666;
+      --line: rgba(0, 0, 0, 0.12);
+      --card: rgba(255, 255, 255, 0.88);
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
+      --radius: 24px;
+      --font-hanzi: KaiTi, STKaiti, "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", SimSun, serif;
+      --font-ui: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: LXGW WenKai;
+      background: linear-gradient(135deg, var(--bg-1), #f5f5f4 45%, var(--bg-2));
+    }
+
+    .page {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 32px 0;
+    }
+
+    .hero {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Noto Serif SC;
+      font-size: clamp(32px, 5vw, 56px);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .hero p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 400px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .board-wrap {
+      padding: 16px;
+      border-radius: 28px;
+      background: white;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+    }
+
+    #board {
+      display: block;
+      width: 360px;
+      height: 360px;
+      margin: 0 auto 14px;
+    }
+
+    .panel-stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+    }
+
+    .warning {
+      border-color: #facc15;
+      background: #fef9c3;
+      color: #3f2f00;
+      line-height: 1.7;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: end;
+      margin-bottom: 14px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      height: 52px;
+      border: 1px solid #d4d4d4;
+      border-radius: 16px;
+      background: white;
+      padding: 0 14px;
+      outline: none;
+      font: inherit;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    input:focus {
+      border-color: #737373;
+      box-shadow: 0 0 0 4px rgba(115, 115, 115, 0.18);
+    }
+
+    input:disabled {
+      color: #999;
+      background: #f5f5f5;
+      cursor: not-allowed;
+    }
+
+    #seedInput {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 22px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+
+    #guessInput {
+      font-family: var(--font-hanzi);
+      font-size: 28px;
+    }
+
+    .invalid {
+      border-color: #f87171 !important;
+      box-shadow: 0 0 0 4px rgba(248, 113, 113, 0.16) !important;
+    }
+
+    .guess-form {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+    }
+
+    button {
+      height: 52px;
+      border: 0;
+      border-radius: 16px;
+      padding: 0 18px;
+      color: white;
+      background: #ebde6e;
+      font-family: Noto Serif SC;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.12s ease, opacity 0.12s ease, background 0.12s ease;
+    }
+
+    button:hover:not(:disabled) {
+      transform: translateY(-1px);
+      background: #262626;
+    }
+
+    button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    button.secondary {
+      color: #111;
+      background: white;
+      border: 1px solid #d4d4d4;
+    }
+
+    button.secondary:hover:not(:disabled) {
+      background: #f5f5f5;
+    }
+
+    .message {
+      padding: 10px;
+      border-radius: 18px;
+      background: transparent;
+      color: #404040;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .stat-value {
+      margin-top: 8px;
+      font-size: 42px;
+      font-weight: 750;
+      line-height: 1;
+    }
+
+    .record-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .record-head h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .glyph-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .glyph-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px;
+      border-radius: 18px;
+      background: #f5f5f5;
+    }
+
+    .glyph-box {
+      display: grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      flex: 0 0 auto;
+      border-radius: 14px;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      font-family: var(--font-hanzi);
+      font-size: 34px;
+    }
+
+    .glyph-label {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .history {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .history-empty {
+      padding: 22px;
+      border: 1px dashed #d4d4d4;
+      border-radius: 18px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 18px;
+    }
+
+    .guess-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid #e5e5e5;
+      border-radius: 16px;
+      background: white;
+      font-size: 16px;
+    }
+
+    .guess-chip.solved {
+      border-color: #86efac;
+      background: #dcfce7;
+    }
+
+    .guess-char {
+      font-family: var(--font-hanzi);
+      font-size: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .board-wrap {
+        width: fit-content;
+        max-width: 100%;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .form-grid,
+      .guess-form,
+      .stats,
+      .glyph-row {
+        grid-template-columns: 1fr;
+      }
+
+      #board {
+        width: min(360px, calc(100vw - 64px));
+        height: min(360px, calc(100vw - 64px));
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div>
+        <h1>猜汉字</h1>
+        <p>
+          谜底只从一级字中选取，猜测输入限制在通用规范汉字表内。每次猜一个汉字，显示该字与谜底在楷体渲染下的重叠部分。
+        </p>
+      </div>
+    </section>
+
+    <section class="layout">
+      <div class="board-wrap">
+        <div class="form-grid">
+          <div>
+            <input id="seedInput" maxlength="4" placeholder="A7B2" autocomplete="off" />
+          </div>
+          <button id="randomSeedButton" class="secondary" type="button">随机种子</button>
+        </div>
+
+        <canvas id="board" aria-label="谜面田字格"></canvas>
+
+        <div>
+          <form id="guessForm" class="guess-form">
+            <input id="guessInput" maxlength="7" placeholder="输入一个汉字" autocomplete="off" />
+            <button id="guessButton" type="submit">提交答案</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="panel-stack">
+        <div id="dictionaryWarning" class="card warning" hidden>
+          当前还没有接入字库。
+        </div>
+
+        <div class="card">
+          <div id="message" class="message"></div>
+        </div>
+
+        <section class="stats">
+          <div class="card">
+            <div class="stat-label">累计笔画</div>
+            <div id="totalStrokes" class="stat-value">0</div>
+          </div>
+          <div class="card">
+            <div class="stat-label">猜测次数</div>
+            <div id="guessCount" class="stat-value">0</div>
+          </div>
+          <div class="card">
+            <div class="stat-label">字形揭示</div>
+            <div id="revealRatio" class="stat-value">0%</div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="record-head">
+            <h2>本局记录</h2>
+            <button id="answerButton" class="secondary" type="button">查看谜底</button>
+          </div>
+
+          <div class="glyph-row">
+            <div class="glyph-card">
+              <div id="answerGlyph" class="glyph-box">？</div>
+              <div id="answerLabel" class="glyph-label">谜底已隐藏</div>
+            </div>
+            <div class="glyph-card">
+              <div id="lastGuessGlyph" class="glyph-box">—</div>
+              <div id="lastGuessLabel" class="glyph-label">尚未猜测</div>
+            </div>
+          </div>
+
+          <div id="history" class="history-empty">还没有猜过字。</div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // =========================
+    // 1. 字库对接区
+    // =========================
+    const LEVELS = window.HANZI_LEVELS || {
+      level1: INLINE_LEVEL1_CHARS,
+      level2: INLINE_LEVEL2_CHARS,
+      level3: INLINE_LEVEL3_CHARS,
+    };
+
+    // 如果 cnchar 的笔画数与你的规范表不一致，可以在这里修正。
+    // 示例：cnchar.setStrokeCount({ 〇: 1 });
+
+    // =========================
+    // 2. 常量与状态
+    // =========================
+    const SEED_ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const SEED_RE = /^[0-9A-Z]{4}$/;
+    const CANVAS_SIZE = 360;
+    const DRAW_SIZE = 280;
+    const FONT_SIZE = 280;
+    const GRID_MARGIN = (CANVAS_SIZE - DRAW_SIZE) / 2;
+    const GRID_OFFSET_X = 0;
+    const GRID_OFFSET_Y = 0;
+
+    const state = {
+      seed: randomSeed(),
+      guesses: [],
+      message: "输入四位数字或英文字母，不区分大小写；或使用随机种子开始。",
+      showAnswer: false,
+    };
+
+    const els = {
+      board: document.getElementById("board"),
+      seedInput: document.getElementById("seedInput"),
+      randomSeedButton: document.getElementById("randomSeedButton"),
+      guessForm: document.getElementById("guessForm"),
+      guessInput: document.getElementById("guessInput"),
+      guessButton: document.getElementById("guessButton"),
+      message: document.getElementById("message"),
+      dictionaryWarning: document.getElementById("dictionaryWarning"),
+      totalStrokes: document.getElementById("totalStrokes"),
+      guessCount: document.getElementById("guessCount"),
+      revealRatio: document.getElementById("revealRatio"),
+      answerButton: document.getElementById("answerButton"),
+      answerGlyph: document.getElementById("answerGlyph"),
+      answerLabel: document.getElementById("answerLabel"),
+      lastGuessGlyph: document.getElementById("lastGuessGlyph"),
+      lastGuessLabel: document.getElementById("lastGuessLabel"),
+      history: document.getElementById("history"),
+    };
+
+    const level1Chars = uniqueChars(LEVELS.level1);
+    const validInputSet = new Set(uniqueChars(LEVELS.level1, LEVELS.level2, LEVELS.level3));
+
+    // =========================
+    // 3. 工具函数
+    // =========================
+    function toCharArray(source) {
+      if (Array.isArray(source)) return source.filter(Boolean).map(String);
+      return Array.from(String(source || "")).filter(Boolean);
+    }
+
+    function uniqueChars(...sources) {
+      return Array.from(new Set(sources.flatMap(toCharArray)));
+    }
+
+    function normalizeSeed(value) {
+      return Array.from(value)
+        .filter((char) => /[0-9A-Za-z]/.test(char))
+        .slice(0, 4)
+        .join("")
+        .toUpperCase();
+    }
+
+    function randomSeed() {
+      let seed = "";
+      const bytes = window.crypto && window.crypto.getRandomValues
+        ? window.crypto.getRandomValues(new Uint8Array(4))
+        : null;
+
+      for (let i = 0; i < 4; i++) {
+        const value = bytes ? bytes[i] : Math.floor(Math.random() * 256);
+        seed += SEED_ALPHABET[value % SEED_ALPHABET.length];
+      }
+      return seed;
+    }
+
+    function hashSeed(seed) {
+      let hash = 0x811c9dc5;
+      for (const char of normalizeSeed(seed)) {
+        hash ^= char.charCodeAt(0);
+        hash = Math.imul(hash, 0x01000193);
+      }
+      return hash >>> 0;
+    }
+
+    function seedToTarget(seed) {
+      const normalized = normalizeSeed(seed);
+      if (!SEED_RE.test(normalized) || level1Chars.length === 0) return "";
+      return level1Chars[hashSeed(normalized) % level1Chars.length];
+    }
+
+    function getStrokeCount(char) {
+      if (!window.cnchar || typeof window.cnchar.stroke !== "function") return 0;
+
+      const result = window.cnchar.stroke(char);
+      if (typeof result === "number" && Number.isFinite(result)) return result;
+
+      if (Array.isArray(result)) {
+        const sum = result.reduce((total, item) => total + Number(item || 0), 0);
+        return Number.isFinite(sum) ? sum : 0;
+      }
+
+      const parsed = Number(result);
+      return Number.isFinite(parsed) ? parsed : 0;
+    }
+
+    function isCjkChar(char) {
+      return /^\p{Script=Han}$/u.test(char);
+    }
+
+    function makeMask(char) {
+      const canvas = document.createElement("canvas");
+      canvas.width = CANVAS_SIZE;
+      canvas.height = CANVAS_SIZE;
+
+      const ctx = canvas.getContext("2d", { willReadFrequently: true });
+      ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+      ctx.fillStyle = "#000";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.font = `${FONT_SIZE}px KaiTi, STKaiti, "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", SimSun, serif`;
+      ctx.fillText(char, CANVAS_SIZE / 2, CANVAS_SIZE / 2, DRAW_SIZE);
+
+      const data = ctx.getImageData(0, 0, CANVAS_SIZE, CANVAS_SIZE).data;
+      const mask = new Uint8Array(CANVAS_SIZE * CANVAS_SIZE);
+      for (let i = 0, p = 0; i < data.length; i += 4, p++) {
+        mask[p] = data[i + 3] > 24 ? 1 : 0;
+      }
+      return mask;
+    }
+
+    function computeRevealedMask(target, guesses) {
+      const targetMask = makeMask(target);
+      const revealedMask = new Uint8Array(CANVAS_SIZE * CANVAS_SIZE);
+
+      for (const guess of guesses) {
+        const guessMask = makeMask(guess.char);
+        for (let i = 0; i < revealedMask.length; i++) {
+          if (targetMask[i] && guessMask[i]) revealedMask[i] = 1;
+        }
+      }
+
+      return { targetMask, revealedMask };
+    }
+
+    function getOverlapRatio(revealedMask, targetMask) {
+      let revealed = 0;
+      let total = 0;
+      for (let i = 0; i < targetMask.length; i++) {
+        if (targetMask[i]) {
+          total++;
+          if (revealedMask[i]) revealed++;
+        }
+      }
+      return total ? revealed / total : 0;
+    }
+
+    // =========================
+    // 4. 渲染函数
+    // =========================
+    function drawBoard() {
+      const canvas = els.board;
+      const dpr = Math.max(1, window.devicePixelRatio || 1);
+      canvas.width = CANVAS_SIZE * dpr;
+      canvas.height = CANVAS_SIZE * dpr;
+
+      const ctx = canvas.getContext("2d");
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+
+      ctx.fillStyle = "#fff";
+      ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+
+      ctx.save();
+      ctx.strokeStyle = "rgba(0,0,0,0.16)";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(GRID_MARGIN, GRID_MARGIN, DRAW_SIZE, DRAW_SIZE);
+
+      ctx.beginPath();
+      ctx.moveTo(CANVAS_SIZE / 2, GRID_MARGIN);
+      ctx.lineTo(CANVAS_SIZE / 2, CANVAS_SIZE - GRID_MARGIN);
+      ctx.moveTo(GRID_MARGIN, CANVAS_SIZE / 2);
+      ctx.lineTo(CANVAS_SIZE - GRID_MARGIN, CANVAS_SIZE / 2);
+      ctx.stroke();
+
+      ctx.setLineDash([7, 7]);
+      ctx.strokeStyle = "rgba(0,0,0,0.10)";
+      ctx.beginPath();
+      ctx.moveTo(GRID_MARGIN, GRID_MARGIN);
+      ctx.lineTo(CANVAS_SIZE - GRID_MARGIN, CANVAS_SIZE - GRID_MARGIN);
+      ctx.moveTo(CANVAS_SIZE - GRID_MARGIN, GRID_MARGIN);
+      ctx.lineTo(GRID_MARGIN, CANVAS_SIZE - GRID_MARGIN);
+      ctx.stroke();
+      ctx.restore();
+
+      const target = seedToTarget(state.seed);
+      if (!target) return;
+
+      const { revealedMask } = computeRevealedMask(target, state.guesses);
+      const image = ctx.createImageData(CANVAS_SIZE, CANVAS_SIZE);
+
+      for (let i = 0, p = 0; i < image.data.length; i += 4, p++) {
+        if (revealedMask[p]) {
+          image.data[i] = 0;
+          image.data[i + 1] = 0;
+          image.data[i + 2] = 0;
+          image.data[i + 3] = 255;
+        } else {
+          image.data[i + 3] = 0;
+        }
+      }
+
+      const overlay = document.createElement("canvas");
+      overlay.width = CANVAS_SIZE;
+      overlay.height = CANVAS_SIZE;
+      overlay.getContext("2d").putImageData(image, 0, 0);
+      ctx.drawImage(overlay, 0, 0);
+    }
+
+    function render() {
+      const target = seedToTarget(state.seed);
+      const seedValid = SEED_RE.test(state.seed);
+      const hasDictionary = level1Chars.length > 0 && validInputSet.size > 0;
+      const solved = Boolean(target && state.guesses.some((item) => item.char === target));
+      const totalStrokes = state.guesses.reduce((sum, item) => sum + item.scoreStrokes, 0);
+
+      let ratio = 0;
+      if (target && state.guesses.length > 0) {
+        const { targetMask, revealedMask } = computeRevealedMask(target, state.guesses);
+        ratio = getOverlapRatio(revealedMask, targetMask);
+      }
+
+      els.seedInput.value = state.seed;
+      els.seedInput.classList.toggle("invalid", !seedValid);
+      els.guessInput.disabled = solved || !seedValid || !hasDictionary;
+      els.guessButton.disabled = solved || !seedValid || !hasDictionary;
+      els.answerButton.disabled = !seedValid || !hasDictionary;
+      els.dictionaryWarning.hidden = hasDictionary;
+
+      els.totalStrokes.textContent = totalStrokes;
+      els.guessCount.textContent = state.guesses.length;
+      els.revealRatio.textContent = `${Math.round(ratio * 100)}%`;
+      els.message.textContent = state.message;
+
+      if (state.showAnswer || solved) {
+        els.answerGlyph.textContent = target || "？";
+        els.answerLabel.textContent = target
+          ? `seed ${state.seed}：${target}，${getStrokeCount(target) || "?"} 画`
+          : `seed ${seedValid ? state.seed : "无效"} 暂无谜底`;
+        els.answerButton.textContent = "隐藏谜底";
+      } else {
+        els.answerGlyph.textContent = "？";
+        els.answerLabel.textContent = `种子 ${seedValid ? state.seed : "无效"} 的谜底已隐藏`;
+        els.answerButton.textContent = "查看谜底";
+      }
+
+      const lastGuess = state.guesses[state.guesses.length - 1];
+      els.lastGuessGlyph.textContent = lastGuess ? lastGuess.char : "—";
+      els.lastGuessLabel.textContent = lastGuess ? `最近猜测：${lastGuess.strokes} 画` : "尚未猜测";
+
+      renderHistory(target);
+      drawBoard();
+    }
+
+    function renderHistory(target) {
+      if (state.guesses.length === 0) {
+        els.history.className = "history-empty";
+        els.history.textContent = "尚未猜测";
+        return;
+      }
+
+      els.history.className = "history";
+      els.history.innerHTML = "";
+
+      for (const guess of state.guesses) {
+        const chip = document.createElement("div");
+        chip.className = `guess-chip${guess.char === target ? " solved" : ""}`;
+
+        const charSpan = document.createElement("span");
+        charSpan.className = "guess-char";
+        charSpan.textContent = guess.char;
+
+        const strokeSpan = document.createElement("span");
+        strokeSpan.textContent = `${guess.strokes} 画`;
+
+        chip.append(charSpan, strokeSpan);
+        els.history.appendChild(chip);
+      }
+    }
+
+    // =========================
+    // 5. 交互逻辑
+    // =========================
+    function applySeed(value) {
+      const nextSeed = normalizeSeed(value);
+      state.seed = nextSeed;
+      state.guesses = [];
+      state.showAnswer = false;
+      els.guessInput.value = "";
+
+      state.message = nextSeed.length === 4
+        ? `种子已更新为 ${nextSeed}。可以开始猜字了！`
+        : "种子必须是四位数字或英文字母，例如 A7B2；输入小写也会自动转成大写。";
+
+      render();
+    }
+
+    function submitGuess(event) {
+      event.preventDefault();
+
+      const hasDictionary = level1Chars.length > 0 && validInputSet.size > 0;
+      const seedValid = SEED_RE.test(state.seed);
+      const target = seedToTarget(state.seed);
+      const solved = Boolean(target && state.guesses.some((item) => item.char === target));
+      const char = Array.from(els.guessInput.value.trim())[0] || "";
+
+      if (!hasDictionary) {
+        state.message = "请先接入 LEVEL1_CHARS、LEVEL2_CHARS、LEVEL3_CHARS 字库。谜底来自一级字，输入范围来自一、二、三级字。";
+        render();
+        return;
+      }
+
+      if (!seedValid || !target) {
+        state.message = "请先输入有效的四位种子。允许数字和英文字母，不区分大小写。";
+        render();
+        return;
+      }
+
+      if (!char) {
+        state.message = "请先输入一个汉字。";
+        render();
+        return;
+      }
+
+      if (!isCjkChar(char)) {
+        state.message = "这里只接受单个汉字。";
+        render();
+        return;
+      }
+
+      if (!validInputSet.has(char)) {
+        state.message = `“${char}”不在一级、二级、三级字表中，不能作为猜测输入。`;
+        els.guessInput.value = "";
+        render();
+        return;
+      }
+
+      if (solved) {
+        state.message = "本局已经猜中，可以进行下一局。";
+        render();
+        return;
+      }
+
+      if (state.guesses.some((item) => item.char === char)) {
+        state.message = `「${char}」已经猜过了，可以换一个字。`;
+        els.guessInput.value = "";
+        render();
+        return;
+      }
+
+      const strokes = getStrokeCount(char);
+      if (!strokes) {
+        state.message = `cnchar 未能返回「${char}」的有效笔画数，请用 cnchar.setStrokeCount 修正或补充。`;
+        render();
+        return;
+      }
+
+      const isCorrect = char === target;
+
+      state.guesses.push({
+        char,
+        strokes,
+        scoreStrokes: isCorrect ? 0 : strokes,
+      });
+
+      els.guessInput.value = "";
+
+      if (isCorrect) {
+        const total = state.guesses.reduce((sum, item) => sum + item.scoreStrokes, 0);
+        state.message = `猜中了！谜底是「${target}」。猜中的这一次不计入笔画，本局总笔画：${total}。`;
+      } else {
+        state.message = `已显示「${char}」与谜底的重叠部分。本次猜测计 ${strokes} 画。`;
+      }
+
+      render();
+    }
+
+    els.seedInput.addEventListener("input", (event) => applySeed(event.target.value));
+    els.randomSeedButton.addEventListener("click", () => applySeed(randomSeed()));
+    els.guessForm.addEventListener("submit", submitGuess);
+    els.answerButton.addEventListener("click", () => {
+      state.showAnswer = !state.showAnswer;
+      render();
+    });
+
+    window.addEventListener("resize", drawBoard);
+
+    render();
+  </script>
+</body>
+</html>
