@@ -19,22 +19,26 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"omnisch.net","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="青山軒">
-<meta property="og:url" content="https://omnisch.net/archives/2025/10/index.html">
+    <meta name="description" content="2026&#x2F;06&#x2F;13-2026&#x2F;06&#x2F;19 春季学期第 16 周 已完成  借 DX11 修改工具 3Dmigoto 及其下游的 XXMI (XX Model Importer)，分析 Unity 商业游戏中的 3D 模型渲染。  使用 Shader Hunting 抓取 3D 模型，并在 Blender 中进行二次创作； 将修改模组注入游戏，实时测试 Diffuse&#x2F;Lightmap&#x2F;Rainm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026 年第 25 周周报">
+<meta property="og:url" content="https://omnisch.net/cjupau/2026/25/index.html">
 <meta property="og:site_name" content="青山軒">
+<meta property="og:description" content="2026&#x2F;06&#x2F;13-2026&#x2F;06&#x2F;19 春季学期第 16 周 已完成  借 DX11 修改工具 3Dmigoto 及其下游的 XXMI (XX Model Importer)，分析 Unity 商业游戏中的 3D 模型渲染。  使用 Shader Hunting 抓取 3D 模型，并在 Blender 中进行二次创作； 将修改模组注入游戏，实时测试 Diffuse&#x2F;Lightmap&#x2F;Rainm">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-21T08:59:18.006Z">
+<meta property="article:modified_time" content="2026-06-21T09:29:51.279Z">
 <meta property="article:author" content="Omnisch">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://omnisch.net/archives/2025/10/">
+<link rel="canonical" href="https://omnisch.net/cjupau/2026/25/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"archives/2025/10/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://omnisch.net/cjupau/2026/25/","path":"cjupau/2026/25/","title":"2026 年第 25 周周报"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>归档 | 青山軒</title>
+<title>2026 年第 25 周周报 | 青山軒</title><meta name="robots" content="noindex">
   
 
 
@@ -67,7 +71,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">青山軒</h1>
+      <p class="site-title">青山軒</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">倉經所閒虛言</p>
@@ -94,7 +98,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -107,6 +111,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%B2%E5%AE%8C%E6%88%90"><span class="nav-number">1.</span> <span class="nav-text">已完成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%85%E5%8A%9E"><span class="nav-number">2.</span> <span class="nav-text">待办</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">3.</span> <span class="nav-text">其他</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -174,234 +179,122 @@
 
     </div>
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://omnisch.net/cjupau/2026/25/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/graffiti2502-128x.png">
+      <meta itemprop="name" content="Omnisch">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山軒">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2026 年第 25 周周报 | 青山軒">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2026 年第 25 周周报
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-06-21 16:59:18" itemprop="dateCreated datePublished" datetime="2026-06-21T16:59:18+08:00">2026-06-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/cjupau/" itemprop="url" rel="index"><span itemprop="name">cjupau</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>2026/06/13-2026/06/19</p>
+<p>春季学期第 16 周</p>
+<h2 id="已完成">已完成</h2>
+<ul>
+<li>借 DX11 修改工具 <a target="_blank" rel="noopener" href="https://github.com/bo3b/3Dmigoto">3Dmigoto</a> 及其下游的 <a target="_blank" rel="noopener" href="https://github.com/SpectrumQT/XXMI-Launcher">XXMI</a> (XX Model Importer)，分析 Unity 商业游戏中的 3D 模型渲染。
+<ul>
+<li>使用 Shader Hunting 抓取 3D 模型，并在 Blender 中进行二次创作；</li>
+<li>将修改模组注入游戏，实时测试 Diffuse/Lightmap/Rainmap 等效果；</li>
+<li>理解模型绘制流程，分 Component 绘制，使用不同的 IB (Index Buffer) 和 VB (Vertex Buffer)；</li>
+<li>认识 DDS (DirectDraw Surface)；</li>
+<li>实践 LOD。</li>
+</ul>
+</li>
+<li>18 号参加刘书亮老师在动院 202 的文献导读工作坊。</li>
+</ul>
+<h2 id="待办">待办</h2>
+<ul>
+<li>梳理神经网络论文体系。</li>
+<li>跑通 <a target="_blank" rel="noopener" href="https://github.com/Ruyi-Zha/r2_gaussian">R^2 Gaussian</a> 源码。</li>
+<li>学习 ComfyUI。</li>
+</ul>
+<h2 id="其他">其他</h2>
+<ul>
+<li>撰写简历。</li>
+<li>阅读《莎士比亚悲剧五种》。</li>
+<li>毕业季，为专硕同学饯行。</li>
+</ul>
+<hr>
+<p><a href="/cjupau/index/">目录</a></p>
+<!-- flag of hidden posts -->
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
         
-        <span class="collection-header">很好! 目前共计 108 篇日志。 继续努力。</span>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2025<span class="collection-year-count">46</span></span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-10-26T00:00:00+08:00"
-              content="2025-10-26">
-          10-26
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/luon/202503/" itemprop="url">
-            <span itemprop="name">文献考试一句话总结</span>
-          </a>
-      </div>
-
-      
-    </header>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-10-24T00:00:00+08:00"
-              content="2025-10-24">
-          10-24
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/trek/jsywm/" itemprop="url">
-            <span itemprop="name">《技术与文明》摘抄</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-10-24T00:00:00+08:00"
-              content="2025-10-24">
-          10-24
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/trek/sjywhdl/" itemprop="url">
-            <span itemprop="name">《设计与文化导论》摘抄</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-10-24T00:00:00+08:00"
-              content="2025-10-24">
-          10-24
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/trek/yxsjqjtm/" itemprop="url">
-            <span itemprop="name">《游戏设计全景探秘》摘抄</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-10-22T00:00:00+08:00"
-              content="2025-10-22">
-          10-22
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/trek/qdlj/" itemprop="url">
-            <span itemprop="name">《奇点临近》摘抄</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-10-22T00:00:00+08:00"
-              content="2025-10-22">
-          10-22
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/trek/wzsdsjsj/" itemprop="url">
-            <span itemprop="name">《为真实的世界设计》摘抄</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-10-21T00:00:00+08:00"
-              content="2025-10-21">
-          10-21
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/trek/mdlc/" itemprop="url">
-            <span itemprop="name">《美的历程》摘抄</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-10-20T00:00:00+08:00"
-              content="2025-10-20">
-          10-20
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/trek/dsjsd/" itemprop="url">
-            <span itemprop="name">《大数据时代》摘抄</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-10-20T00:00:00+08:00"
-              content="2025-10-20">
-          10-20
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/trek/rljs/" itemprop="url">
-            <span itemprop="name">《人类简史》摘抄</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-10-15T00:00:00+08:00"
-              content="2025-10-15">
-          10-15
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/trek/ztdysjjjwt/" itemprop="url">
-            <span itemprop="name">《佐藤大：用设计解决问题》摘抄</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
   </div>
   
   
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2025/10/page/2/">2</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/archives/2025/10/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
 </div>
   </main>
 
