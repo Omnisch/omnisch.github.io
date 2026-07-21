@@ -27,7 +27,7 @@
 <meta property="og:description" content="2026&#x2F;06&#x2F;20-2026&#x2F;06&#x2F;26 春季学期第 17 周 已完成  借 DX11 修改工具 3Dmigoto 及其下游的 XXMI (XX Model Importer)，分析 Unity 商业游戏中的 3D 模型渲染。  渲染一个模型需要至少四部分 Buffer，分别是 Index (IB)、Position (VB0)、TexCoord (VB1) 和 Blend (VB2)。其中 V">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-06-28T12:27:48.260Z">
-<meta property="article:modified_time" content="2026-06-28T15:40:03.149Z">
+<meta property="article:modified_time" content="2026-06-28T16:47:34.487Z">
 <meta property="article:author" content="Omnisch">
 <meta name="twitter:card" content="summary">
 
@@ -247,7 +247,7 @@
 <li>借 DX11 修改工具 <a target="_blank" rel="noopener" href="https://github.com/bo3b/3Dmigoto">3Dmigoto</a> 及其下游的 <a target="_blank" rel="noopener" href="https://github.com/SpectrumQT/XXMI-Launcher">XXMI</a> (XX Model Importer)，分析 Unity 商业游戏中的 3D 模型渲染。
 <ul>
 <li>渲染一个模型需要至少四部分 Buffer，分别是 Index (IB)、Position (VB0)、TexCoord (VB1) 和 Blend (VB2)。其中 VB0 记录了各顶点的位置（可能还有法向），VB1 记录了各顶点的 UV，VB2 记录了各顶点受骨骼矩阵影响的 top-4 归一权重，用于线性混合蒙皮 LBS；IB 中的索引三个为一组，决定了面片连接关系，通过非 STRIP 模式绘制面片。</li>
-<li>一般还需要至少三张纹理，分别是 Diffuse、Normalmap 和 Lightmap。其中 Lightmap 分通道记录了金属度 ®、光滑度 (G)、亮度 (B) 和应用倍率 (A)。</li>
+<li>一般还需要至少三张纹理，分别是 Diffuse、Normalmap 和 Lightmap。其中 Lightmap 分通道记录了金属度 (R)、光滑度 (G)、亮度 (B) 和应用倍率 (A)。</li>
 <li>使用 XXMI 约定的小型脚本语言，在游戏调用 D3D11 API 时拦截，当资源命中 hash 时选择阻断原绘制并执行自定义绘制脚本。加载 Buffer 和 Texture，然后指定 index 区间进行绘制。</li>
 <li>通过跨 IB 渲染等方式优化了若干从网络下载的 mod 的效果。</li>
 <li>基于 XXMI 的对渲染的探索都只能停留在 hook 阶段，再走下去只会越走越偏。下一步可以以 3Dmigoto 和 Unity 3DGS 的实现为跳板，深入探索。</li>

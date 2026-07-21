@@ -448,8 +448,13 @@
     const GRID_OFFSET_X = 0;
     const GRID_OFFSET_Y = 0;
 
+    function getSeedFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      return normalizeSeed(params.get("seed") || "");
+    }
+
     const state = {
-      seed: randomSeed(),
+      seed: getSeedFromURL() || randomSeed(),
       guesses: [],
       message: "输入四位数字或英文字母，不区分大小写；或使用随机种子开始。",
       showAnswer: false,
@@ -728,9 +733,22 @@
     // =========================
     // 5. 交互逻辑
     // =========================
+    function updateURLSeed(seed) {
+      const url = new URL(window.location.href);
+
+      if (seed) {
+        url.searchParams.set("seed", seed);
+      } else {
+        url.searchParams.delete("seed");
+      }
+
+      history.replaceState(null, "", url);
+    }
+
     function applySeed(value) {
       const nextSeed = normalizeSeed(value);
       state.seed = nextSeed;
+      updateURLSeed(nextSeed);
       state.guesses = [];
       state.showAnswer = false;
       els.guessInput.value = "";
