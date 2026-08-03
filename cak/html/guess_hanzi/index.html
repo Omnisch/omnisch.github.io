@@ -451,7 +451,7 @@
     function getSeedFromURL() {
       const params = new URLSearchParams(window.location.search);
       return normalizeSeed(params.get("seed") || "");
-    }
+    };
 
     const state = {
       seed: getSeedFromURL() || randomSeed(),
