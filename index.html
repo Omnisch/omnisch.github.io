@@ -121,7 +121,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">111</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -184,6 +184,97 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://omnisch.net/cak/omnisdcm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/graffiti2502-128x.png">
+      <meta itemprop="name" content="Omnisch">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山軒">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 青山軒">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/cak/omnisdcm/" class="post-title-link" itemprop="url">VR 三维切片渲染漫游</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-08-04 19:37:59" itemprop="dateCreated datePublished" datetime="2026-08-04T19:37:59+08:00">2026-08-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/cak/" itemprop="url" rel="index"><span itemprop="name">cak</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><img src="https://placehold.co/240x80/fd4/000.png?text=Content+Warning%5CnMEDICAL+CONTENT" alt=" "></p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>本页面含有人体图像等可能引起不适的内容</mtext></mrow><annotation encoding="application/x-tex">\text{本页面含有人体图像等可能引起不适的内容}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord cjk_fallback">本页面含有人体图像等可能引起不适的内容</span></span></span></span></span></span></p>
+<h2 id="项目概述">项目概述</h2>
+<p>本项目是基于 Unity 的 DICOM/PNG 切片体数据加载、缓存、三维体渲染、正交三视图浏览与 XR 浏览插件。项目既可作为独立示例场景运行，也可集成到现有 Unity 工程中。</p>
+<p>项目依赖 NuGet For Unity、Odin Serializer、FellowOakDicom 等 package，依赖 .NET Framework 脚本运行时，使用 Odin Serializer 缓存元数据和序列化二进制数据，FellowOakDicom 读取 DICOM 文件与标签。系统兼容 OpenXR Plugin 1.10 以适配 VR 设备，并提供基于 XR Interaction Toolkit 的可选适配工具。目标部署平台为 Windows PC，可通过 SteamVR/ALVR 等路径串流至 Apple Vision Pro 查看渲染结果。</p>
+<p>数据可靠支持能力为 ≤ 1024 × 512 × 300 的切片体数据，最大支持能力为 ≤ 2048 × 1024 × 500 的切片体数据。对于超大体数据，插件采用按 Z 轴分段的 Texture3D 组织方式，避免单个 Texture3D 或单个托管数组超过 GPU 与 .NET 运行时限制。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/cak/omnisdcm/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://omnisch.net/cak/index/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -237,9 +328,14 @@
     <div class="post-body" itemprop="articleBody">
           <h2 id="Unity">Unity</h2>
 <ul>
-<li><a href="/cak/lebot/">LEBOT</a>
+<li><a href="/cak/lebot/">AI 模型格斗游戏《LEBOT》</a>
 <blockquote>
 <p>《LEBOT》是一款利用 AI 实时生成模型，来让玩家的形象出现在游戏中并且能被操控的动作游戏。</p>
+</blockquote>
+</li>
+<li><a href="/cak/omnisdcm/">VR 三维切片渲染漫游</a>
+<blockquote>
+<p>基于 Unity 的切片重建、三维体渲染、正交三视图与 XR 浏览插件。</p>
 </blockquote>
 </li>
 <li><i class="fa-solid fa-video"></i> <a target="_blank" rel="noopener" href="https://vod-xhpfm.xinhuaxmt.com/NewsVideo/20260701/baca2588716c4320aa74246b99b519eb.mp4">新华社采访视频</a>
@@ -377,7 +473,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/cak/lebot/" class="post-title-link" itemprop="url">LEBOT</a>
+          <a href="/cak/lebot/" class="post-title-link" itemprop="url">AI 模型格斗游戏《LEBOT》</a>
         </h2>
 
         <div class="post-meta-container">
@@ -410,25 +506,17 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><figure><img src="/cak/lebot/LEBOT_v2.0_fighting.gif" alt="实机画面"><figcaption>实机画面</figcaption></figure></p>
+          <p><img src="/cak/lebot/LEBOT_v2.0_fighting.gif" alt="实机画面"></p>
 <p>《LEBOT》是一款利用 AI 实时生成模型，来让玩家的形象出现在游戏中并且能被操控的动作游戏。游戏策划案是由<u>费月桐</u>同学提出的，我在项目中的职责是程序，同时参与策划案的讨论。</p>
 <p>这个作品经历过一次翻新重做，我们把它们称作 1.0 和 2.0 版。这两版最主要的区别就是从一个横板格斗游戏改成了第三人称视角格斗游戏。</p>
-<p><figure><img src="/cak/lebot/LEBOT_v1.0_old.png" alt="1.0 版旧场景"><figcaption>1.0 版旧场景</figcaption></figure></p>
-<p><figure><img src="/cak/lebot/LEBOT_v1.0_final.png" alt="1.0 版新场景"><figcaption>1.0 版新场景</figcaption></figure></p>
-<p>最开始的场景非常粗糙，后来由<u>费</u>同学微调场景模型，由我修正贴图并应用卡通渲染之后，得到了呈现效果不错的场景。</p>
-<p><figure><img src="/cak/lebot/LEBOT_v1.0_fighting.gif" alt="横版操作"><figcaption>横版操作</figcaption></figure></p>
-<p>在 1.0 版本中，玩家上传图片或者拍照，然后得到属于自己的角色，AI 会根据这个角色的主题色来赋予它相应的技能（比如红色对应火焰技能）。玩家会控制角色来打倒一波又一波的机器人，就像上图一样。</p>
-<p><figure><img src="/cak/lebot/LEBOT_v1.0_zoom.gif" alt="拉镜慢放增加反馈"><figcaption>拉镜慢放增加反馈</figcaption></figure></p>
-<p>为了增加游戏过程中的反馈，我在致命一击时为镜头调度增加了拉镜、摇臂和慢放效果，使得画面更有打击感、电影感，同时也可以让玩家喘息片刻。</p>
-<p><figure><img src="/cak/lebot/LEBOT_v2.0_tutorial.gif" alt="2.0 版教学场景"><figcaption>2.0 版教学场景</figcaption></figure></p>
-<p>至于为什么要从 1.0 的横板改为 2.0 的第三人称视角，最主要的原因是横板控制相比之下缺少了一些临场感和代入感。我们想让游戏变得更有趣一些，于是从对抗敌潮改为一对一格斗，格斗的对象是上一个玩家，这也可以充分利用引以为“卖点”的 AI 资产来。此外，改成第三人称视角也更有利于格斗题材的发挥。</p>
-<p>实际游玩时，等待 AI 生成资产的时间较长。我利用起了这段时间作为新手教程，让 API 调用在后台进行。这样玩家不会在等待生成时感到无聊，也可以提前熟悉格斗的招式。</p>
-<p><figure><img src="/cak/lebot/LEBOT_v2.0_focus.gif" alt="镜头锁定功能"><figcaption>镜头锁定功能</figcaption></figure></p>
-<p><figure><img src="/cak/lebot/LEBOT_v2.0_switch.gif" alt="键鼠 / 手柄无缝切换"><figcaption>键鼠 / 手柄无缝切换</figcaption></figure></p>
-<p>我还为游戏增加了一些重要的功能，比如镜头的锁定以及输入设备的切换，这些都让整个游戏更完整、更“专业”，能够在国际电玩展上稳定地展示。</p>
-<p><figure><img src="/cak/lebot/LEBOT_in_Tokyo.jpg" alt="1.0 版在东京电玩展"><figcaption>1.0 版在东京电玩展</figcaption></figure></p>
-<p><figure><img src="/cak/lebot/LEBOT_at_GDC.jpg" alt="2.0 版在 GDC 游戏展"><figcaption>2.0 版在 GDC 游戏展</figcaption></figure></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/cak/lebot/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -644,98 +732,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://omnisch.net/kazsi/yue/everywhere_we_go/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/graffiti2502-128x.png">
-      <meta itemprop="name" content="Omnisch">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="青山軒">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 青山軒">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/kazsi/yue/everywhere_we_go/" class="post-title-link" itemprop="url">陳冠希 - Everywhere We Go</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-05-25 11:47:19" itemprop="dateCreated datePublished" datetime="2026-05-25T11:47:19+08:00">2026-05-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/kazsi/" itemprop="url" rel="index"><span itemprop="name">kazsi</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <ul>
-<li>去到每一度 點解總會有得嘈<br>
-難度繼續困死陰濕小氣島<br>
-我有一路 清楚找我有幅圖<br>
-閒話素來任你講卡都好儲</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/kazsi/yue/everywhere_we_go/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
