@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="vomni — 由你编写的多语言个人词典" />
+    <meta name="theme-color" content="#f4efe4" />
+    <title>vomni · 私人词典</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%23252420%22/><path d=%22M15 20h8l9 24 9-24h8L36 51h-8z%22 fill=%22%23f4efe4%22/></svg>" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="app" class="app-shell" aria-busy="true">
+      <header class="topbar">
+        <button class="brand" id="homeButton" type="button" aria-label="回到词条列表">
+          <span class="brand-mark">v</span>
+          <span><strong>vomni</strong><small>your words, in order</small></span>
+        </button>
+        <label class="search-box" for="searchInput">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.15A7.5 7.5 0 1 1 4 11.5a7.5 7.5 0 0 1 15 0Z"/></svg>
+          <input id="searchInput" type="search" placeholder="搜索词条、释义、标签…" autocomplete="off" />
+          <kbd>/</kbd>
+        </label>
+        <div class="top-actions">
+          <span class="save-state" id="saveState"><span></span> 本机已保存</span>
+          <button class="button secondary compact" id="dataMenuButton" type="button">数据</button>
+          <button class="button primary compact" id="addEntryButton" type="button">＋ 新词条</button>
+        </div>
+      </header>
+
+      <nav class="dictionary-strip" aria-label="词典切换">
+        <div id="dictionaryTabs" class="dictionary-tabs"></div>
+        <button class="icon-button" id="addDictionaryButton" type="button" aria-label="添加词典" title="添加词典">＋</button>
+      </nav>
+
+      <div class="workspace">
+        <aside class="filters-panel" aria-label="筛选与统计">
+          <section class="progress-card">
+            <div class="progress-head"><span>学习进度</span><strong id="progressPercent">0%</strong></div>
+            <div class="progress-track"><i id="progressBar"></i></div>
+            <p id="progressText">正在读取词库…</p>
+          </section>
+
+          <section class="filter-section">
+            <h2>学习状态</h2>
+            <div class="segmented vertical" id="statusFilters">
+              <button type="button" data-status="all" class="active"><span>全部词条</span><b id="countAll">0</b></button>
+              <button type="button" data-status="learning"><span>学习中</span><b id="countLearning">0</b></button>
+              <button type="button" data-status="mastered"><span>已掌握</span><b id="countMastered">0</b></button>
+              <button type="button" data-status="favorite"><span>已收藏</span><b id="countFavorite">0</b></button>
+              <button type="button" data-status="difficult"><span>需复习</span><b id="countDifficult">0</b></button>
+            </div>
+          </section>
+
+          <section class="filter-section" id="posFilterSection">
+            <h2>词性</h2>
+            <div class="chip-row" id="posFilters">
+              <button type="button" data-pos="all" class="active">全部</button>
+              <button type="button" data-pos="noun">名词</button>
+              <button type="button" data-pos="other">非名词</button>
+              <button type="button" data-pos="unset">未标记</button>
+            </div>
+          </section>
+
+          <section class="filter-section">
+            <label for="tagFilter"><span>标签</span></label>
+            <select id="tagFilter"><option value="all">全部标签</option></select>
+          </section>
+
+          <button class="text-button" id="resetFiltersButton" type="button">清除全部筛选</button>
+        </aside>
+
+        <main class="entries-panel">
+          <div class="list-toolbar">
+            <div><p class="eyebrow" id="dictionaryKicker">英文词典</p><h1 id="listTitle">全部词条</h1></div>
+            <div class="toolbar-controls">
+              <span id="resultCount" class="result-count">0 条</span>
+              <label class="select-wrap"><span class="sr-only">排序</span><select id="sortSelect">
+                <option value="az">A → Z</option>
+                <option value="za">Z → A</option>
+                <option value="updated">最近编辑</option>
+                <option value="unmastered">未掌握优先</option>
+              </select></label>
+            </div>
+          </div>
+          <nav id="quickIndex" class="quick-index" aria-label="词条首字索引"></nav>
+          <div id="emptyState" class="empty-state" hidden>
+            <span>⌁</span><h2>这里还没有词条</h2><p>调整筛选条件，或者添加一个属于你的新词。</p>
+            <button class="button primary" type="button" data-action="add-entry">添加词条</button>
+          </div>
+          <div id="entryList" class="entry-list" aria-live="polite"></div>
+          <button id="loadMoreButton" class="button secondary load-more" type="button" hidden>显示更多</button>
+        </main>
+
+        <aside class="editor-panel" id="editorPanel" aria-label="词条编辑器">
+          <div class="editor-empty" id="editorEmpty">
+            <span>✦</span><h2>选择一个词条</h2><p>在这里查看并编辑详细信息。所有更改都会自动保存在本机。</p>
+          </div>
+          <form id="entryForm" hidden>
+            <div class="editor-header">
+              <div><p class="eyebrow" id="editorMode">编辑词条</p><h2 id="editorTitle">—</h2></div>
+              <button class="icon-button close-editor" type="button" id="closeEditorButton" aria-label="关闭编辑器">×</button>
+            </div>
+            <input type="hidden" id="entryId" />
+            <div class="form-grid">
+              <label class="field full"><span>词条</span><input id="termInput" required maxlength="160" /></label>
+              <label class="field" id="readingField"><span>振假名 / 读音</span><input id="readingInput" maxlength="160" placeholder="例：あかつき" /></label>
+              <label class="field" id="stressField"><span>重音音节</span><input id="stressInput" maxlength="60" placeholder="输入词条中的重读片段" /></label>
+              <label class="field" id="posField"><span>词性</span><select id="posInput">
+                <option value="">未标记</option><option value="noun">名词</option><option value="other">非名词</option>
+                <option value="verb">动词</option><option value="adjective">形容词</option><option value="adverb">副词</option><option value="phrase">短语</option><option value="other-custom">其他</option>
+              </select></label>
+              <label class="field full"><span>释义</span><textarea id="definitionInput" rows="4" maxlength="2000" placeholder="写下释义、语境或例句"></textarea></label>
+              <label class="field full"><span>标签 <small>用逗号分隔</small></span><input id="tagsInput" maxlength="300" placeholder="例：医学, 正式, 易混淆" /></label>
+              <label class="field full"><span>笔记</span><textarea id="notesInput" rows="3" maxlength="2000" placeholder="联想、出处、用法提醒…"></textarea></label>
+            </div>
+            <fieldset class="status-grid">
+              <legend>学习状态</legend>
+              <label><input type="checkbox" id="masteredInput" /><span><i>✓</i><b>已掌握</b><small>我已经记住了</small></span></label>
+              <label><input type="checkbox" id="favoriteInput" /><span><i>☆</i><b>收藏</b><small>重点保留</small></span></label>
+              <label><input type="checkbox" id="difficultInput" /><span><i>!</i><b>需复习</b><small>还不够熟练</small></span></label>
+            </fieldset>
+            <p class="form-message" id="formMessage" role="status"></p>
+            <div class="editor-actions">
+              <button class="text-button danger" id="deleteEntryButton" type="button">删除词条</button>
+              <button class="button primary" type="submit">保存更改</button>
+            </div>
+          </form>
+        </aside>
+      </div>
+    </div>
+
+    <div class="popover" id="dataMenu" hidden>
+      <button type="button" id="openFilesButton"><b>导入词库</b><small>读取 JSON 词库或备份</small></button>
+      <button type="button" id="exportCurrentButton"><b>导出当前词典</b><small>保存为可阅读的 JSON</small></button>
+      <button type="button" id="exportAllButton"><b>导出全部备份</b><small>包含所有词典与学习状态</small></button>
+      <button type="button" id="connectFileButton"><b>连接自动备份文件</b><small>支持的浏览器中改动后自动写入</small></button>
+      <input id="fileInput" type="file" accept=".json,application/json" multiple hidden />
+    </div>
+
+    <dialog id="dictionaryDialog">
+      <form method="dialog" id="dictionaryForm" class="dialog-card">
+        <div class="dialog-heading"><div><p class="eyebrow">扩充语言</p><h2>添加新词典</h2></div><button class="icon-button" type="button" data-close-dialog aria-label="关闭">×</button></div>
+        <label class="field"><span>词典名称</span><input id="dictionaryNameInput" required maxlength="40" placeholder="例：Français" /></label>
+        <label class="field"><span>语言代码</span><input id="dictionaryLanguageInput" required maxlength="12" placeholder="例：fr" /></label>
+        <fieldset class="capability-grid"><legend>需要的语言字段</legend>
+          <label><input type="checkbox" value="furigana" /> 振假名 / 读音</label>
+          <label><input type="checkbox" value="stress" /> 重音音节</label>
+          <label><input type="checkbox" value="partOfSpeech" checked /> 词性</label>
+          <label><input type="checkbox" value="definition" checked /> 释义</label>
+          <label><input type="checkbox" value="tags" checked /> 标签</label>
+          <label><input type="checkbox" value="status" checked /> 学习状态</label>
+        </fieldset>
+        <div class="dialog-actions"><button class="button secondary" type="button" data-close-dialog>取消</button><button class="button primary" id="createDictionaryButton" value="default">创建词典</button></div>
+      </form>
+    </dialog>
+
+    <div class="toast-region" id="toastRegion" aria-live="polite"></div>
+    <script src="./data/seed.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
