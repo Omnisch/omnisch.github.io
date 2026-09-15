@@ -47,7 +47,10 @@
 
 
 
-
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
+>
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
@@ -126,7 +129,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">112</span>
+          <span class="site-state-item-count">113</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -440,6 +443,30 @@ document.addEventListener('page:loaded', () => {
     }));
 });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.post-swiper').forEach(function (element) {
+    new Swiper(element, {
+      loop: true,
+
+      navigation: {
+        nextEl: element.querySelector('.swiper-button-next'),
+        prevEl: element.querySelector('.swiper-button-prev')
+      },
+
+      pagination: {
+        el: element.querySelector('.swiper-pagination'),
+        clickable: true
+      },
+
+      keyboard: {
+        enabled: true
+      }
+    });
+  });
+});
+</script>
 </body>
 </html>

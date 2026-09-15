@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#9acab0"><meta name="generator" content="Hexo 8.1.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-omnis.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-omnis.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-omnis.ico">
+  <link rel="mask-icon" href="/images/logo-omnis.svg" color="#9acab0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.font.im/css?family=Iosevka:300,300italic,400,400italic,700,700italic%7CNoto+Sans+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"omnisch.net","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="我的配置：  RTX 5070Ti 16GB 显存 Python 3.11 CUDA 12.8   Checkpoint 模型 Checkpoint 指基础模型，也就是一个已经训练好的完整模型权重文件。一个 Checkpoint 模型通常包含三个核心部分：  U-Net：核心去噪网络，从随机噪声一步步生成图像； CLIP：对比式视觉语言预训练模型，把文字提示词转换成模型能够理解的语义向量； VA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="本地模型学习笔记">
+<meta property="og:url" content="https://omnisch.net/luon/202608/index.html">
+<meta property="og:site_name" content="青山軒">
+<meta property="og:description" content="我的配置：  RTX 5070Ti 16GB 显存 Python 3.11 CUDA 12.8   Checkpoint 模型 Checkpoint 指基础模型，也就是一个已经训练好的完整模型权重文件。一个 Checkpoint 模型通常包含三个核心部分：  U-Net：核心去噪网络，从随机噪声一步步生成图像； CLIP：对比式视觉语言预训练模型，把文字提示词转换成模型能够理解的语义向量； VA">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-09-14T12:29:45.930Z">
+<meta property="article:modified_time" content="2026-09-15T10:34:48.155Z">
+<meta property="article:author" content="Omnisch">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://omnisch.net/luon/202608/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://omnisch.net/luon/202608/","path":"luon/202608/","title":"本地模型学习笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>本地模型学习笔记 | 青山軒</title>
+  
+
+
+
+
+
+
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
+>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">青山軒</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">倉經所閒虛言</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-作品"><a href="/cak/index/" rel="section"><i class="fa fa-rocket fa-fw"></i>作品</a></li><li class="menu-item menu-item-歌詞"><a href="/kazsi/index/" rel="section"><i class="fa fa-microphone-lines fa-fw"></i>歌詞</a></li><li class="menu-item menu-item-隨感"><a href="/categories/kom/" rel="section"><i class="fa fa-hashtag fa-fw"></i>隨感</a></li><li class="menu-item menu-item-編纂"><a href="/categories/pen/" rel="section"><i class="fa fa-pen-nib fa-fw"></i>編纂</a></li><li class="menu-item menu-item-匯集"><a href="/categories/yoi/" rel="section"><i class="fa fa-table fa-fw"></i>匯集</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Checkpoint-%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">Checkpoint 模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83-LoRA"><span class="nav-number">2.</span> <span class="nav-text">训练 LoRA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8-ComfyUI"><span class="nav-number">3.</span> <span class="nav-text">开始使用 ComfyUI</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#K-%E9%87%87%E6%A0%B7%E5%99%A8"><span class="nav-number">3.1.</span> <span class="nav-text">K 采样器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%BB%E9%A3%8E%E8%AE%AD%E7%BB%83"><span class="nav-number">3.2.</span> <span class="nav-text">画风训练</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LoRA-%E5%A0%86"><span class="nav-number">4.</span> <span class="nav-text">LoRA 堆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%8D%E5%99%AA%E4%B8%8E%E7%94%BB%E9%A3%8E%E8%BF%81%E7%A7%BB"><span class="nav-number">5.</span> <span class="nav-text">降噪与画风迁移</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Omnisch"
+      src="/images/graffiti2502-128x.png">
+  <p class="site-author-name" itemprop="name">Omnisch</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">113</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:omnisch@outlook.com" title="E-Mail → mailto:omnisch@outlook.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/Omnisch" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Omnisch" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/19541024" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;19541024" rel="noopener me" target="_blank"><i class="fab fa-bilibili fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://zi.tools/" title="https:&#x2F;&#x2F;zi.tools" rel="noopener" target="_blank">字統</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://kaom.net/" title="https:&#x2F;&#x2F;kaom.net" rel="noopener" target="_blank">古音小鏡</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://zhs.glyphwiki.org/wiki/" title="https:&#x2F;&#x2F;zhs.glyphwiki.org&#x2F;wiki&#x2F;" rel="noopener" target="_blank">字形维基</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://omnisch.net/luon/202608/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/graffiti2502-128x.png">
+      <meta itemprop="name" content="Omnisch">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山軒">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="本地模型学习笔记 | 青山軒">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          本地模型学习笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-09-14 20:29:45" itemprop="dateCreated datePublished" datetime="2026-09-14T20:29:45+08:00">2026-09-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/luon/" itemprop="url" rel="index"><span itemprop="name">luon</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p>我的配置：</p>
+<ul>
+<li>RTX 5070Ti</li>
+<li>16GB 显存</li>
+<li>Python 3.11</li>
+<li>CUDA 12.8</li>
+</ul>
+</blockquote>
+<h2 id="Checkpoint-模型">Checkpoint 模型</h2>
+<p>Checkpoint 指基础模型，也就是一个已经训练好的完整模型权重文件。一个 Checkpoint 模型通常包含三个核心部分：</p>
+<ul>
+<li><strong>U-Net</strong>：核心去噪网络，从随机噪声一步步生成图像；</li>
+<li><strong>CLIP</strong>：对比式视觉语言预训练模型，把文字提示词转换成模型能够理解的语义向量；</li>
+<li><strong>VAE</strong>：变分自编码器，负责在潜空间 (Latent) 和像素图像之间编解码。</li>
+</ul>
+<p>现在大部分模型的格式都是 <code>.safetensors</code>，这是 Hugging Face 开发的一种模型权重存储格式。Hugging Face 不仅是全球最大的开源 AI 社区，也是 AI 行业标准制定的重要参与者和推动者，常被称为“AI 界的 GitHub”，目前共享超过 300 万个模型。下文的 Checkpoint 模型都可以在 Hugging Face 上找到并下载。</p>
+<p>ComfyUI 默认下载一个 Z-Image-Turbo 模型。Z-Image 和 Z-Image-Turbo 都是阿里云通义旗下的开源图像生成基础模型，支持生成包括写实、动漫在内的多种图像风格，主要优势为轻量、快速——Z-Image-Turbo 可以 8 步出图。</p>
+<p>Qwen-Image 是通义千问团队研发的 200 亿参数的图像生成基础模型，以文字渲染和图像编辑能力见长。</p>
+<p>此外还有 FLUX.1、FLUX.2 等图像基础模型，但我尚未测试，也就不再赘述。</p>
+<span id="more"></span>
+<h2 id="训练-LoRA">训练 LoRA</h2>
+<p>生图任务要用上 LoRA 大概需要这么几步：建立数据集、标注、训练以及生成。</p>
+<p>可以利用各种抓图的插件或者脚本快速建立数据集。我使用了两种第三方插件，分别是针对 Pixiv 网站的 <a target="_blank" rel="noopener" href="https://github.com/xuejianxianzun/PixivBatchDownloader">Pixiv Batch Downloader (PBD)</a> 和更通用的、可用于 Danbooru 网站的 <a target="_blank" rel="noopener" href="https://github.com/drunkg00se/Pixiv-Downloader">Pixiv Downloader</a>。都可以批量爬取同一作者或同一标签的图片，无需多做介绍。</p>
+<p>在进入标注环节之前，需要知道“Booru”这么个东西。根据定义，Booru 是一类在线图像板，旨在利用协作式标签系统，对用户提交的大量图像进行托管、归档和分类。最有名的、规模最大的 Booru 应该是 <a target="_blank" rel="noopener" href="https://danbooru.donmai.us/">Danbooru</a>，保有数量超过 5000 万张、大小超过 60 TB 的各种格式的图片；此外还有 <a target="_blank" rel="noopener" href="https://gelbooru.com/index.php">Gelbooru</a>、<a target="_blank" rel="noopener" href="https://yande.re/post">Yande.re</a>、<a target="_blank" rel="noopener" href="https://konachan.net/">Konachan</a> 等。</p>
+<blockquote>
+<p>A <strong>booru</strong> is a type of online imageboard designed for hosting, archiving, and categorizing large collections of user-submitted images using collaborative tagging systems.</p>
+</blockquote>
+<p>标注环节我使用的是桌面应用 <a target="_blank" rel="noopener" href="https://github.com/storyAura/BooruDatasetTagManagerPlus">Booru Dataset Tag Manager Plus</a>，fork 自 <a target="_blank" rel="noopener" href="https://github.com/starik222/BooruDatasetTagManager">Booru Dataset Tag Manager</a>，支持用本地 ONNX 推标或调用 LLM 标注，还附带许多处理和预处理功能。我选择了 <code>[WD14] eva02-large v3</code> 作为推标的模型，<code>v3</code> 优于 <code>v1</code> / <code>v2</code>，训练数据和标签体系有所更新，<code>eva02-large</code> 模型较大，准确率优先。为文件夹中的图片自动标注之后，可以人工再清洗一遍，因为还是可能有不准确或者漏写的标签，这些都可能影响最终 LoRA 的效果。</p>
+<p>训练环节我使用的是 <a target="_blank" rel="noopener" href="https://github.com/Nerogar/OneTrainer">OneTrainer</a>，支持基于主流模型（诸如 Z-Image、Qwen Image、Stable Diffusion 等）的一站式训练。在我的个人电脑算力下，50 张图需要约 30 分钟的训练时间，100 张图需要约 1 小时的训练时间。对于同一作者同一画风的训练，我测试得到的效果较为出色；而杂图的最终呈现不尽人意，因此下文主要总结画风训练。</p>
+<h2 id="开始使用-ComfyUI">开始使用 ComfyUI</h2>
+<p>ComfyUI 是一个基于节点工作流的图形用户界面工具，完全开源，被广泛认为是面向专业创作者的“AI 创作引擎”。在 ComfyUI 中可以获取到很多现成的工作流，并按照提示直接下载需要的模型。</p>
+<p>现在已经有直接以 ComfyUI 工作流为研究对象的 ACL 论文：例如 2026 年 ACL Findings 的 <a target="_blank" rel="noopener" href="https://aclanthology.org/2026.findings-acl.146/">ComfyUI-R1</a> 和 <a target="_blank" rel="noopener" href="https://aclanthology.org/2026.findings-acl.140/">ComfyFlow</a>，前者研究自动生成 ComfyUI 工作流，后者建立了 ComfyUI workflow generation benchmark。</p>
+<p>ComfyUI 有许多用户创作的扩展包，比如 Impack Pack、Easy Use 等，其中有不少都是 QoL 节点，可以为快速搭建工作流节省不少时间，但有时也会牺牲一些灵活性。我比较看重的是这些扩展包中的 XY Plot 功能，可以生成一批微调参数的图像，然后列出一张大表便于对照。下文的二维表图都是基于 Easy Use 提供的节点渲染出来的。</p>
+<p>针对二次元（动漫）画风，也有一些 Checkpoint 模型可供选择，比如 SDXL、Animagine、Illustrious、Pony、Krea 2 等等。可供选择的模型太多，我直接让 AI 帮我挑选了两种：<strong>Animagine XL 4.0 Zero</strong> 和 <strong>Illustrious XL 2.0</strong>，前者“served as the pretrained base model”，非常适合作为训练的基础；后者有相当大的基础模型生态，也是目前“最稳妥”的选择。这两种模型都属于 SDXL 系，提示词都更推荐使用 Booru 式的标签罗列而非自然语言，因为标签罗列更符合这些模型的训练分布。</p>
+<blockquote>
+<p>至于 Anima / Krea 2 这种“新一代”模型，就留给在玩 <a target="_blank" rel="noopener" href="https://github.com/WalkingMeatAxolotl/AnimaLoraStudio">Anima Lora Studio</a> 这个端到端流水线产品的时候再体验吧。</p>
+</blockquote>
+<p>下面是两种 Checkpoint 在同一正负面条件、同一分辨率、同一噪声种子……控制变量的表现对比。横轴是 LoRA 强度，纵轴是 CFG，但现在说这部分还太早。总之这两种模型表现都不错，没有绝对的优劣之分。</p>
+
+      <div class="swiper post-swiper">
+        <div class="swiper-wrapper">
+          
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/775372428630734_Animagine_00001_.png"
+              data-fancybox="swiper-8w2ae2sx"
+              data-caption="使用 Animagine 生成"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/775372428630734_Animagine_00001_.webp"
+                loading="lazy"
+                alt="使用 Animagine 生成"
+              >
+            </a>
+
+            <figcaption>使用 Animagine 生成</figcaption>
+          </figure>
+        </div>
+      
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/775372428630734_Illustrious_00001_.png"
+              data-fancybox="swiper-8w2ae2sx"
+              data-caption="使用 Illustrious 生成"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/775372428630734_Illustrious_00001_.webp"
+                loading="lazy"
+                alt="使用 Illustrious 生成"
+              >
+            </a>
+
+            <figcaption>使用 Illustrious 生成</figcaption>
+          </figure>
+        </div>
+      
+        </div>
+
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <div class="swiper-pagination"></div>
+      </div>
+    
+<p>虽然二者都带个 XL，是同一个系的模型，但 LoRA 还是不太通用的，能跑，但效果大打折扣，以至看不太出来。所以不可得兼，我就选了我看着更顺眼的 Animagine 做进一步的探索。请原谅我给所有生成图片都打上水印，因为毕竟是未经作者允许做的训练，我不会上传到其他地方，也防止这些图片被使用。</p>
+<h3 id="K-采样器">K 采样器</h3>
+<p>K 采样器 (KSampler)，是 ComfyUI 中的一个核心节点，负责在潜空间中执行去噪采样。这里的 K 指一个第三方库 <code>k-diffusion</code>。关键的参数有：<code>steps</code>、<code>cfg</code>、<code>sampler_name</code>、<code>scheduler</code>、<code>denoise</code>。</p>
+<ul>
+<li><code>steps</code> 控制去噪的步数，前面也提到像 Z-Image-Turbo 这种模型可以只需要 8 步甚至更少就能出图。步数越高，一般意味着图片的细节越有可能被打磨，整体质量也就越高，但有边际效应，从 30 到 60 步可能效果显著；但从 60 步到 120 步可能区别不大，白白耗费时间。根据我的经验，30 步基本能看，50 步可能只有手指画不好，到 80 步算是“最高画质”了。</li>
+<li><code>cfg</code> 是我误会了好长时间的参数。我一度以为它是 Config 的缩写，然而实际上是 Classifier-Free Guidance Scale，用于<strong>控制文本提示词对生成过程的影响程度</strong>。从下面的诸多例子中可以直观看到：值越高，生成的图像越严格地遵循提示词，但同时带来色彩失真、画面过曝；值越低，图像越有自由发挥的空间，但画面普遍偏灰。</li>
+<li><code>sampler_name</code> 是去噪所使用的具体算法，不同的采样器在速度、收敛性和最终呈现上有显著差异。<code>euler</code> 是非常简单的算法，求解常微分方程速度快且稳定；<code>dpmpp_2m</code> (DPM++ 2M) 通过更精确的数值计算加速收敛，边缘干净；<code>res_multistep</code> 的累计误差更小，有显著的结构一致性优势。此外，<code>ancestral</code> 和 <code>cfg_pp</code> (CFG++) 是两个完全独立的后缀，前者代表<strong>原始采样</strong>，会让原采样器在去噪的每一步都注入随机噪声，这导致在相同条件下，每次生成的细节都会有差异；后者解决了当 <code>cfg</code> 值很低时引导失效的问题，但反过来，这些采样器也需要在非常低的 <code>cfg</code> 值下才能正常运作。</li>
+<li><code>scheduler</code> 是调度器，决定了去噪的节奏与步长，比较常用的有 <code>karras</code>、<code>exponential</code> 和 <code>normal</code> 等。</li>
+<li><code>denoise</code> 其实是一个包装其他参数的参数，它决定了 <code>start_at_step</code>。如果 <code>steps = 20</code> 且 <code>denoise = 0.25</code>，那么相当于 <code>start_at_step = 5</code>，也就是从第 5 步开始去噪，走 15 步。这样会保留原 latent 的一些信息，从而实现图生图。</li>
+</ul>
+<p>下面展示了不同采样器与不同 <code>cfg</code> 值的组合效果。不同调度器的最终呈现差别不大，故不作展示。</p>
+
+      <div class="swiper post-swiper">
+        <div class="swiper-wrapper">
+          
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/661443578006055_Animagine_00001_.png"
+              data-fancybox="swiper-q73aiuwj"
+              data-caption="不同采样器与不同 CFG 值的组合效果"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/661443578006055_Animagine_00001_.webp"
+                loading="lazy"
+                alt="不同采样器与不同 CFG 值的组合效果"
+              >
+            </a>
+
+            <figcaption>不同采样器与不同 CFG 值的组合效果</figcaption>
+          </figure>
+        </div>
+      
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/661443578006055_Animagine_00002_.png"
+              data-fancybox="swiper-q73aiuwj"
+              data-caption="CFG++ 采样器与不同 CFG 值的组合效果"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/661443578006055_Animagine_00002_.webp"
+                loading="lazy"
+                alt="CFG++ 采样器与不同 CFG 值的组合效果"
+              >
+            </a>
+
+            <figcaption>CFG++ 采样器与不同 CFG 值的组合效果</figcaption>
+          </figure>
+        </div>
+      
+        </div>
+
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <div class="swiper-pagination"></div>
+      </div>
+    
+<h3 id="画风训练">画风训练</h3>
+<p>训练画风 LoRA 比训练角色 LoRA 乃至概念 LoRA 似乎要容易一些。LoRA 有两个参数，模型强度和 CLIP 强度。通过调整模型强度，可以在 Checkpoint 画风和目标画风之间过渡。模型强度的数值也可以大于 1，但通常超过 1.3 之后就会出现畸变，无法维持人形了。理论上模型强度的数值也可以小于 0，但对于画风迁移来说肯定没什么用。至于 CLIP 强度，OneTrainer 默认应该是不训练 CLIP，所以调整这个数值没有用。下面是我用不同画风的数据集训练出的四个 LoRA。</p>
+
+      <div class="swiper post-swiper">
+        <div class="swiper-wrapper">
+          
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/661443578006055_Animagine_MyGO_00001_.png"
+              data-fancybox="swiper-tbgfgg9p"
+              data-caption="使用 MyGO 动画剧照训练的 LoRA"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/661443578006055_Animagine_MyGO_00001_.webp"
+                loading="lazy"
+                alt="使用 MyGO 动画剧照训练的 LoRA"
+              >
+            </a>
+
+            <figcaption>使用 MyGO 动画剧照训练的 LoRA</figcaption>
+          </figure>
+        </div>
+      
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/661443578006055_Animagine_Rui_00001_.png"
+              data-fancybox="swiper-tbgfgg9p"
+              data-caption="使用艺术家 Ruilur 作品训练的 LoRA"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/661443578006055_Animagine_Rui_00001_.webp"
+                loading="lazy"
+                alt="使用艺术家 Ruilur 作品训练的 LoRA"
+              >
+            </a>
+
+            <figcaption>使用艺术家 Ruilur 作品训练的 LoRA</figcaption>
+          </figure>
+        </div>
+      
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/661443578006055_Animagine_Rpp_00001_.png"
+              data-fancybox="swiper-tbgfgg9p"
+              data-caption="使用艺术家 Ruppu 作品训练的 LoRA"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/661443578006055_Animagine_Rpp_00001_.webp"
+                loading="lazy"
+                alt="使用艺术家 Ruppu 作品训练的 LoRA"
+              >
+            </a>
+
+            <figcaption>使用艺术家 Ruppu 作品训练的 LoRA</figcaption>
+          </figure>
+        </div>
+      
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/661443578006055_Animagine_Wep_00001_.png"
+              data-fancybox="swiper-tbgfgg9p"
+              data-caption="使用艺术家 Wepwawet 作品训练的 LoRA"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/661443578006055_Animagine_Wep_00001_.webp"
+                loading="lazy"
+                alt="使用艺术家 Wepwawet 作品训练的 LoRA"
+              >
+            </a>
+
+            <figcaption>使用艺术家 Wepwawet 作品训练的 LoRA</figcaption>
+          </figure>
+        </div>
+      
+        </div>
+
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <div class="swiper-pagination"></div>
+      </div>
+    
+<p>作为对比，四种画风各放一张原图：</p>
+
+      <div class="swiper post-swiper">
+        <div class="swiper-wrapper">
+          
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/MyGO_E13_06.jpg"
+              data-fancybox="swiper-4zy93ipt"
+              data-caption="MyGO 动画剧照"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/MyGO_E13_06.webp"
+                loading="lazy"
+                alt="MyGO 动画剧照"
+              >
+            </a>
+
+            <figcaption>MyGO 动画剧照</figcaption>
+          </figure>
+        </div>
+      
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/148032990_p0.jpg"
+              data-fancybox="swiper-4zy93ipt"
+              data-caption="艺术家 Ruilur 作品"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/148032990_p0.webp"
+                loading="lazy"
+                alt="艺术家 Ruilur 作品"
+              >
+            </a>
+
+            <figcaption>艺术家 Ruilur 作品</figcaption>
+          </figure>
+        </div>
+      
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/12046854_ruppu_kurumi_(blue_archive)%2Cotogi_(blue_archive).jpg"
+              data-fancybox="swiper-4zy93ipt"
+              data-caption="艺术家 Ruppu 作品"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/12046854_ruppu_kurumi_(blue_archive)%2Cotogi_(blue_archive).webp"
+                loading="lazy"
+                alt="艺术家 Ruppu 作品"
+              >
+            </a>
+
+            <figcaption>艺术家 Ruppu 作品</figcaption>
+          </figure>
+        </div>
+      
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/136938571_p0.png"
+              data-fancybox="swiper-4zy93ipt"
+              data-caption="艺术家 Wepwawet 作品"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/136938571_p0.webp"
+                loading="lazy"
+                alt="艺术家 Wepwawet 作品"
+              >
+            </a>
+
+            <figcaption>艺术家 Wepwawet 作品</figcaption>
+          </figure>
+        </div>
+      
+        </div>
+
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <div class="swiper-pagination"></div>
+      </div>
+    
+<p>值得一提的是，OneTrainer 支持 Masked Training，在训练 MyGO 动画剧照时有用到，用于剔除对原图中左下角水印的学习。只需在同一文件夹下按命名规则放好 <code>masklabel.png</code> 即可。此时的遮罩，白色是需要学习的部分，黑色是需要忽略的部分。</p>
+<h2 id="LoRA-堆">LoRA 堆</h2>
+<p>可以启用 LoRA 堆 (Stack)，让若干 LoRA 进行混合，这样可以创造出介于两种画风之间的新画风。下面是混合 MyGO 和 Wepwawet 两种画风的 LoRA 得到的结果。</p>
+
+      <div class="swiper post-swiper">
+        <div class="swiper-wrapper">
+          
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/661443578006055_Animagine_MyGO%2BWep_00001_.png"
+              data-fancybox="swiper-8dxc391f"
+              data-caption="MyGO LoRA 0.8 + Wepwawet"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/661443578006055_Animagine_MyGO%2BWep_00001_.webp"
+                loading="lazy"
+                alt="MyGO LoRA 0.8 + Wepwawet"
+              >
+            </a>
+
+            <figcaption>MyGO LoRA 0.8 + Wepwawet</figcaption>
+          </figure>
+        </div>
+      
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/661443578006055_Animagine_MyGO_00001_.png"
+              data-fancybox="swiper-8dxc391f"
+              data-caption="MyGO LoRA only"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/661443578006055_Animagine_MyGO_00001_.webp"
+                loading="lazy"
+                alt="MyGO LoRA only"
+              >
+            </a>
+
+            <figcaption>MyGO LoRA only</figcaption>
+          </figure>
+        </div>
+      
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/661443578006055_Animagine_Wep_00001_.png"
+              data-fancybox="swiper-8dxc391f"
+              data-caption="Wepwawet LoRA only"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/661443578006055_Animagine_Wep_00001_.webp"
+                loading="lazy"
+                alt="Wepwawet LoRA only"
+              >
+            </a>
+
+            <figcaption>Wepwawet LoRA only</figcaption>
+          </figure>
+        </div>
+      
+        </div>
+
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <div class="swiper-pagination"></div>
+      </div>
+    
+<h2 id="降噪与画风迁移">降噪与画风迁移</h2>
+<p>前面提到，修改 <code>denoise</code> 可以实现图生图。加载图片后，用 VAE 编码成 Latent，然后代替文生图任务中传给 K 采样器的空 Latent，再降低 <code>denoise</code> 值，即可得到一张跟原图整体看起来差不多的、经过画风迁移的新图。下面是从 <code>denoise = 0.2</code> 到 <code>denoise = 0.99</code> 的效果对比，数值越小，越像原图；数值越大，越是全新的图。</p>
+
+      <div class="swiper post-swiper">
+        <div class="swiper-wrapper">
+          
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/1786503151082.png"
+              data-fancybox="swiper-sjm5uy4a"
+              data-caption="原图"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/1786503151082.webp"
+                loading="lazy"
+                alt="原图"
+              >
+            </a>
+
+            <figcaption>原图</figcaption>
+          </figure>
+        </div>
+      
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.2_.png"
+              data-fancybox="swiper-sjm5uy4a"
+              data-caption="denoise = 0.2"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.2_.webp"
+                loading="lazy"
+                alt="denoise = 0.2"
+              >
+            </a>
+
+            <figcaption>denoise = 0.2</figcaption>
+          </figure>
+        </div>
+      
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.3_.png"
+              data-fancybox="swiper-sjm5uy4a"
+              data-caption="denoise = 0.3"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.3_.webp"
+                loading="lazy"
+                alt="denoise = 0.3"
+              >
+            </a>
+
+            <figcaption>denoise = 0.3</figcaption>
+          </figure>
+        </div>
+      
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.4_.png"
+              data-fancybox="swiper-sjm5uy4a"
+              data-caption="denoise = 0.4"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.4_.webp"
+                loading="lazy"
+                alt="denoise = 0.4"
+              >
+            </a>
+
+            <figcaption>denoise = 0.4</figcaption>
+          </figure>
+        </div>
+      
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.5_.png"
+              data-fancybox="swiper-sjm5uy4a"
+              data-caption="denoise = 0.5"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.5_.webp"
+                loading="lazy"
+                alt="denoise = 0.5"
+              >
+            </a>
+
+            <figcaption>denoise = 0.5</figcaption>
+          </figure>
+        </div>
+      
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.6_.png"
+              data-fancybox="swiper-sjm5uy4a"
+              data-caption="denoise = 0.6"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.6_.webp"
+                loading="lazy"
+                alt="denoise = 0.6"
+              >
+            </a>
+
+            <figcaption>denoise = 0.6</figcaption>
+          </figure>
+        </div>
+      
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.7_.png"
+              data-fancybox="swiper-sjm5uy4a"
+              data-caption="denoise = 0.7"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.7_.webp"
+                loading="lazy"
+                alt="denoise = 0.7"
+              >
+            </a>
+
+            <figcaption>denoise = 0.7</figcaption>
+          </figure>
+        </div>
+      
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.8_.png"
+              data-fancybox="swiper-sjm5uy4a"
+              data-caption="denoise = 0.8"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.8_.webp"
+                loading="lazy"
+                alt="denoise = 0.8"
+              >
+            </a>
+
+            <figcaption>denoise = 0.8</figcaption>
+          </figure>
+        </div>
+      
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.9_.png"
+              data-fancybox="swiper-sjm5uy4a"
+              data-caption="denoise = 0.9"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.9_.webp"
+                loading="lazy"
+                alt="denoise = 0.9"
+              >
+            </a>
+
+            <figcaption>denoise = 0.9</figcaption>
+          </figure>
+        </div>
+      
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.99_.png"
+              data-fancybox="swiper-sjm5uy4a"
+              data-caption="denoise = 0.99"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.99_.webp"
+                loading="lazy"
+                alt="denoise = 0.99"
+              >
+            </a>
+
+            <figcaption>denoise = 0.99</figcaption>
+          </figure>
+        </div>
+      
+        </div>
+
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <div class="swiper-pagination"></div>
+      </div>
+    
+<p>即使提示词中限制了水印的出现，在低降噪（<code>denoise &lt;= 0.4</code>）的情况中依然无法完全消除原图的水印。下面同样给出其他几个 LoRA 的迁移效果。</p>
+
+      <div class="swiper post-swiper">
+        <div class="swiper-wrapper">
+          
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/Animagine_717028221091539_00012_.png"
+              data-fancybox="swiper-0s85g806"
+              data-caption="MyGO LoRA; denoise = 0.5"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/Animagine_717028221091539_00012_.webp"
+                loading="lazy"
+                alt="MyGO LoRA; denoise = 0.5"
+              >
+            </a>
+
+            <figcaption>MyGO LoRA; denoise = 0.5</figcaption>
+          </figure>
+        </div>
+      
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/Animagine_717028221091539_00009_.png"
+              data-fancybox="swiper-0s85g806"
+              data-caption="Ruilur LoRA; denoise = 0.5"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/Animagine_717028221091539_00009_.webp"
+                loading="lazy"
+                alt="Ruilur LoRA; denoise = 0.5"
+              >
+            </a>
+
+            <figcaption>Ruilur LoRA; denoise = 0.5</figcaption>
+          </figure>
+        </div>
+      
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/Animagine_717028221091539_00005_.png"
+              data-fancybox="swiper-0s85g806"
+              data-caption="Wepwawet LoRA; denoise = 0.5"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/Animagine_717028221091539_00005_.webp"
+                loading="lazy"
+                alt="Wepwawet LoRA; denoise = 0.5"
+              >
+            </a>
+
+            <figcaption>Wepwawet LoRA; denoise = 0.5</figcaption>
+          </figure>
+        </div>
+      
+        </div>
+
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <div class="swiper-pagination"></div>
+      </div>
+    
+<p>实际上，如果把 <code>denoise</code> 拆出来，得到 <code>start_at_step</code> 和 <code>end_at_step</code> 两个参数的话，还可以级联两个 K 采样器，让第一个走几步，再交给第二个，这样可以用两种不同的模型先后去噪，在保留第一个模型绘制的大致结构的基础上，添加第二个模型绘制的细节。其实也相当于不用垫图、内部消化的画风迁移。下面是两个 K 采样器级联的控制变量的效果。</p>
+
+      <div class="swiper post-swiper">
+        <div class="swiper-wrapper">
+          
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/8747835583752_Animagine_00001_.png"
+              data-fancybox="swiper-22k6je9a"
+              data-caption="Wepwawet steps = 60"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/8747835583752_Animagine_00001_.webp"
+                loading="lazy"
+                alt="Wepwawet steps = 60"
+              >
+            </a>
+
+            <figcaption>Wepwawet steps = 60</figcaption>
+          </figure>
+        </div>
+      
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/8747835583752_Animagine_00002_.png"
+              data-fancybox="swiper-22k6je9a"
+              data-caption="Wepwawet steps = 20; Ruilur steps = 40"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/8747835583752_Animagine_00002_.webp"
+                loading="lazy"
+                alt="Wepwawet steps = 20; Ruilur steps = 40"
+              >
+            </a>
+
+            <figcaption>Wepwawet steps = 20; Ruilur steps = 40</figcaption>
+          </figure>
+        </div>
+      
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/8747835583752_Animagine_00003_.png"
+              data-fancybox="swiper-22k6je9a"
+              data-caption="Ruilur steps = 60"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/8747835583752_Animagine_00003_.webp"
+                loading="lazy"
+                alt="Ruilur steps = 60"
+              >
+            </a>
+
+            <figcaption>Ruilur steps = 60</figcaption>
+          </figure>
+        </div>
+      
+        <div class="swiper-slide">
+          <figure class="post-swiper-image">
+            <a
+              target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/8747835583752_Animagine_00004_.png"
+              data-fancybox="swiper-22k6je9a"
+              data-caption="Ruilur steps = 20; Wepwawet steps = 40"
+            >
+              <img
+                src="https://media.omnisch.net/diffusion/8747835583752_Animagine_00004_.webp"
+                loading="lazy"
+                alt="Ruilur steps = 20; Wepwawet steps = 40"
+              >
+            </a>
+
+            <figcaption>Ruilur steps = 20; Wepwawet steps = 40</figcaption>
+          </figure>
+        </div>
+      
+        </div>
+
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <div class="swiper-pagination"></div>
+      </div>
+    
+<p>输入的图像也可以添加一层 mask 遮罩，用于只重绘部分图像的情况。此时的遮罩，白色是需要重绘的部分，黑色是不要动的部分。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-regular fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Omnisch</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"omnisch/omnisch.github.io","repo_id":"R_kgDOM_HNHQ","category":"General","category_id":"DIC_kwDOM_HNHc4C8GJN","mapping":"pathname","strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","lang":"zh-CN","crossorigin":"anonymous","input_position":"top","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.post-swiper').forEach(function (element) {
+    new Swiper(element, {
+      loop: true,
+
+      navigation: {
+        nextEl: element.querySelector('.swiper-button-next'),
+        prevEl: element.querySelector('.swiper-button-prev')
+      },
+
+      pagination: {
+        el: element.querySelector('.swiper-pagination'),
+        clickable: true
+      },
+
+      keyboard: {
+        enabled: true
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
