@@ -252,10 +252,10 @@
 <ul>
 <li><strong>U-Net</strong>：核心去噪网络，从随机噪声一步步生成图像；</li>
 <li><strong>CLIP</strong>：对比式视觉语言预训练模型，把文字提示词转换成模型能够理解的语义向量；</li>
-<li><strong>VAE</strong>：变分自编码器，负责在潜空间 (Latent) 和像素图像之间编解码。</li>
+<li><strong>VAE</strong>：变分自编码器，负责在潜空间 (Latent) 和数据之间编解码。</li>
 </ul>
 <p>现在大部分模型的格式都是 <code>.safetensors</code>，这是 Hugging Face 开发的一种模型权重存储格式。Hugging Face 不仅是全球最大的开源 AI 社区，也是 AI 行业标准制定的重要参与者和推动者，常被称为“AI 界的 GitHub”，目前共享超过 300 万个模型。下文的 Checkpoint 模型都可以在 Hugging Face 上找到并下载。</p>
-<p>ComfyUI 默认下载一个 Z-Image-Turbo 模型。Z-Image 和 Z-Image-Turbo 都是阿里云通义旗下的开源图像生成基础模型，支持生成包括写实、动漫在内的多种图像风格，主要优势为轻量、快速——Z-Image-Turbo 可以 8 步出图。</p>
+<p>ComfyUI 在初次使用时可以下载一个 Z-Image-Turbo 模型。Z-Image 和 Z-Image-Turbo 都是阿里云通义旗下的开源图像生成基础模型，支持生成包括写实、动漫在内的多种图像风格，主要优势为轻量、快速——Z-Image-Turbo 可以 8 步出图。</p>
 <p>Qwen-Image 是通义千问团队研发的 200 亿参数的图像生成基础模型，以文字渲染和图像编辑能力见长。</p>
 <p>此外还有 FLUX.1、FLUX.2 等图像基础模型，但我尚未测试，也就不再赘述。</p>
           <!--noindex-->

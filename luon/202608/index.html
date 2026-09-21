@@ -27,7 +27,7 @@
 <meta property="og:description" content="我的配置：  RTX 5070Ti 16GB 显存 Python 3.11 CUDA 12.8   Checkpoint 模型 Checkpoint 指基础模型，也就是一个已经训练好的完整模型权重文件。一个 Checkpoint 模型通常包含三个核心部分：  U-Net：核心去噪网络，从随机噪声一步步生成图像； CLIP：对比式视觉语言预训练模型，把文字提示词转换成模型能够理解的语义向量； VA">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-09-14T12:29:45.930Z">
-<meta property="article:modified_time" content="2026-09-15T10:34:48.155Z">
+<meta property="article:modified_time" content="2026-09-19T00:51:57.264Z">
 <meta property="article:author" content="Omnisch">
 <meta name="twitter:card" content="summary">
 
@@ -257,10 +257,10 @@
 <ul>
 <li><strong>U-Net</strong>：核心去噪网络，从随机噪声一步步生成图像；</li>
 <li><strong>CLIP</strong>：对比式视觉语言预训练模型，把文字提示词转换成模型能够理解的语义向量；</li>
-<li><strong>VAE</strong>：变分自编码器，负责在潜空间 (Latent) 和像素图像之间编解码。</li>
+<li><strong>VAE</strong>：变分自编码器，负责在潜空间 (Latent) 和数据之间编解码。</li>
 </ul>
 <p>现在大部分模型的格式都是 <code>.safetensors</code>，这是 Hugging Face 开发的一种模型权重存储格式。Hugging Face 不仅是全球最大的开源 AI 社区，也是 AI 行业标准制定的重要参与者和推动者，常被称为“AI 界的 GitHub”，目前共享超过 300 万个模型。下文的 Checkpoint 模型都可以在 Hugging Face 上找到并下载。</p>
-<p>ComfyUI 默认下载一个 Z-Image-Turbo 模型。Z-Image 和 Z-Image-Turbo 都是阿里云通义旗下的开源图像生成基础模型，支持生成包括写实、动漫在内的多种图像风格，主要优势为轻量、快速——Z-Image-Turbo 可以 8 步出图。</p>
+<p>ComfyUI 在初次使用时可以下载一个 Z-Image-Turbo 模型。Z-Image 和 Z-Image-Turbo 都是阿里云通义旗下的开源图像生成基础模型，支持生成包括写实、动漫在内的多种图像风格，主要优势为轻量、快速——Z-Image-Turbo 可以 8 步出图。</p>
 <p>Qwen-Image 是通义千问团队研发的 200 亿参数的图像生成基础模型，以文字渲染和图像编辑能力见长。</p>
 <p>此外还有 FLUX.1、FLUX.2 等图像基础模型，但我尚未测试，也就不再赘述。</p>
 <span id="more"></span>
@@ -276,7 +276,7 @@
 <h2 id="开始使用-ComfyUI">开始使用 ComfyUI</h2>
 <p>ComfyUI 是一个基于节点工作流的图形用户界面工具，完全开源，被广泛认为是面向专业创作者的“AI 创作引擎”。在 ComfyUI 中可以获取到很多现成的工作流，并按照提示直接下载需要的模型。</p>
 <p>现在已经有直接以 ComfyUI 工作流为研究对象的 ACL 论文：例如 2026 年 ACL Findings 的 <a target="_blank" rel="noopener" href="https://aclanthology.org/2026.findings-acl.146/">ComfyUI-R1</a> 和 <a target="_blank" rel="noopener" href="https://aclanthology.org/2026.findings-acl.140/">ComfyFlow</a>，前者研究自动生成 ComfyUI 工作流，后者建立了 ComfyUI workflow generation benchmark。</p>
-<p>ComfyUI 有许多用户创作的扩展包，比如 Impack Pack、Easy Use 等，其中有不少都是 QoL 节点，可以为快速搭建工作流节省不少时间，但有时也会牺牲一些灵活性。我比较看重的是这些扩展包中的 XY Plot 功能，可以生成一批微调参数的图像，然后列出一张大表便于对照。下文的二维表图都是基于 Easy Use 提供的节点渲染出来的。</p>
+<p>ComfyUI 有许多用户创作的扩展包，比如 Impact Pack、Easy Use 等，其中有不少都是 QoL 节点，可以为快速搭建工作流节省不少时间，但有时也会牺牲一些灵活性。我比较看重的是这些扩展包中的 XY Plot 功能，可以生成一批微调参数的图像，然后列出一张大表便于对照。下文的二维表图都是基于 Easy Use 提供的节点渲染出来的。</p>
 <p>针对二次元（动漫）画风，也有一些 Checkpoint 模型可供选择，比如 SDXL、Animagine、Illustrious、Pony、Krea 2 等等。可供选择的模型太多，我直接让 AI 帮我挑选了两种：<strong>Animagine XL 4.0 Zero</strong> 和 <strong>Illustrious XL 2.0</strong>，前者“served as the pretrained base model”，非常适合作为训练的基础；后者有相当大的基础模型生态，也是目前“最稳妥”的选择。这两种模型都属于 SDXL 系，提示词都更推荐使用 Booru 式的标签罗列而非自然语言，因为标签罗列更符合这些模型的训练分布。</p>
 <blockquote>
 <p>至于 Anima / Krea 2 这种“新一代”模型，就留给在玩 <a target="_blank" rel="noopener" href="https://github.com/WalkingMeatAxolotl/AnimaLoraStudio">Anima Lora Studio</a> 这个端到端流水线产品的时候再体验吧。</p>
@@ -290,7 +290,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/775372428630734_Animagine_00001_.png"
-              data-fancybox="swiper-8w2ae2sx"
+              data-fancybox="swiper-slc2dnvw"
               data-caption="使用 Animagine 生成"
             >
               <img
@@ -308,7 +308,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/775372428630734_Illustrious_00001_.png"
-              data-fancybox="swiper-8w2ae2sx"
+              data-fancybox="swiper-slc2dnvw"
               data-caption="使用 Illustrious 生成"
             >
               <img
@@ -336,9 +336,9 @@
 <ul>
 <li><code>steps</code> 控制去噪的步数，前面也提到像 Z-Image-Turbo 这种模型可以只需要 8 步甚至更少就能出图。步数越高，一般意味着图片的细节越有可能被打磨，整体质量也就越高，但有边际效应，从 30 到 60 步可能效果显著；但从 60 步到 120 步可能区别不大，白白耗费时间。根据我的经验，30 步基本能看，50 步可能只有手指画不好，到 80 步算是“最高画质”了。</li>
 <li><code>cfg</code> 是我误会了好长时间的参数。我一度以为它是 Config 的缩写，然而实际上是 Classifier-Free Guidance Scale，用于<strong>控制文本提示词对生成过程的影响程度</strong>。从下面的诸多例子中可以直观看到：值越高，生成的图像越严格地遵循提示词，但同时带来色彩失真、画面过曝；值越低，图像越有自由发挥的空间，但画面普遍偏灰。</li>
-<li><code>sampler_name</code> 是去噪所使用的具体算法，不同的采样器在速度、收敛性和最终呈现上有显著差异。<code>euler</code> 是非常简单的算法，求解常微分方程速度快且稳定；<code>dpmpp_2m</code> (DPM++ 2M) 通过更精确的数值计算加速收敛，边缘干净；<code>res_multistep</code> 的累计误差更小，有显著的结构一致性优势。此外，<code>ancestral</code> 和 <code>cfg_pp</code> (CFG++) 是两个完全独立的后缀，前者代表<strong>原始采样</strong>，会让原采样器在去噪的每一步都注入随机噪声，这导致在相同条件下，每次生成的细节都会有差异；后者解决了当 <code>cfg</code> 值很低时引导失效的问题，但反过来，这些采样器也需要在非常低的 <code>cfg</code> 值下才能正常运作。</li>
+<li><code>sampler_name</code> 是去噪所使用的具体算法，不同的采样器在速度、收敛性和最终呈现上有显著差异。<code>euler</code> 是非常简单的算法，求解常微分方程速度快且稳定；<code>dpmpp_2m</code> (DPM++ 2M) 通过更精确的数值计算加速收敛，边缘干净；<code>res_multistep</code> 的累计误差更小，有显著的结构一致性优势。此外，<code>ancestral</code> 和 <code>cfg_pp</code> (CFG++) 是两个完全独立的后缀，前者代表<strong>祖先采样</strong>，会让原采样器在去噪的每一步都注入随机噪声，使得在相同条件下，w/ 与 w/o 的生成有明显差异；后者解决了当 <code>cfg</code> 值很低时引导失效的问题，但反过来，这些采样器也需要在非常低的 <code>cfg</code> 值下才能正常运作。</li>
 <li><code>scheduler</code> 是调度器，决定了去噪的节奏与步长，比较常用的有 <code>karras</code>、<code>exponential</code> 和 <code>normal</code> 等。</li>
-<li><code>denoise</code> 其实是一个包装其他参数的参数，它决定了 <code>start_at_step</code>。如果 <code>steps = 20</code> 且 <code>denoise = 0.25</code>，那么相当于 <code>start_at_step = 5</code>，也就是从第 5 步开始去噪，走 15 步。这样会保留原 latent 的一些信息，从而实现图生图。</li>
+<li><code>denoise</code> 其实是一个包装其他参数的参数，它与 <code>steps</code> 共同决定了 <code>start_at_step</code>。如果 <code>steps = 20</code> 且 <code>denoise = 0.75</code>，那么相当于 <code>start_at_step = 5</code>，也就是从第 5 步开始去噪，走 15 步。这样会保留原 latent 的一些信息，从而实现图生图。</li>
 </ul>
 <p>下面展示了不同采样器与不同 <code>cfg</code> 值的组合效果。不同调度器的最终呈现差别不大，故不作展示。</p>
 
@@ -349,7 +349,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/661443578006055_Animagine_00001_.png"
-              data-fancybox="swiper-q73aiuwj"
+              data-fancybox="swiper-jvfuo8yf"
               data-caption="不同采样器与不同 CFG 值的组合效果"
             >
               <img
@@ -367,7 +367,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/661443578006055_Animagine_00002_.png"
-              data-fancybox="swiper-q73aiuwj"
+              data-fancybox="swiper-jvfuo8yf"
               data-caption="CFG++ 采样器与不同 CFG 值的组合效果"
             >
               <img
@@ -399,7 +399,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/661443578006055_Animagine_MyGO_00001_.png"
-              data-fancybox="swiper-tbgfgg9p"
+              data-fancybox="swiper-inwe34v1"
               data-caption="使用 MyGO 动画剧照训练的 LoRA"
             >
               <img
@@ -417,7 +417,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/661443578006055_Animagine_Rui_00001_.png"
-              data-fancybox="swiper-tbgfgg9p"
+              data-fancybox="swiper-inwe34v1"
               data-caption="使用艺术家 Ruilur 作品训练的 LoRA"
             >
               <img
@@ -435,7 +435,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/661443578006055_Animagine_Rpp_00001_.png"
-              data-fancybox="swiper-tbgfgg9p"
+              data-fancybox="swiper-inwe34v1"
               data-caption="使用艺术家 Ruppu 作品训练的 LoRA"
             >
               <img
@@ -453,7 +453,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/661443578006055_Animagine_Wep_00001_.png"
-              data-fancybox="swiper-tbgfgg9p"
+              data-fancybox="swiper-inwe34v1"
               data-caption="使用艺术家 Wepwawet 作品训练的 LoRA"
             >
               <img
@@ -484,7 +484,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/MyGO_E13_06.jpg"
-              data-fancybox="swiper-4zy93ipt"
+              data-fancybox="swiper-3gq0xa86"
               data-caption="MyGO 动画剧照"
             >
               <img
@@ -502,7 +502,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/148032990_p0.jpg"
-              data-fancybox="swiper-4zy93ipt"
+              data-fancybox="swiper-3gq0xa86"
               data-caption="艺术家 Ruilur 作品"
             >
               <img
@@ -520,7 +520,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/12046854_ruppu_kurumi_(blue_archive)%2Cotogi_(blue_archive).jpg"
-              data-fancybox="swiper-4zy93ipt"
+              data-fancybox="swiper-3gq0xa86"
               data-caption="艺术家 Ruppu 作品"
             >
               <img
@@ -538,7 +538,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/136938571_p0.png"
-              data-fancybox="swiper-4zy93ipt"
+              data-fancybox="swiper-3gq0xa86"
               data-caption="艺术家 Wepwawet 作品"
             >
               <img
@@ -571,7 +571,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/661443578006055_Animagine_MyGO%2BWep_00001_.png"
-              data-fancybox="swiper-8dxc391f"
+              data-fancybox="swiper-9fqozfb5"
               data-caption="MyGO LoRA 0.8 + Wepwawet"
             >
               <img
@@ -589,7 +589,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/661443578006055_Animagine_MyGO_00001_.png"
-              data-fancybox="swiper-8dxc391f"
+              data-fancybox="swiper-9fqozfb5"
               data-caption="MyGO LoRA only"
             >
               <img
@@ -607,7 +607,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/661443578006055_Animagine_Wep_00001_.png"
-              data-fancybox="swiper-8dxc391f"
+              data-fancybox="swiper-9fqozfb5"
               data-caption="Wepwawet LoRA only"
             >
               <img
@@ -639,7 +639,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/1786503151082.png"
-              data-fancybox="swiper-sjm5uy4a"
+              data-fancybox="swiper-wi47c8zj"
               data-caption="原图"
             >
               <img
@@ -657,7 +657,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.2_.png"
-              data-fancybox="swiper-sjm5uy4a"
+              data-fancybox="swiper-wi47c8zj"
               data-caption="denoise = 0.2"
             >
               <img
@@ -675,7 +675,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.3_.png"
-              data-fancybox="swiper-sjm5uy4a"
+              data-fancybox="swiper-wi47c8zj"
               data-caption="denoise = 0.3"
             >
               <img
@@ -693,7 +693,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.4_.png"
-              data-fancybox="swiper-sjm5uy4a"
+              data-fancybox="swiper-wi47c8zj"
               data-caption="denoise = 0.4"
             >
               <img
@@ -711,7 +711,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.5_.png"
-              data-fancybox="swiper-sjm5uy4a"
+              data-fancybox="swiper-wi47c8zj"
               data-caption="denoise = 0.5"
             >
               <img
@@ -729,7 +729,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.6_.png"
-              data-fancybox="swiper-sjm5uy4a"
+              data-fancybox="swiper-wi47c8zj"
               data-caption="denoise = 0.6"
             >
               <img
@@ -747,7 +747,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.7_.png"
-              data-fancybox="swiper-sjm5uy4a"
+              data-fancybox="swiper-wi47c8zj"
               data-caption="denoise = 0.7"
             >
               <img
@@ -765,7 +765,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.8_.png"
-              data-fancybox="swiper-sjm5uy4a"
+              data-fancybox="swiper-wi47c8zj"
               data-caption="denoise = 0.8"
             >
               <img
@@ -783,7 +783,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.9_.png"
-              data-fancybox="swiper-sjm5uy4a"
+              data-fancybox="swiper-wi47c8zj"
               data-caption="denoise = 0.9"
             >
               <img
@@ -801,7 +801,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/717028221091539_Animagine_i2i_0.99_.png"
-              data-fancybox="swiper-sjm5uy4a"
+              data-fancybox="swiper-wi47c8zj"
               data-caption="denoise = 0.99"
             >
               <img
@@ -832,7 +832,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/Animagine_717028221091539_00012_.png"
-              data-fancybox="swiper-0s85g806"
+              data-fancybox="swiper-vi6zc4gf"
               data-caption="MyGO LoRA; denoise = 0.5"
             >
               <img
@@ -850,7 +850,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/Animagine_717028221091539_00009_.png"
-              data-fancybox="swiper-0s85g806"
+              data-fancybox="swiper-vi6zc4gf"
               data-caption="Ruilur LoRA; denoise = 0.5"
             >
               <img
@@ -868,7 +868,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/Animagine_717028221091539_00005_.png"
-              data-fancybox="swiper-0s85g806"
+              data-fancybox="swiper-vi6zc4gf"
               data-caption="Wepwawet LoRA; denoise = 0.5"
             >
               <img
@@ -899,7 +899,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/8747835583752_Animagine_00001_.png"
-              data-fancybox="swiper-22k6je9a"
+              data-fancybox="swiper-yb0ruv1z"
               data-caption="Wepwawet steps = 60"
             >
               <img
@@ -917,7 +917,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/8747835583752_Animagine_00002_.png"
-              data-fancybox="swiper-22k6je9a"
+              data-fancybox="swiper-yb0ruv1z"
               data-caption="Wepwawet steps = 20; Ruilur steps = 40"
             >
               <img
@@ -935,7 +935,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/8747835583752_Animagine_00003_.png"
-              data-fancybox="swiper-22k6je9a"
+              data-fancybox="swiper-yb0ruv1z"
               data-caption="Ruilur steps = 60"
             >
               <img
@@ -953,7 +953,7 @@
           <figure class="post-swiper-image">
             <a
               target="_blank" rel="noopener" href="https://media.omnisch.net/diffusion/8747835583752_Animagine_00004_.png"
-              data-fancybox="swiper-22k6je9a"
+              data-fancybox="swiper-yb0ruv1z"
               data-caption="Ruilur steps = 20; Wepwawet steps = 40"
             >
               <img
