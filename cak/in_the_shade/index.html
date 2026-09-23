@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#9acab0"><meta name="generator" content="Hexo 8.1.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-omnis.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-omnis.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-omnis.ico">
+  <link rel="mask-icon" href="/images/logo-omnis.svg" color="#9acab0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.font.im/css?family=Iosevka:300,300italic,400,400italic,700,700italic%7CNoto+Sans+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"omnisch.net","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="游戏概述  《影之下》是一款由 Omnistudio 开发的 2D 俯视角的解谜游戏，玩家要控制史莱姆一直踩在外物的影子中抵达终点。玩家拥有的重要的交互操作是可以改变光源的位置，借此来为场景在自己需要的地方创造影子。 美术风格 Omnistudio 的成员只有一人，且该成员并没有太多绘画的功底，故《影之下》选择了强大的 mspaint 绘图软件，使游戏整体呈现出平面化简约像素风格。为了减少工作量，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《影之下》游戏策划与说明文档">
+<meta property="og:url" content="https://omnisch.net/cak/in_the_shade/index.html">
+<meta property="og:site_name" content="青山軒">
+<meta property="og:description" content="游戏概述  《影之下》是一款由 Omnistudio 开发的 2D 俯视角的解谜游戏，玩家要控制史莱姆一直踩在外物的影子中抵达终点。玩家拥有的重要的交互操作是可以改变光源的位置，借此来为场景在自己需要的地方创造影子。 美术风格 Omnistudio 的成员只有一人，且该成员并没有太多绘画的功底，故《影之下》选择了强大的 mspaint 绘图软件，使游戏整体呈现出平面化简约像素风格。为了减少工作量，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://omnisch.net/cak/in_the_shade/title.png">
+<meta property="og:image" content="https://omnisch.net/cak/in_the_shade/assets_60x.png">
+<meta property="og:image" content="https://omnisch.net/cak/in_the_shade/assets_64x.png">
+<meta property="og:image" content="https://omnisch.net/cak/in_the_shade/assets_64x~1.png">
+<meta property="og:image" content="https://omnisch.net/cak/in_the_shade/idle.gif">
+<meta property="article:published_time" content="2022-01-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-23T08:57:52.654Z">
+<meta property="article:author" content="Omnisch">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://omnisch.net/cak/in_the_shade/title.png">
+
+
+<link rel="canonical" href="https://omnisch.net/cak/in_the_shade/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://omnisch.net/cak/in_the_shade/","path":"cak/in_the_shade/","title":"《影之下》游戏策划与说明文档"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>《影之下》游戏策划与说明文档 | 青山軒</title>
+  
+
+
+
+
+
+
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
+>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">青山軒</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">倉經所閒虛言</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-作品"><a href="/cak/index/" rel="section"><i class="fa fa-rocket fa-fw"></i>作品</a></li><li class="menu-item menu-item-歌詞"><a href="/kazsi/index/" rel="section"><i class="fa fa-microphone-lines fa-fw"></i>歌詞</a></li><li class="menu-item menu-item-隨感"><a href="/categories/kom/" rel="section"><i class="fa fa-hashtag fa-fw"></i>隨感</a></li><li class="menu-item menu-item-編纂"><a href="/categories/pen/" rel="section"><i class="fa fa-pen-nib fa-fw"></i>編纂</a></li><li class="menu-item menu-item-匯集"><a href="/categories/yoi/" rel="section"><i class="fa fa-table fa-fw"></i>匯集</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">游戏概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BE%8E%E6%9C%AF%E9%A3%8E%E6%A0%BC"><span class="nav-number">2.</span> <span class="nav-text">美术风格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F%E6%93%8D%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">游戏操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E5%8D%A1%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.</span> <span class="nav-text">关卡设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E4%BD%9C%E5%BF%83%E5%BE%97"><span class="nav-number">5.</span> <span class="nav-text">创作心得</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97"><span class="nav-number">6.</span> <span class="nav-text">更新日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80"><span class="nav-number">7.</span> <span class="nav-text">下载地址</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Omnisch"
+      src="/images/graffiti2502-128x.png">
+  <p class="site-author-name" itemprop="name">Omnisch</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:omnisch@outlook.com" title="E-Mail → mailto:omnisch@outlook.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/Omnisch" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Omnisch" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/19541024" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;19541024" rel="noopener me" target="_blank"><i class="fab fa-bilibili fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://zi.tools/" title="https:&#x2F;&#x2F;zi.tools" rel="noopener" target="_blank">字統</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://kaom.net/" title="https:&#x2F;&#x2F;kaom.net" rel="noopener" target="_blank">古音小鏡</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://zhs.glyphwiki.org/wiki/" title="https:&#x2F;&#x2F;zhs.glyphwiki.org&#x2F;wiki&#x2F;" rel="noopener" target="_blank">字形维基</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://omnisch.net/cak/in_the_shade/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/graffiti2502-128x.png">
+      <meta itemprop="name" content="Omnisch">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青山軒">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="《影之下》游戏策划与说明文档 | 青山軒">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          《影之下》游戏策划与说明文档
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-01-15 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-15T00:00:00+08:00">2022-01-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/cak/" itemprop="url" rel="index"><span itemprop="name">cak</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="游戏概述">游戏概述</h2>
+<p><figure><img src="/cak/in_the_shade/title.png" alt="游戏 Logo"><figcaption>游戏 Logo</figcaption></figure></p>
+<p>《影之下》是一款由 Omnistudio 开发的 2D 俯视角的解谜游戏，玩家要控制史莱姆一直踩在外物的影子中抵达终点。玩家拥有的重要的交互操作是可以改变光源的位置，借此来为场景在自己需要的地方创造影子。</p>
+<h2 id="美术风格">美术风格</h2>
+<p>Omnistudio 的成员只有一人，且该成员并没有太多绘画的功底，故《影之下》选择了强大的 mspaint 绘图软件，使游戏整体呈现出平面化简约像素风格。为了减少工作量，游戏采用了网格坐标地图，这使得游戏内一切元素都可以限制在方格之中，素材也大多是单个 64x64 像素的方格（除了标题的素材需要 6x3 个方格）。</p>
+<p>本游戏试图借鉴《传送门》的美术风格，选取橙色和蓝色作为素材的两种不同风格。同时，利用颜色进行环境叙事，橙色场景中的砖块、花园地砖象征较为轻松、明快的室外场景；蓝色场景中的瓷砖则象征可移动的物体变多的实验室内。让玩家感受到场景的变换与难度的变化之间的关联。</p>
+<span id="more"></span>
+<p>素材经过了两次较大的改版。第一次主要从 60x60 像素改为 64x64 像素，使其更加适应引擎的绘制系统；第二次主要增加素材高光和细节，强调立体感和真实性。</p>
+<p><figure><img src="/cak/in_the_shade/assets_60x.png" alt="第一版部分素材"><figcaption>第一版部分素材</figcaption></figure></p>
+<p>第二版在修改尺寸之外，也针对素材的密铺做了修改。橙色的砖块、地砖的密铺效果理想，故沿用之；而蓝色的不甚美观，故重做之。同时为所有方块上了 1 宽度的高光。</p>
+<p><figure><img src="/cak/in_the_shade/assets_64x.png" alt="第二版部分素材"><figcaption>第二版部分素材</figcaption></figure></p>
+<p>第三版首先将大部分线条及高光的宽度增为2，同时略微强调背光处，使方块更加立体。又为追求密铺的舒适，进一步修改蓝色方块的样式。史莱姆也修改了光影效果，且由方形变得圆滑。</p>
+<p><figure><img src="/cak/in_the_shade/assets_64x~1.png" alt="第三版部分素材"><figcaption>第三版部分素材</figcaption></figure></p>
+<h2 id="游戏操作">游戏操作</h2>
+<p>玩家能进行的主要操作有两种：向四个方向移动和切换光源的方向。</p>
+<p>通过测试发现，玩家倾向于将对光影的操纵默认为「切换投影的方向」而非「切换光源的方向」。比如，玩家站在遮挡物的南面，会想要按下 WASD 的 S 键来创造向南的投影。这种思维是顺向的，因为大多数情况下，创造向南的投影是为了向南走，两种操作的方向是相同的。</p>
+<p>但本游戏反其道而行，将「创造向南的投影」等效替换成了「从北面创造光源」。这打破了思维的惯性，增加了玩家思考的时间，也增加了解谜的难度和乐趣。</p>
+<p>制作组相信，这套操作既可以一人完成，也可以分给两个人，邀请您的好友，当作双人游戏来玩。双人合作说不定可以带来更多的乐趣。</p>
+<h2 id="关卡设计">关卡设计</h2>
+<p>截至撰写本小节时，游戏共设计了 10 个内置关卡。关卡难度循序渐进，其中第 0 至 5 关为橙色风格（易），第 6 至 9 关为蓝色风格（难）。</p>
+<video controls>
+    <source src="https://media.omnisch.net/demo/In_The_Shade_Demo_Full_Video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+<p>关卡 0 同时也是标题画面，这一关的主要目的是让玩家接触并熟悉操作。四角的四个单独的砖块用来更明显地展现影子的方向，使玩家更快地适应光源的切换。玩家也能够在尝试中意识到边界方块是不会产生影子的。<br>
+关卡 1：学习利用缺角转向的操作。<br>
+关卡 2：巩固练习。<br>
+关卡 3：寻找路线，抽象思考。<br>
+关卡 4：引入可推动的箱子这一元素，为了让玩家了解箱子的用途，而将其他元素大幅减少。<br>
+关卡 5：学习利用箱子转向的操作，限制可移动范围并且全部改用没有阴影的边界方块，让玩家不得不思考箱子的用法。<br>
+关卡 6：引入阻挡箱子的警戒线这一元素。<br>
+关卡 7：对箱子的进阶利用。<br>
+关卡 8：综合关卡。<br>
+关卡 9：关卡 8 的进阶。</p>
+<h2 id="创作心得">创作心得</h2>
+<p>《影之下》是 Omnistudio 的第一个完全独立制作（除去引擎和音效）的游戏。在制作过程中，制作组有很多的心得体会。</p>
+<p>首先是游戏的构思。最早关于利用影子铺路的想法源自于校园南面的天桥，夜晚时在东西两侧路灯的照耀下，两侧的栏杆形成了交错的影子，行人仿佛不是走在天桥的桥面上，而是走在影子编织成的竹网上面一样。因此最早的想法其实是 3D 的，类似《传送门》那样的 FPS 游戏，玩家手持能发射光源到空中的枪，在本来透明的道路上投射出能踏上去的阴影。在知道了结课作业之后，制作组决定先将想法用 2D 的游戏实现出来，同时为了减少交流成本，确保成果最大程度贴合脑海中的构思，制作组没有再招其他成员。不过在制作的过程中，制作组越来越发现 2D 版的其实更易实现、更直观且更易上手。</p>
+<p>接下来是游戏的代码实现。</p>
+<p>第一个重点就是怎样实现玩家的固定步长的移动。在引擎的教学中，按住按键玩家移动，松开按键玩家立即停止移动。但这不适用于网格状的地图，玩家只能从一个方格内向四周移动一个方格的距离，无论玩家按了短短一下还是长按着方向键。制作组先想到的是在移动时用变量记录 <code>fElapsedTime</code>，当乘以速度大于步长时停止，但这有明显的问题，由于 <code>float</code> 类型和 <code>Elapsed Time</code> 本身的双重不确定性，玩家无法恰好停在目的地方格的正中心，微小的差距会在反复移动中放大。于是制作组换用「若玩家坐标来到目的地中心则停止」的方法，但依然不能正常实现，因为计算并非连续的，坐标极有可能跳过正中心。最终实现的方法是，向目的地方向以 <code>speed</code> 速度移动，当玩家坐标与目的地中心坐标的差的模长小于 <code>fElapsedTime * speed * k (1&lt;k&lt;2)</code> 时，就停止移动并把玩家坐标直接重设为中心坐标。因为当符合条件时，两坐标相差只有一帧时间的距离，故直接赋值的做法在观感上是流畅的，而每次移动结束都重置到当前方格的中心点也完全消除了误差。</p>
+<p>第二是碰撞检测。由于第一点，玩家开始移动后须到达目的地才会停止，此时，后验的碰撞检测会阻止玩家移动到目的地，从而无法结束移动的状态。所以制作组改为了先验的碰撞检测，在玩家给出移动信号后，先判断目的地是否能够到达，如果能够到达则执行移动，不能则直接原地站定。如此一来，碰撞检测只需在 <code>OnKey()</code> 函数中进行，不再需要逐帧计算。</p>
+<p>第三是地图编辑器的制作。本游戏的元素并不复杂，规则也足够简单，但关卡的变化多种多样，玩家完全有能力自己设计关卡。为此首先要实现关卡的文件读写。地图本身由数组存储，读写文件难度不大，只需加或减 48 即可完成从数字到字符的转换。其次要实现玩家在两个地图上的切换。制作组为玩家类设置了指向地图类的指针，切换地图时将该指针链接到当前响应的地图即可。</p>
+<p>另外还有角色的呼吸动画。怎样强调玩家操作的角色的位置呢？除了选用与蓝橙均不相近的绿色做角色的颜色外，为角色设计 Idle 时的呼吸动画，也可以让动起来的角色在静态的地图中十分显眼。但如果把呼吸的动画一帧帧地全部画出来的话，既占用资源，也平添工作量。因此制作组在绘制角色时给图片的宽和高分别乘以 <code>1±sin(f(t))</code>，再对坐标作一些微调，这样宽和高就能随时间的推移此消彼长，实现三角函数型的循环。</p>
+<p><figure><img src="/cak/in_the_shade/idle.gif" alt="史莱姆的呼吸动画（不太无缝循环）"><figcaption>史莱姆的呼吸动画（不太无缝循环）</figcaption></figure></p>
+<h2 id="更新日志">更新日志</h2>
+<p>2022.1.15</p>
+<ul>
+<li>添加撤回一步的功能</li>
+<li>修正终点不在阴影中仍能过关的漏洞</li>
+<li>隐藏主窗口</li>
+<li>打包 0.31 版</li>
+</ul>
+<p>2022.1.8</p>
+<ul>
+<li>修改关卡读写的机制</li>
+<li>修正读写关卡时的严重漏洞</li>
+<li>弃用空关卡文件</li>
+<li>引入宏常量</li>
+<li>打包 0.30 版</li>
+</ul>
+<p>2022.1.7</p>
+<ul>
+<li>修改素材</li>
+<li>打包 0.23 版</li>
+</ul>
+<p>2022.1.4</p>
+<ul>
+<li>删去卸载程序及快捷方式</li>
+<li>打包 0.22 版</li>
+</ul>
+<p>2022.1.2</p>
+<ul>
+<li><code>F1</code> 键打开帮助</li>
+<li>添加帮助按钮</li>
+<li>修改鼠标点击的判定</li>
+<li>修改 Item 状态机制</li>
+<li>添加代码注释</li>
+<li>修正编辑器保存时的漏洞</li>
+<li>打包 0.21 版</li>
+</ul>
+<p>2021.12.31</p>
+<ul>
+<li>设计内置关卡（10 关）</li>
+<li>编写 <code>README.TXT</code></li>
+<li>润色素材图片</li>
+<li>生成 .msi 安装包
+<ul>
+<li>打包 0.10 版</li>
+<li>打包 0.11 版</li>
+<li>打包 0.12 版</li>
+<li>打包 0.14 版</li>
+</ul>
+</li>
+</ul>
+<p>2021.12.30</p>
+<ul>
+<li>润色素材图片</li>
+</ul>
+<p>2021.12.28</p>
+<ul>
+<li>设计内置关卡</li>
+<li>添加标题图片</li>
+</ul>
+<p>2021.12.27</p>
+<ul>
+<li>使 Border 阻挡阴影投下</li>
+<li>增加 Limit 方块，允许玩家通过而阻挡箱子</li>
+<li>提高读取文件时的安全性，增加少量异常处理</li>
+<li>修改读取 DIY 地图的操作</li>
+</ul>
+<p>2021.12.25</p>
+<ul>
+<li>修改推动箱子的机制</li>
+<li>玩家可以选择离开阴影</li>
+<li>优化代码、修正漏洞</li>
+</ul>
+<p>2021.12.24</p>
+<ul>
+<li>增加 GUI，整合 <code>Tab</code>, <code>M</code>, <code>&lt;</code> <code>&gt;</code> 键的功能</li>
+<li>修正跳关的漏洞</li>
+<li>再次添加存储信息</li>
+<li>取消 Border 限制边界，加回屏幕边界</li>
+<li>简化碰撞检测</li>
+</ul>
+<p>2021.12.23</p>
+<ul>
+<li>添加存储信息</li>
+<li>支持同时存在多个终点</li>
+<li>引入宏常量
+<ul>
+<li>通过宏常量修改窗口分辨率</li>
+</ul>
+</li>
+<li>优化 Log</li>
+</ul>
+<p>2021.12.22</p>
+<ul>
+<li>地图编辑器，编辑器继承自地图
+<ul>
+<li><code>Tab</code> 键切换地图与编辑器</li>
+<li>切换地图颜色</li>
+<li>本地保存地图</li>
+<li>本地读取地图</li>
+<li><code>I</code> <code>O</code> 键切换预设地图和玩家自制地图</li>
+</ul>
+</li>
+<li><code>R</code> 键重试</li>
+<li><code>&lt;</code> <code>&gt;</code> 键跳关</li>
+</ul>
+<p>初版</p>
+<ul>
+<li><code>↑</code> <code>↓</code> <code>←</code> <code>→</code> 玩家移动
+<ul>
+<li>固定玩家步长，平滑移动</li>
+</ul>
+</li>
+<li><code>W</code> <code>S</code> <code>A</code> <code>D</code> 切换光照方向</li>
+<li>网格坐标消除浮点数误差</li>
+<li>以深度检测代替碰撞检测
+<ul>
+<li>玩家只能移动至深度为 0 的方块</li>
+<li>玩家位于深度不为 0 的方块时重生</li>
+<li>2 秒重生时间</li>
+</ul>
+</li>
+<li>到达终点切换关卡</li>
+<li>加入可以推动的箱子</li>
+<li>玩家呼吸动画</li>
+<li><code>M</code> 键音乐开关</li>
+</ul>
+<h2 id="下载地址">下载地址</h2>
+<p><a target="_blank" rel="noopener" href="https://media.omnisch.net/demo/Shade_v0.31_setup.msi">In the Shade v0.31 安装包下载地址</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-regular fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Omnisch</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"omnisch/omnisch.github.io","repo_id":"R_kgDOM_HNHQ","category":"General","category_id":"DIC_kwDOM_HNHc4C8GJN","mapping":"pathname","strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","lang":"zh-CN","crossorigin":"anonymous","input_position":"top","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.post-swiper').forEach(function (element) {
+    new Swiper(element, {
+      loop: true,
+
+      navigation: {
+        nextEl: element.querySelector('.swiper-button-next'),
+        prevEl: element.querySelector('.swiper-button-prev')
+      },
+
+      pagination: {
+        el: element.querySelector('.swiper-pagination'),
+        clickable: true
+      },
+
+      keyboard: {
+        enabled: true
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
